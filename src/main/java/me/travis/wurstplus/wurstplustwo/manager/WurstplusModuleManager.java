@@ -31,7 +31,6 @@ public class WurstplusModuleManager {
 	public WurstplusModuleManager() {
 
 		// CLick GUI and HUD.
-		//add_hack(new NewRPC());
 		add_hack(new WurstplusClickGUI());
 		add_hack(new WurstplusClickHUD());
 		add_hack(new DiscordInvite());
