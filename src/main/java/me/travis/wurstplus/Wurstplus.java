@@ -102,7 +102,7 @@ public class Wurstplus {
 
 		if (module_manager.get_module_with_tag("HUD").is_active()) {
 			module_manager.get_module_with_tag("HUD").set_active(false);
-		}
+		}//
 
 		send_minecraft_log("client started");
 		send_minecraft_log("se vienen cositas");
