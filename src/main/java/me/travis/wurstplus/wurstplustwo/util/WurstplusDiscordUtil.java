@@ -1,4 +1,4 @@
-package me.travis.wurstplus.wurstplustwo.util;
+/*package me.travis.wurstplus.wurstplustwo.util;
 
 import me.travis.wurstplus.Wurstplus;
 import net.minecraft.client.Minecraft;
@@ -57,7 +57,7 @@ public class WurstplusDiscordUtil {
     Discord_UpdatePresence(&discordPresence);
 }
         */
-
+/*
         new Thread(() ->
         {
             while (!Thread.currentThread().isInterrupted()) {
@@ -113,4 +113,4 @@ public class WurstplusDiscordUtil {
         DiscordRPC.INSTANCE.Discord_ClearPresence();
     }
 
-}
+}*/
