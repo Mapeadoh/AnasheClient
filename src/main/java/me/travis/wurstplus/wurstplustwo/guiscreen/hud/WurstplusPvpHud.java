@@ -2,6 +2,7 @@ package me.travis.wurstplus.wurstplustwo.guiscreen.hud;
 
 import me.travis.wurstplus.Wurstplus;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.pinnables.WurstplusPinnable;
+import me.travis.wurstplus.wurstplustwo.hacks.combat.WurstplusOffhand;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -18,19 +19,21 @@ public class WurstplusPvpHud extends WurstplusPinnable {
 		int nl_b = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorB").get_value(1);
         int nl_a = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorA").get_value(1);
 
-        String totem = "Totems: " + get_totems();
         String trap = "Trap: " + trap_enabled();
         String aura = "Aura: " + aura_enabled();
         String surround = "Surround: " + surround_enabled();
         String holefill = "Holefill: " + holefill_enabled();
         String selftrap = "Self Trap: " + selftrap_enabled();
+        String burrow = "Burrow: " + burrow_enabled();
+        String offhand = "Offhand: " + offhand_enabled() + ", " + WurstplusOffhand.INSTANCE.switch_mode.get_current_value();
 
-        create_line(totem, this.docking(1, totem), 2, nl_r, nl_g, nl_b, nl_a);
+        create_line(offhand, this.docking(1, offhand), 1, nl_r, nl_g, nl_b, nl_a);
         create_line(aura, this.docking(1, aura), 13, nl_r, nl_g, nl_b, nl_a);
         create_line(trap, this.docking(1, trap), 24, nl_r, nl_g, nl_b, nl_a);
         create_line(surround, this.docking(1, surround), 34, nl_r, nl_g, nl_b, nl_a);
-        create_line(holefill, this.docking(1, holefill), 45, nl_r, nl_g, nl_b, nl_a);
-        create_line(selftrap, this.docking(1, selftrap), 67, nl_r, nl_g, nl_b, nl_a);
+        create_line(burrow, this.docking(1, burrow), 45, nl_r, nl_g, nl_b, nl_a);
+        create_line(holefill, this.docking(1, holefill), 56, nl_r, nl_g, nl_b, nl_a);
+        create_line(selftrap, this.docking(1, selftrap), 78, nl_r, nl_g, nl_b, nl_a);
 
 		this.set_width(this.get(surround, "width") + 2);
 		this.set_height(this.get(surround, "height") * 5);
@@ -88,7 +91,7 @@ public class WurstplusPvpHud extends WurstplusPinnable {
     public String holefill_enabled() {
 
         try {
-            if (Wurstplus.get_hack_manager().get_module_with_tag("HoleFill").is_active()) {
+            if (Wurstplus.get_hack_manager().get_module_with_tag("NewHoleFill").is_active()) {
                 return "\u00A7a 1";
             }
             return "\u00A74 0";
@@ -96,6 +99,32 @@ public class WurstplusPvpHud extends WurstplusPinnable {
             return "0";
         }
         
+    }
+
+    public String burrow_enabled() {
+
+        try {
+            if (Wurstplus.get_hack_manager().get_module_with_tag("InstantBurrow").is_active()) {
+                return "\u00A7a 1";
+            }
+            return "\u00A74 0";
+        } catch (Exception e) {
+            return "0";
+        }
+
+    }
+
+    public String offhand_enabled() {
+
+        try {
+            if (Wurstplus.get_hack_manager().get_module_with_tag("Offhand").is_active()) {
+                return "\u00A7a 1";
+            }
+            return "\u00A74 0";
+        } catch (Exception e) {
+            return "0";
+        }
+
     }
 
     public String get_totems() {

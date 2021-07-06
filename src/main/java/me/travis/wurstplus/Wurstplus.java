@@ -23,7 +23,7 @@ public class Wurstplus {
 	private static Wurstplus MASTER;
 
 	public static final String WURSTPLUS_NAME = "AnasheClient+";
-	public static final String WURSTPLUS_VERSION = "Beta0.9";
+	public static final String WURSTPLUS_VERSION = "B0.9";
 	public static final String ANASHECLIENT = WURSTPLUS_NAME + " " + WURSTPLUS_VERSION;
 	public static final String WURSTPLUS_SIGN = " ";
 	public static final int WURSTPLUS_KEY_GUI = Keyboard.KEY_RSHIFT;

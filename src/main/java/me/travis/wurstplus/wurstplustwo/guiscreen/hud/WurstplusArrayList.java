@@ -48,7 +48,7 @@ public class WurstplusArrayList extends WurstplusPinnable {
 
 			flag = true;
 
-			if (modules.get_category().get_tag().equals("WurstplusGUI")) {
+			if (modules.get_category().get_tag().equals("WurstplusClient")) {
 				continue;
 			}
 

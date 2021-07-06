@@ -4,6 +4,7 @@ import me.travis.wurstplus.Wurstplus;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
+import me.travis.wurstplus.wurstplustwo.hacks.client.DiscordRPCModule;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusPlayerUtil;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.init.Blocks;
@@ -15,16 +16,17 @@ import net.minecraft.util.math.BlockPos;
 
 
 public class WurstplusOffhand extends WurstplusHack {
-
+    public static WurstplusOffhand INSTANCE;
     public WurstplusOffhand() {
         super(WurstplusCategory.WURSTPLUS_COMBAT);
 
         this.name        = "Offhand";
         this.tag         = "Offhand";
         this.description = "Switches shit to ur offhand";
+        INSTANCE = this;
     }
 
-    WurstplusSetting switch_mode = create("Offhand", "OffhandOffhand", "Totem", combobox("Totem", "Crystal", "Gapple", "None"));
+    public WurstplusSetting switch_mode = create("Offhand", "OffhandOffhand", "Totem", combobox("Totem", "Crystal", "Gapple", "None"));
     WurstplusSetting totem_switch = create("Totem HP", "OffhandTotemHP", 16, 0, 36);
 
     WurstplusSetting gapple_in_hole = create("Gapple In Hole", "OffhandGapple", false);
