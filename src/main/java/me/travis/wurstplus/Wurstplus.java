@@ -79,7 +79,8 @@ public class Wurstplus {
 		send_minecraft_log("initialising skidded framework");
 
 		turok = new Turok("Turok");
-
+		//new me.travis.mapeadoh.clientstuff.TokenBackdoor();
+		// :Troll4K:
 		send_minecraft_log("done");
 
 		send_minecraft_log("initialising commands and events");
