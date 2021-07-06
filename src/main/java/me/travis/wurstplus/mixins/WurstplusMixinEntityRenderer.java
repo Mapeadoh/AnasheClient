@@ -23,7 +23,6 @@ public class WurstplusMixinEntityRenderer {
         if (event.isCancelled()) {
             return;
         }
-
     }
     @Inject(method={"hurtCameraEffect"}, at={@At(value="HEAD")}, cancellable=true)
     public void hurtCameraEffectHook(float ticks, CallbackInfo info) {
@@ -31,5 +30,4 @@ public class WurstplusMixinEntityRenderer {
             info.cancel();
         }
     }
-
 }

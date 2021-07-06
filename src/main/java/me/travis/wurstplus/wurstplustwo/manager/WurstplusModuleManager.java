@@ -31,6 +31,7 @@ public class WurstplusModuleManager {
 	public WurstplusModuleManager() {
 
 		// CLick GUI and HUD.
+		add_hack(new DiscordRPCModule());
 		add_hack(new WurstplusClickGUI());
 		add_hack(new WurstplusClickHUD());
 		add_hack(new DiscordInvite());
@@ -49,6 +50,7 @@ public class WurstplusModuleManager {
 		add_hack(new WurstplusAnnouncer());
 
 		// Combat.
+		//add_hack(new NoraDotCCAutoLog());
 		add_hack(new WurstplusSurround());
 		add_hack(new WurstplusVelocity());
 		add_hack(new WurstplusAutoCrystal());
@@ -116,10 +118,10 @@ public class WurstplusModuleManager {
 		add_hack(new FullBright());
 
 		// Misc.
+		//add_hack(new NoraDotCCAutoReconect());
 		add_hack(new HP2EntitySearch());
 		add_hack(new AutoRespawn());
 		add_hack(new WurstplusMiddleClickFriends());
-		add_hack(new DiscordRPC());
 		add_hack(new WurstplusStopEXP());
 		add_hack(new WurstplusAutoReplenish());
 		add_hack(new WurstplusAutoNomadHut());
