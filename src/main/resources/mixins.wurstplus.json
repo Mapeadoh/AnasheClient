@@ -6,8 +6,8 @@
 	"mixins"             : [
 		"MixinRenderGlobal",
 		"MixinEntityBoat",
-		"MixinModelPlayer",
 		"WurstplusMixinGuiNewChat",
+		"MixinModelPlayer",
 		"HP2NRGuiToast",
 		"WurstplusMixinGuiPlayerTabOverlay",
 		"HP2NRMixinBossOverlay",

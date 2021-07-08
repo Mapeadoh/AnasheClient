@@ -42,7 +42,7 @@ public class WurstplusModuleManager {
 		add_hack(new HP2PvPInfo());
 		add_hack(new WurstplusVisualRange());
 		add_hack(new WurstplusTotempop());
-		add_hack(new WurstplusClearChat());
+		add_hack(new WurstplusChatMods());
 		add_hack(new WurstplusAutoEz());
 		add_hack(new WurstplusAntiRacist());
 		add_hack(new WurstplusAnnouncer());
