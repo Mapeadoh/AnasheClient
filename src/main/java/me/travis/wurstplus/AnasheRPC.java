@@ -45,14 +45,14 @@ public class AnasheRPC { // from phobos why not
 
                 // testing this, new gifs can be added
                 if (DiscordRPCModule.INSTANCE.catMode.get_value(true)) {
-                    for (int index = 0; index < 31; ++index) {
+                    if (index == 31) {
+                        index = 0;
+                    }
                     AnasheRPC.presence.largeImageKey = "nullname" + index;
-                        if(index == 31){
-                            index = 0;
-                        }
-                }}
+                    ++index;
+                }
                 // if the setting small img is actived
-                if(DiscordRPCModule.INSTANCE.smallft.get_value(true)){
+                /*if(DiscordRPCModule.INSTANCE.smallft.get_value(true)){
                     AnasheRPC.presence.smallImageKey = "mapeadoh1";
                     AnasheRPC.presence.smallImageText = "Mapeadoh";
                 }
@@ -60,7 +60,7 @@ public class AnasheRPC { // from phobos why not
                 try {//idk
                     Thread.sleep(2000L);
                 } catch (InterruptedException interruptedException) {
-                }
+                }*/
             }
         }, "RPC-Callback-Handler");
         thread.start();

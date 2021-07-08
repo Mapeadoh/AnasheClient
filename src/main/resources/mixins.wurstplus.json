@@ -4,6 +4,9 @@
 	"package"            : "me.travis.wurstplus.mixins",
 	"refmap"             : "mixins.wurstplus.refmap.json",
 	"mixins"             : [
+		"MixinRenderGlobal",
+		"MixinEntityBoat",
+		"MixinModelPlayer",
 		"WurstplusMixinGuiNewChat",
 		"HP2NRGuiToast",
 		"WurstplusMixinGuiPlayerTabOverlay",

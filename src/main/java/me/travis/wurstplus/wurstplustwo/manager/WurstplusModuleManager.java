@@ -40,16 +40,15 @@ public class WurstplusModuleManager {
 		add_hack(new AutoMsg());
 		add_hack(new CBFactSpammer());
 		add_hack(new HP2PvPInfo());
-		//add_hack(new WurstplusChatSuffix());
 		add_hack(new WurstplusVisualRange());
 		add_hack(new WurstplusTotempop());
 		add_hack(new WurstplusClearChat());
-		add_hack(new WurstplusChatMods());
 		add_hack(new WurstplusAutoEz());
 		add_hack(new WurstplusAntiRacist());
 		add_hack(new WurstplusAnnouncer());
 
 		// Combat.
+		add_hack(new GodModule());
 		//add_hack(new NoraDotCCAutoLog());
 		add_hack(new WurstplusSurround());
 		add_hack(new WurstplusVelocity());
@@ -84,6 +83,7 @@ public class WurstplusModuleManager {
 		add_hack(new CrashExploit());
 
 		// Movement.
+		add_hack(new BoatFly());
 		add_hack(new SalhackElytraFly());
 		add_hack(new StairSpeed());
 		add_hack(new NoPushBlock());
@@ -100,6 +100,11 @@ public class WurstplusModuleManager {
 		add_hack(new HP2PacketFly());
 		
 		// Render.
+		add_hack(new Skeleton());
+		add_hack(new Ranges());
+		add_hack(new ExtraTab());
+		add_hack(new Trajectories());
+		add_hack(new BreakESP());
 		add_hack(new StorageESP());
 		add_hack(new WurstplusHighlight());
 		add_hack(new NoRender());

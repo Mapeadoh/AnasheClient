@@ -44,15 +44,18 @@ public final class SalhackElytraFly extends WurstplusHack{
     private SalTimer AccelerationResetTimer = new SalTimer();
     private SalTimer InstantFlyTimer = new SalTimer();
     private WurstplusHack Flight = null;
+    private WurstplusHack elytrafly = null;
     private int ElytraSlot = -1;
 
     @Override
     public void enable()
     {
         super.enable();
+        elytrafly.set_enable();
 
         ElytraSlot = -1;
             Flight = Wurstplus.get_module_manager().get_module_with_tag("PacketFly");
+            elytrafly = Wurstplus.get_module_manager().get_module_with_tag("ElytraFly");
 
             ElytraSlot = -1;
 
@@ -92,6 +95,7 @@ public final class SalhackElytraFly extends WurstplusHack{
     public void disable()
     {
         super.disable();
+        elytrafly.set_disable();
 
         if (mc.player == null)
             return;

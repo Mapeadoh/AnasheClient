@@ -44,9 +44,19 @@ public class WurstplusEventRender extends WurstplusEventCancellable {
 
 	public double get_screen_width() {
 		return res.getScaledWidth_double();
-	  }
-	  
-	  public double get_screen_height() {
+	}
+
+	public double get_screen_height() {
 		return res.getScaledHeight_double();
-	  }
+	}
+
+	private float partialTicks;
+
+	public void render(float partialTicks) {
+		this.partialTicks = partialTicks;
+	}
+
+	public float getPartialTicks() {
+		return this.partialTicks;
+	}
 }
