@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.hacks.misc;
 
 import me.travis.mapeadoh.clientstuff.salhack.MinecraftEvent;
-import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventMotionUpdate;
+import me.travis.mapeadoh.clientstuff.salhack.EventPlayerMotionUpdate;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
@@ -37,7 +37,7 @@ public class YawLock extends WurstplusHack {
     }
 
     @EventHandler
-    private Listener<WurstplusEventMotionUpdate> OnPlayerUpdate = new Listener<>(p_Event ->{
+    private Listener<EventPlayerMotionUpdate> OnPlayerUpdate = new Listener<>(p_Event ->{
          if (p_Event.getStage() != MinecraftEvent.Stage.Pre)
             return;
 
