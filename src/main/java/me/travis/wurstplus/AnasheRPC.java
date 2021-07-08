@@ -23,30 +23,41 @@ public class AnasheRPC { // from phobos why not
     public static void start() {
         DiscordEventHandlers handlers = new DiscordEventHandlers();
         rpc.Discord_Initialize("855201268020674560", handlers, true, "");
+        //timer
         AnasheRPC.presence.startTimestamp = System.currentTimeMillis() / 1000L;
+        //detail
         AnasheRPC.presence.details = mc.player.getName() + " ft. " + DiscordRPCModule.INSTANCE.mode.get_current_value();
+        // state
         AnasheRPC.presence.state = mc.currentScreen instanceof GuiMainMenu ? "In Menu." : " Now: Owning " + (mc.getCurrentServerData() != null ? (DiscordRPCModule.INSTANCE.showIP.get_value(true) ? " on " + mc.getCurrentServerData().serverIP + "." : " multiplasher") : " on single");
+
         //default img
         AnasheRPC.presence.largeImageKey = "large_circular";
         AnasheRPC.presence.largeImageText = DiscordRPCModule.INSTANCE.mode.get_current_value();
-        AnasheRPC.presence.smallImageKey = "mapeadoh1";
-        AnasheRPC.presence.smallImageText = "Mapeadoh";
+
         rpc.Discord_UpdatePresence(presence);
         thread = new Thread(() -> {
             while (!Thread.currentThread().isInterrupted()) {
                 rpc.Discord_RunCallbacks();
+                //detail update
                 AnasheRPC.presence.details = mc.player.getName() + " ft." + DiscordRPCModule.INSTANCE.mode.get_current_value();
+                // state update
                 AnasheRPC.presence.state = mc.currentScreen instanceof GuiMainMenu ? "In Menu." : " Now: Owning " + (mc.getCurrentServerData() != null ? (DiscordRPCModule.INSTANCE.showIP.get_value(true) ? " on " + mc.getCurrentServerData().serverIP + "." : " multiplasher") : " on single");
+
                 // testing this, new gifs can be added
                 if (DiscordRPCModule.INSTANCE.catMode.get_value(true)) {
-                    if (index == 31) {
-                        index = 0;
-                    }
+                    for (int index = 0; index < 31; ++index) {
                     AnasheRPC.presence.largeImageKey = "nullname" + index;
-                    ++index;
+                        if(index == 31){
+                            index = 0;
+                        }
+                }}
+                // if the setting small img is actived
+                if(DiscordRPCModule.INSTANCE.smallft.get_value(true)){
+                    AnasheRPC.presence.smallImageKey = "mapeadoh1";
+                    AnasheRPC.presence.smallImageText = "Mapeadoh";
                 }
                 rpc.Discord_UpdatePresence(presence);
-                try {
+                try {//idk
                     Thread.sleep(2000L);
                 } catch (InterruptedException interruptedException) {
                 }
@@ -54,7 +65,7 @@ public class AnasheRPC { // from phobos why not
         }, "RPC-Callback-Handler");
         thread.start();
     }
-
+//stop rpc
     public static void stop() {
         if (thread != null && !thread.isInterrupted()) {
             thread.interrupt();
