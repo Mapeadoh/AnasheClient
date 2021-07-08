@@ -40,7 +40,7 @@ public class WurstplusModuleManager {
 		add_hack(new AutoMsg());
 		add_hack(new CBFactSpammer());
 		add_hack(new HP2PvPInfo());
-		add_hack(new WurstplusChatSuffix());
+		//add_hack(new WurstplusChatSuffix());
 		add_hack(new WurstplusVisualRange());
 		add_hack(new WurstplusTotempop());
 		add_hack(new WurstplusClearChat());

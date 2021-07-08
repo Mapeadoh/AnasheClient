@@ -4,6 +4,7 @@
 	"package"            : "me.travis.wurstplus.mixins",
 	"refmap"             : "mixins.wurstplus.refmap.json",
 	"mixins"             : [
+		"WurstplusMixinGuiNewChat",
 		"HP2NRGuiToast",
 		"WurstplusMixinGuiPlayerTabOverlay",
 		"HP2NRMixinBossOverlay",

@@ -18,7 +18,7 @@ public class HP2EntitySearch extends WurstplusHack {
     WurstplusSetting slimes = this.create("Slimes", "Slimes", false);
 
     public HP2EntitySearch() {
-        super(WurstplusCategory.WURSTPLUS_CHAT);
+        super(WurstplusCategory.WURSTPLUS_MISC);
         this.name = "Entity Search";
         this.tag = "EntitySearch";
         this.description = "sends a message when finds an entity";

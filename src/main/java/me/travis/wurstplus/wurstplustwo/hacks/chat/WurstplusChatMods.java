@@ -137,26 +137,21 @@ public final class WurstplusChatMods extends WurstplusHack {
     String[] random_client_name = {
             "  nashe",
             "  ",
-            "  backdoored",
-            "  momerosplus",
-            "  discord.gg/nullname",
-            "  ananashei",
-            "  SuperA is puto",
-            "  secs",
+            "  anashet",
+            "  anotterratedclient",
+            "  w+2better",
+            "  nullware",
+            "  nullname backdoor",
+            "  autonewfagskiller",
             "  anhacheklien",
-            "  rofl"
+            "  momerosbackdoor"
     };
 
     String[] random_client_finish = {
-            " nais",
-            " mapiado is putita",
-            " by Nolebito",
-            " claient",
-            " on top :v",
-            " ",
-            " simiuleidor",
-            " ouns mi an ol",
-            "plosplos"
+            " plos",
+            " strong",
+            " | sponsored by mapeadoh",
+            " owns u"
     };
 
     @EventHandler
@@ -205,7 +200,7 @@ public final class WurstplusChatMods extends WurstplusHack {
         if (accept_suffix) {
             if (suffix_default) {
                 // Just default.
-                message += Wurstplus.WURSTPLUS_SIGN + convert_base(" | anasheclient+0.8");
+                message += Wurstplus.WURSTPLUS_SIGN + convert_base(" | anasheclient+");
             }
 
             if (suffix_random) {
