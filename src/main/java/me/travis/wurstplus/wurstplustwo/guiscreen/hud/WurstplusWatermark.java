@@ -18,7 +18,7 @@ public class WurstplusWatermark extends WurstplusPinnable {
 		int nl_b = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorB").get_value(1);
 		int nl_a = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorA").get_value(1);
 
-		String line = ChatFormatting.AQUA + Wurstplus.WURSTPLUS_NAME + ChatFormatting.RESET + Wurstplus.WURSTPLUS_VERSION;
+		String line = ChatFormatting.DARK_AQUA + Wurstplus.WURSTPLUS_NAME + ChatFormatting.RESET + Wurstplus.WURSTPLUS_VERSION;
 
 		create_line(line, this.docking(1, line), 2, nl_r, nl_g, nl_b, nl_a);
 

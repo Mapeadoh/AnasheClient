@@ -13,11 +13,11 @@ public class NoraDotCCAutoLog extends WurstplusHack {
         this.description = "AntiClip";
     }
 
-    public WurstplusSetting health = create ("Health", "Health", 10, 1, 30);
+    public WurstplusSetting health = create ("Health", "Health", 10, 1, 20);
 
     public void update() {
         if (mc.player == null || mc.world == null) return;
-        if (mc.player.getHealth() <= health.get_value(10)) {
+        if (mc.player.getHealth() <= health.get_value(1)) {
             set_active(false);
             mc.world.sendQuittingDisconnectingPacket();
             mc.loadWorld(null);

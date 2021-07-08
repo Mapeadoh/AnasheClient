@@ -84,6 +84,8 @@ public class WurstplusModuleManager {
 		add_hack(new CrashExploit());
 
 		// Movement.
+		add_hack(new SalhackElytraFly());
+		add_hack(new StairSpeed());
 		add_hack(new NoPushBlock());
 		add_hack(new WurstplusStrafe());
 		add_hack(new WurstplusStep());
@@ -118,6 +120,8 @@ public class WurstplusModuleManager {
 		add_hack(new FullBright());
 
 		// Misc.
+		add_hack(new YawLock());
+		add_hack(new AntiAFK());
 		//add_hack(new NoraDotCCAutoReconect());
 		add_hack(new HP2EntitySearch());
 		add_hack(new AutoRespawn());
