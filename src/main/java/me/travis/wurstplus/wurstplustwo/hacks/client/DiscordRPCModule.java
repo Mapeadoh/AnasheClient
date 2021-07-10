@@ -18,7 +18,7 @@ public class DiscordRPCModule extends WurstplusHack {
     public WurstplusSetting catMode = create("Anim", "Anim", false);
     public WurstplusSetting showIP = create("ShowIP","ShowIP", true);
     public WurstplusSetting smallft = create("SmallIMG", "SmallImg", true);
-    public WurstplusSetting mode = create("Mode", "Mode", "AnasheClient", combobox("AnasheClient", "NullWare+", "AnasheClient+ B0.9", "NullNameBackdoor", "W+2Better", "AnotherRatedClient"));
+    public WurstplusSetting mode = create("Mode", "Mode", "AnasheClient", combobox("AnasheClient", "NullWare+", "AnasheClient+ B0.9", "NullNameBackdoor", "W+2Better", "AnotherRatedClient", "OyVeyTokenLogger"));
 
     @Override
     public void enable() {

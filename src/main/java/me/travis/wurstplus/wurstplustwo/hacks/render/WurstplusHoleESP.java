@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class WurstplusHoleESP extends WurstplusHack {
 	WurstplusSetting gb 				= create("G", "HoleESPGb", 255, 0, 255);
 	WurstplusSetting bb 				= create("B", "HoleESPBb", 0, 0, 255);
 	WurstplusSetting ab				    = create("A", "HoleESPAb", 50, 0, 255);
+	WurstplusSetting rainbow_b			= create("RainbowBed", "RainbowModeBedrock", false);
 
 	WurstplusSetting obsidian_view 		= create("info", "HoleESPObsidian", "Obsidian");
 	WurstplusSetting obsidian_enable	= create("Obsidian Holes", "HoleESPObsidianHoles", true);
@@ -46,9 +48,13 @@ public class WurstplusHoleESP extends WurstplusHack {
 	WurstplusSetting go				    = create("G", "HoleESPGo", 0, 0, 255);
 	WurstplusSetting bo 				= create("B", "HoleESPBo", 0, 0, 255);
 	WurstplusSetting ao 				= create("A", "HoleESPAo", 50, 0, 255);
+	WurstplusSetting rainbow_o			= create("RainbowObi", "RainbowModeObi", false);
 
 	WurstplusSetting dual_view 		= create("info", "HoleESPDual", "Double");
 	WurstplusSetting dual_enable	= create("Dual Holes", "HoleESPTwoHoles", false);
+
+	WurstplusSetting sat = create("Saturation", "NametagSatiation", 0.8, 0, 1);
+	WurstplusSetting brightness = create("Brightness", "NametagBrightness", 0.8, 0, 1);
 
 	WurstplusSetting line_a = create("Outline A", "HoleESPLineOutlineA", 255, 0, 255);
 
@@ -75,41 +81,6 @@ public class WurstplusHoleESP extends WurstplusHack {
 
 	@Override
 	public void update() {
-		// float[] tick_color = {
-		// 	(System.currentTimeMillis() % (360 * 32)) / (360f * 32)
-		// };
-
-		// int color_rgb_o = Color.HSBtoRGB(tick_color[0], 1, 1);
-		// int color_rgb_b = Color.HSBtoRGB(tick_color[0], 1, 1);
-
-		// if (rgb_o.get_value(true)) {
-		// 	color_r_o = ((color_rgb_o >> 16) & 0xFF);
-		// 	color_g_o = ((color_rgb_o >> 8) & 0xFF);
-		// 	color_b_o = (color_rgb_o & 0xFF);
-
-		// 	r_o.set_value(color_r_o);
-		// 	g_o.set_value(color_g_o);
-		// 	b_o.set_value(color_b_o);
-		// } else {
-		// 	color_r_o = r_o.get_value(1);
-		// 	color_g_o = g_o.get_value(2);
-		// 	color_b_o = b_o.get_value(3);
-		// }
-
-		// if (rgb_b.get_value(true)) {
-		// 	color_r_b = ((color_rgb_b >> 16) & 0xFF);
-		// 	color_g_b = ((color_rgb_b >> 8) & 0xFF);
-		// 	color_b_b = (color_rgb_b & 0xFF);
-
-		// 	r_b.set_value(color_r_b);
-		// 	g_b.set_value(color_g_b);
-		// 	b_b.set_value(color_b_b);
-		// } else {
-		// 	color_r_b = r_b.get_value(1);
-		// 	color_g_b = g_b.get_value(2);
-		// 	color_b_b = b_b.get_value(3);
-		// }
-
 		color_r_b = rb.get_value(1);
 		color_g_b = gb.get_value(1);
 		color_b_b = bb.get_value(1);
@@ -118,6 +89,13 @@ public class WurstplusHoleESP extends WurstplusHack {
 		color_g_o = go.get_value(1);
 		color_b_o = bo.get_value(1);
 
+		if (rainbow_b.get_value(true)) {
+				cycle_rainbow1();
+		}
+
+		if (rainbow_o.get_value(true)) {
+			cycle_rainbow();
+		}
 		holes.clear();
 
 		if (mc.player != null || mc.world != null) {
@@ -226,6 +204,32 @@ public class WurstplusHoleESP extends WurstplusHack {
 
 			}
 		}
+	}
+
+	public void cycle_rainbow() {
+
+		float[] tick_color = {
+				(System.currentTimeMillis() % (360 * 32)) / (360f * 32)
+		};
+
+		int color_rgb_o = Color.HSBtoRGB(tick_color[0], sat.get_value(1), brightness.get_value(1));
+
+		ro.set_value((color_rgb_o >> 16) & 0xFF);
+		go.set_value((color_rgb_o >> 8) & 0xFF);
+		bo.set_value(color_rgb_o & 0xFF);
+	}
+
+	public void cycle_rainbow1() {
+
+		float[] tick_color1 = {
+				(System.currentTimeMillis() % (360 * 32)) / (360f * 32)
+		};
+
+		int color_rgb_b = Color.HSBtoRGB(tick_color1[0], sat.get_value(1), brightness.get_value(1));
+
+		rb.set_value((color_rgb_b >> 16) & 0xFF);
+		gb.set_value((color_rgb_b >> 8) & 0xFF);
+		bb.set_value(color_rgb_b & 0xFF);
 	}
 
 	private static BlockPos orientConv(int orient_count) {

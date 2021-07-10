@@ -55,15 +55,15 @@ public class WurstplusMessageUtil {
 	}
 
 	public static void send_client_message_simple(String message) {
-		client_message(ChatFormatting.DARK_AQUA + Wurstplus.ANASHECLIENT + " " + r + message);
+		client_message(ChatFormatting.DARK_AQUA + Wurstplus.WURSTPLUS_NAME + " " + r + message);
 	}
 
 	public static void send_client_message(String message) {
-		client_message(ChatFormatting.DARK_AQUA + Wurstplus.ANASHECLIENT + " " + r + message);
+		client_message(ChatFormatting.DARK_AQUA + Wurstplus.WURSTPLUS_NAME + " " + r + message);
 	}
 
 	public static void send_client_error_message(String message) {
-		client_message(ChatFormatting.RED + Wurstplus.ANASHECLIENT + " " + r + message);
+		client_message(ChatFormatting.RED + Wurstplus.WURSTPLUS_NAME + " " + r + message);
 	}
 
 	public static class ChatMessage extends TextComponentBase {

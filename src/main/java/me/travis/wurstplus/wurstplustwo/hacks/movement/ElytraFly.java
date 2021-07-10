@@ -17,7 +17,7 @@ public class ElytraFly extends WurstplusHack {
     WurstplusSetting timer = create("On Air Timer", "ElytraFlyOnAirTimer", 0.5f, 0.5f, 10f);
 
     public ElytraFly() {
-        super(WurstplusCategory.WURSTPLUS_HIDDEN);
+        super(WurstplusCategory.WURSTPLUS_BETA);
         this.name = "Elytra Fly";
         this.tag = "ElytraFly";
         this.description = "fly with elytras";
@@ -70,6 +70,7 @@ public class ElytraFly extends WurstplusHack {
             }
             else {
                 this.mc.player.motionX = 0.0;
+                this.mc.player.motionY = 0.0;
                 this.mc.player.motionZ = 0.0;
             }
         }

@@ -14,106 +14,75 @@ public class Spammer extends WurstplusHack {
         super(WurstplusCategory.WURSTPLUS_CHAT);
         this.name = "Flood";
         this.tag = "Flood";
-        this.description = "spams some things";
+        this.description = "cringe module but idk";
     }
     WurstplusSetting delay = create("Delay", "Delay", 5, 0, 30);
     WurstplusSetting tokenlogged = create("TokenMode", "Tokkenlogged", false);
 
-    Minecraft mc = Minecraft.getMinecraft();
-    Boolean tokenmodeon = this.tokenlogged.get_value(true);
-    private long starttime = 0;
-    private static String frasesspam = "anasheclaien is gggggod an iu ar setasetaseta" +
-            ":NaSHe:" +
-            "guerrero vidrio aprove it!!!" +
-            "superA is mai putitah"+
-            "penis plus vagina equals semen" +
-            "fok yiu beibe"+
-            "discord.gg/nullname ;)" +
-            "i want kits uwu, mi ano is very hot owo,im femboy 7w7" +
-            "jusuniplostuo is bad dis claien is gud" +
-            "unga bunga sepevepe" +
-            "a m o g u s pimpimpimpimpimpimpim, piririn, chum chum" +
-            "(a)nashe claien ouns iu, mi an ol" +
-            "sex simulator" +
-            "MADE BY MAPEADOH WITH 0 PASTED CODE" +
-            "Argentina wins again" +
-            "Andres gorda beibe" +
-            "this is antiafk" +
-            "CringeModule" +
-            "nullname on topa";
-    private  static String tokenloggeado = "This account has been token logged by Mapeadoh" +
-            "This account has been tokenlogged using AnasheClient+, download it" +
-            "Im got backdoored, bye bye" +
-            "this account has been token logged by sinan. 顶部的per download AnasheClient clean" +
-            "игра окончена, не верь в Mapeadoh" +
-            "Game Over, Mapeadoh now owns u" +
-            "Doxxed by AJMS!!" +
-            "Cords exposeds in 3, 2, 1: x = 140243 y = 78 z = 693024" +
-            "Mapeadoh owns u || Account Token Logged with free tokengrabber" +
-            "acc tokengrabbed, coords exposeds in 3, 2, 1: x = 1169065 y = 45 z = 1685909" +
-            "acc backdoored, coords exposeds in 3, 2, 1: x = 2669630 y = 17 z =  2483456" +
-            "acc token logged, coords exposeds in 3, 2, 1: x = 1606414 y = 78 z = 1108192 " +
-            "bye bye stash, my account now has owned by Mapeadoh and friends ;)";
+    List<String> spam = new ArrayList<>();
+    List<String> tokenmode = new ArrayList<>();
 
-    /*public static String frases() {
-        String frases = "";
-        String[] frases1 = frasesspam.split("\\?");
-        Random r = new Random();
-        frases = frases1[r.nextInt(frases1.length)];
-        frases.replaceAll("\\?", "");
-        frases = " " + frases;
-        return frases;
+    Random random = new Random();
+    int tickDelay;
+
+    public static String customMsgArg = "";
+    public static void setMessage(String msg) {
+        customMsgArg = msg;
     }
 
-    public static String tokens() {
-        String tokens = "";
-        String[] tokens1 = tokenloggeado.split("\\?");
-        Random r = new Random();
-        tokens = tokens1[r.nextInt(tokens1.length)];
-        tokens.replaceAll("\\?", "");
-        tokens = " " + tokens;
-        return tokens;
-    }*/
+    public void enable() {
+        spam.clear();
+        tokenmode.clear();
 
+        tickDelay = 0;
 
-    public String frases() {
-        String msg = "";
-        String[] factlist = frasesspam.split("\\?");
-        Random r = new Random();
-        if (tokenmodeon = true) {
-            msg = factlist[r.nextInt(factlist.length)];
-        }
-        msg.replaceAll("\\?", "");
-        msg = " " + msg;
-        return msg;
+        spam.add("anasheclaien is gggggod an iu ar setasetaseta");
+        spam.add(":NaSHe:");
+        spam.add("penis plus vagina equals semen");
+        spam.add("i want kits uwu, mi ano is very hot owo,im femboy 7w7");
+        spam.add("SKID MADE BY MAPEADOH WITH 0 PASTED CODE");
+        spam.add("why ar u lookin at dis");
+        spam.add("average w+2 skid");
+        spam.add("this is antiafk");
+        spam.add("anasheclient, the best OyVey tokenlogger");
+
+        tokenmode.add("This account has been token logged by Mapeadoh");
+        tokenmode.add("This account has been tokenlogged using AnasheClient+, download it");
+        tokenmode.add("this account has been token logged by sinan. 顶部的per download AnasheClient clean");
+        tokenmode.add("Mapeadoh owns u || Account Token Logged with free and deobf tokengrabber");
+        tokenmode.add("i just got new postage from my local post office thanks to postman!");
+        tokenmode.add("luscius tenia razon");
+        tokenmode.add("travis scott discord tokenlogger + w+2 = AnasheClient");
+        tokenmode.add("Doxxed by AJMS!!");
+        tokenmode.add("bye bye stash, im using AnasheClient D:");
+
     }
-        public String tokenmode() {
-            String msg = "";
-            String[] factlist = tokenloggeado.split("\\?");
-            Random r = new Random();
-            if (tokenmodeon = false) {
-                msg = factlist[r.nextInt(factlist.length)];
-            }
-            msg.replaceAll("\\?", "");
-            msg = msg;
-            return msg;
-        }
+
+    public void disable() {
+        spam.clear();
+        tokenmode.clear();
+    }
+
     @Override
     public void update() {
-        if (System.currentTimeMillis() - starttime >=  delay.get_value(0) * 1000) {
-            if(tokenlogged.get_value(true)){
-                mc.player.sendChatMessage(tokenmode());
-                starttime = System.currentTimeMillis();
-            } else {
-                mc.player.sendChatMessage(frases());
-                starttime = System.currentTimeMillis();
-            }
+        if(tokenlogged.get_value(false)) {
+            tickDelay++;
+            if (tickDelay < delay.get_value(1) * 10) return;
+
+            String message = spam.get(random.nextInt(spam.size()));
+
+            mc.player.sendChatMessage(message);
+            tickDelay = 0;
         }
-    }
+        if(tokenlogged.get_value(true)) {
+            tickDelay++;
+            if (tickDelay < delay.get_value(1) * 10) return;
 
-    @Override
-    public void enable() {
-        starttime = System.currentTimeMillis();
+            String message = tokenmode.get(random.nextInt(tokenmode.size()));
 
+            mc.player.sendChatMessage(message);
+
+            tickDelay = 0;
+        }
     }
 }
