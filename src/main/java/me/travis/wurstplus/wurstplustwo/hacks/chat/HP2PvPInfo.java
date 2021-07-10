@@ -2,11 +2,13 @@ package me.travis.wurstplus.wurstplustwo.hacks.chat;
 
 //Imports
 
+import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventPacket;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusMessageUtil;
+import me.travis.wurstplus.wurstplustwo.util.WurstplusTimer;
 import me.zero.alpine.fork.listener.EventHandler;
 import me.zero.alpine.fork.listener.Listener;
 import net.minecraft.client.Minecraft;
@@ -15,8 +17,11 @@ import net.minecraft.entity.item.EntityEnderPearl;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.network.play.server.SPacketEntityStatus;
+import net.minecraft.network.play.server.SPacketSoundEffect;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,15 +44,17 @@ public class HP2PvPInfo extends WurstplusHack {
     public HP2PvPInfo() {
         super(WurstplusCategory.WURSTPLUS_CHAT);
 
-        this.name        = "PvP Info"; //Commands and Clickgui
-        this.tag         = "PvPInfo"; //Config and Arraylist
+        this.name = "PvP Info"; //Commands and Clickgui
+        this.tag = "PvPInfo"; //Config and Arraylist
         this.description = "alerts some events"; //Useless but normally i add this
         this.str = Collections.newSetFromMap(new WeakHashMap<EntityPlayer, Boolean>());
     }
+
     WurstplusSetting burrow = create("BurrowNotifier", "BurrowNotif", false);
     WurstplusSetting pearl = create("PearlNotifier", "PearlNotif", true);
     WurstplusSetting strenght = create("StrenghtNotifier", "StrenghtNotif", true);
     WurstplusSetting weakness = create("WeaknessNotifier", "WeakNotif", true);
+    WurstplusSetting chorus = create("ChorusNotifier", "ChorusNotifier", true);
 
     List<Entity> knownPlayers = new ArrayList<>();
     List<Entity> burrowedPlayers = new ArrayList<>();
@@ -58,9 +65,7 @@ public class HP2PvPInfo extends WurstplusHack {
     private final HashMap list = new HashMap();
     //weakness alert
     private boolean hasAnnounced = false;
-
-
-
+    private final WurstplusTimer timer = new WurstplusTimer();
 
     @Override
     public void enable() {
@@ -70,28 +75,29 @@ public class HP2PvPInfo extends WurstplusHack {
     @Override
     public void update() {
         // burrow
-        if(burrow.get_value(true)){
+        if (burrow.get_value(true)) {
             for (Entity entity : mc.world.loadedEntityList.stream().filter(e -> e instanceof EntityPlayer).collect(Collectors.toList())) {
-                if (!(entity instanceof EntityPlayer)){
+                if (!(entity instanceof EntityPlayer)) {
                     continue;
                 }
 
                 if (!burrowedPlayers.contains(entity) && isBurrowed(entity)) {
                     burrowedPlayers.add(entity);
                     WurstplusMessageUtil.send_client_message(ChatFormatting.DARK_PURPLE + "" + ChatFormatting.BOLD + "Burrow Announcer " + ChatFormatting.DARK_AQUA + " > " + ChatFormatting.RESET + entity.getName() + " burrowed!");
-                }
-                else if (burrowedPlayers.contains(entity) && !isBurrowed(entity)) {
+                } else if (burrowedPlayers.contains(entity) && !isBurrowed(entity)) {
                     burrowedPlayers.remove(entity);
                     WurstplusMessageUtil.send_client_message(ChatFormatting.DARK_PURPLE + "" + ChatFormatting.BOLD + "Burrow Announcer " + ChatFormatting.DARK_AQUA + " > " + ChatFormatting.RESET + entity.getName() + " unburrowed!");
-                }}}
+                }
+            }
+        }
 
-        if(pearl.get_value(true)){
+        if (pearl.get_value(true)) {
             if (mc.world != null && mc.player != null) {
                 this.enderPearl = null;
                 Iterator var1 = mc.world.loadedEntityList.iterator();
 
-                while(var1.hasNext()) {
-                    Entity e = (Entity)var1.next();
+                while (var1.hasNext()) {
+                    Entity e = (Entity) var1.next();
                     if (e instanceof EntityEnderPearl) {
                         this.enderPearl = e;
                         break;
@@ -104,8 +110,8 @@ public class HP2PvPInfo extends WurstplusHack {
                     EntityPlayer closestPlayer = null;
                     Iterator var5 = mc.world.playerEntities.iterator();
 
-                    while(var5.hasNext()) {
-                        EntityPlayer entity = (EntityPlayer)var5.next();
+                    while (var5.hasNext()) {
+                        EntityPlayer entity = (EntityPlayer) var5.next();
                         if (closestPlayer == null) {
                             closestPlayer = entity;
                         } else if (closestPlayer.getDistance(this.enderPearl) > entity.getDistance(this.enderPearl)) {
@@ -128,9 +134,11 @@ public class HP2PvPInfo extends WurstplusHack {
                         WurstplusMessageUtil.send_client_message(ChatFormatting.GREEN + "" + ChatFormatting.BOLD + "Pearl Notifier" + ChatFormatting.DARK_AQUA + "> " + ChatFormatting.RED + closestPlayer.getName() + ChatFormatting.WHITE + " thrown a pearl heading " + faceing);
                         this.flag = false;
 
-                    }}}
+                    }
+                }
+            }
             // weakness
-            if (weakness.get_value(true)){
+            if (weakness.get_value(true)) {
                 if (mc.player.isPotionActive(MobEffects.WEAKNESS) && !hasAnnounced) {
                     hasAnnounced = true;
                     WurstplusMessageUtil.send_client_message(ChatFormatting.GRAY + "" + ChatFormatting.BOLD + "You now have weakness");
@@ -142,34 +150,48 @@ public class HP2PvPInfo extends WurstplusHack {
 
             }
             // streng
-            for (final EntityPlayer player : mc.world.playerEntities) {
-                if (player.equals((Object)mc.player)) {
-                    continue;
+            if (strenght.get_value(true)) {
+                for (final EntityPlayer player : mc.world.playerEntities) {
+                    if (player.equals((Object) mc.player)) {
+                        continue;
+                    }
+                    if (player.isPotionActive(MobEffects.STRENGTH) && !this.str.contains(player)) {
+                        WurstplusMessageUtil.send_client_message(ChatFormatting.RED + "" + ChatFormatting.BOLD + "Strength Detect" + ChatFormatting.RESET + ChatFormatting.DARK_AQUA + " > " + ChatFormatting.RESET + player.getDisplayNameString() + " Has Strength");
+                        this.str.add(player);
+                    }
+                    if (!this.str.contains(player)) {
+                        continue;
+                    }
+                    if (player.isPotionActive(MobEffects.STRENGTH)) {
+                        continue;
+                    }
+                    WurstplusMessageUtil.send_client_message(ChatFormatting.RED + "" + ChatFormatting.BOLD + "Strength Detect" + ChatFormatting.RESET + ChatFormatting.DARK_AQUA + " > " + ChatFormatting.RESET + player.getDisplayNameString() + " Has Ran Out Of Strength");
+                    this.str.remove(player);
                 }
-                if (player.isPotionActive(MobEffects.STRENGTH) && !this.str.contains(player)) {
-                    WurstplusMessageUtil.send_client_message(ChatFormatting.RED + "" + ChatFormatting.BOLD + "Strength Detect" + ChatFormatting.RESET + ChatFormatting.DARK_AQUA + " > " + ChatFormatting.RESET + player.getDisplayNameString() + " Has Strength");
-                    this.str.add(player);
-                }
-                if (!this.str.contains(player)) {
-                    continue;
-                }
-                if (player.isPotionActive(MobEffects.STRENGTH)) {
-                    continue;
-                }
-                WurstplusMessageUtil.send_client_message(ChatFormatting.RED + "" + ChatFormatting.BOLD + "Strength Detect" + ChatFormatting.RESET + ChatFormatting.DARK_AQUA + " > " + ChatFormatting.RESET + player.getDisplayNameString() + " Has Ran Out Of Strength");
-                this.str.remove(player);
-            }}}// end of public void update
+            }
+        }
+    }// end of public void update
 
     private boolean isBurrowed(Entity entity) {
         BlockPos entityPos = new BlockPos((entity.posX), entity.posY, (entity.posZ));
 
-        if (mc.world.getBlockState(entityPos).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(entityPos).getBlock() == Blocks.ENDER_CHEST || mc.world.getBlockState(entityPos).getBlock() == Blocks.SKULL) {
+        if (mc.world.getBlockState(entityPos).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(entityPos).getBlock() == Blocks.ENDER_CHEST || mc.world.getBlockState(entityPos).getBlock() == Blocks.WEB || mc.world.getBlockState(entityPos).getBlock() == Blocks.SKULL) {
             return true;
         }
-
         return false;
     }
 
+        public void ReceivePacket (WurstplusEventPacket.ReceivePacket event){
+        if(chorus.get_value(true)){
+            if (event.get_packet() instanceof SPacketSoundEffect) {
+                final SPacketSoundEffect packet = (SPacketSoundEffect) event.get_packet();
+                if (packet.getSound() == SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT) {
+                    WurstplusMessageUtil.send_client_message(ChatFormatting.LIGHT_PURPLE + "" + ChatFormatting.BOLD + "ChorusDetect" + ChatFormatting.RESET + ChatFormatting.DARK_AQUA + " > " + ChatFormatting.RESET + mc.player.getDisplayNameString() + " is eating a Chorus Fruit");
+                    timer.reset();
+                }
+            }
+        }
 
 
+        }
 }
