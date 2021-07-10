@@ -37,6 +37,7 @@ public class WurstplusModuleManager {
 		add_hack(new DiscordInvite());
 
 		// Chat.
+		add_hack(new Spammer());
 		add_hack(new AutoMsg());
 		add_hack(new CBFactSpammer());
 		add_hack(new HP2PvPInfo());

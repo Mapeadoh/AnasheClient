@@ -11,7 +11,7 @@ import net.minecraft.network.play.server.SPacketDisconnect;
 
 public class MapAutoLog extends WurstplusHack {
     public MapAutoLog(){
-        super(WurstplusCategory.WURSTPLUS_MISC);
+        super(WurstplusCategory.WURSTPLUS_COMBAT);
         this.name = "AutoLogout";
         this.tag = "AutoLogout";
         this.description = "AntiClip";
@@ -33,6 +33,7 @@ public class MapAutoLog extends WurstplusHack {
             healthmode.set_value(false);
             if (getItemCount(Items.TOTEM_OF_UNDYING) == 0){
                 mc.getConnection().handleDisconnect(new SPacketDisconnect());
+                this.toggle();
             }
         }
     }
