@@ -1,9 +1,11 @@
 package me.travis.wurstplus.wurstplustwo.hacks.combat;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusBlockUtil;
+import me.travis.wurstplus.wurstplustwo.util.WurstplusMessageUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEnderChest;
 import net.minecraft.block.BlockObsidian;
@@ -29,7 +31,7 @@ public class WurstplusSurround extends WurstplusHack {
 	WurstplusSetting rotate = create("Rotate", "SurroundSmoth", true);
 	WurstplusSetting hybrid = create("Hybrid", "SurroundHybrid", true);
 	WurstplusSetting triggerable = create("Toggle", "SurroundToggle", true);
-	WurstplusSetting toggle_off_ground = create("ToggleOffGround", "TogleOffGround", false);
+	WurstplusSetting toggle_off_ground = create("ToggleOffGround", "TogleOffGround", true);
 	WurstplusSetting center = create("Center", "SurroundCenter", false);
 	WurstplusSetting block_head = create("Block Face", "SurroundBlockFace", false);
 	WurstplusSetting tick_for_place = create("Blocks per tick","SurroundTickToPlace", 2, 1, 8);
@@ -40,6 +42,8 @@ public class WurstplusSurround extends WurstplusHack {
 	private int y_level = 0;
 	private int tick_runs = 0;
 	private int offset_step = 0;
+	private ChatFormatting r = ChatFormatting.RESET;
+	private ChatFormatting b = ChatFormatting.BOLD;
 
 	private Vec3d center_block = Vec3d.ZERO;
 
@@ -74,6 +78,7 @@ public class WurstplusSurround extends WurstplusHack {
 	@Override
 	public void enable() {
 		if (find_in_hotbar() == -1) {
+			WurstplusMessageUtil.send_client_error_message( "" + ChatFormatting.DARK_RED + b + "Surround" + r + ChatFormatting.GRAY + "> " + r + "Error, items not found");
 			this.set_disable();
 			return;
 		}

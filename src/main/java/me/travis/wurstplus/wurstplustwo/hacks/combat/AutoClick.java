@@ -11,7 +11,7 @@ public class AutoClick extends WurstplusHack {
         super(WurstplusCategory.WURSTPLUS_COMBAT);
         this.name = "AutoClicker";
         this.tag = "AutoClicker";
-        this.description = "1000 cps go brrr";
+        this.description = "only on hold :(";
 
     }
 

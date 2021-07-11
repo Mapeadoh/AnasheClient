@@ -9,6 +9,7 @@ import me.travis.wurstplus.wurstplustwo.util.WurstplusEntityUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,9 @@ public class WurstplusCityEsp extends WurstplusHack {
     WurstplusSetting g = create("G", "CityG", 255, 0, 255);
     WurstplusSetting b = create("B", "CityB", 0, 0, 255);
     WurstplusSetting a = create("A", "CityA", 50, 0, 255);
+    WurstplusSetting rainbow = create("RainBow", "RainBow", false);
+    WurstplusSetting sat = create("Saturation", "Satiation", 0.8, 0, 1);
+    WurstplusSetting brightness = create("Brightness", "Brightness", 0.8, 0, 1);
 
     List<BlockPos> blocks = new ArrayList<>();
 
@@ -48,6 +52,9 @@ public class WurstplusCityEsp extends WurstplusHack {
             if (p != null) {
                 blocks.add(p);
             }
+        }
+        if (rainbow.get_value(true)) {
+            cycle_rainbow();
         }
     }
 
@@ -98,6 +105,18 @@ public class WurstplusCityEsp extends WurstplusHack {
                 RenderHelp.release();
             }
         }
+    }
+    public void cycle_rainbow() {
+
+        float[] tick_color = {
+                (System.currentTimeMillis() % (360 * 32)) / (360f * 32)
+        };
+
+        int color_rgb_o = Color.HSBtoRGB(tick_color[0], sat.get_value(1), brightness.get_value(1));
+
+        r.set_value((color_rgb_o >> 16) & 0xFF);
+        g.set_value((color_rgb_o >> 8) & 0xFF);
+        b.set_value(color_rgb_o & 0xFF);
     }
 }
 
