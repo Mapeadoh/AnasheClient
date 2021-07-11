@@ -24,7 +24,7 @@ public class WurstplusAutoArmour extends WurstplusHack {
 
         this.name        = "Auto Armour";
         this.tag         = "AutoArmour";
-        this.description = "WATCH UR BOOTS";
+        this.description = "EL CASCO EL CASCO PELOTUDO";
     }
 
     WurstplusSetting delay = create("Delay", "AADelay", 2, 0, 5);

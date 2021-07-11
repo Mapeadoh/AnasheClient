@@ -55,7 +55,6 @@ public class WurstplusModuleManager {
 		add_hack(new WurstplusSurround());
 		add_hack(new WurstplusVelocity());
 		add_hack(new WurstplusAutoCrystal());
-		add_hack(new WurstplusHoleFill());
 		add_hack(new WurstplusTrap());
 		add_hack(new WurstplusSocks());
 		add_hack(new WurstplusSelfTrap());
@@ -85,6 +84,7 @@ public class WurstplusModuleManager {
 		add_hack(new CrashExploit());
 
 		// Movement.
+		add_hack(new AutoWalk());
 		add_hack(new BoatFly());
 		add_hack(new SalhackElytraFly());
 		add_hack(new StairSpeed());

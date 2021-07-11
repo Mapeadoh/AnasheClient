@@ -15,7 +15,7 @@ public class WurstplusAutoTotem extends WurstplusHack {
 
         this.name        = "Auto Totem";
         this.tag         = "AutoTotem";
-        this.description = "put totem in offhand";
+        this.description = "jajajajajaajja popio jajajajajaj";
     }
 
     WurstplusSetting delay = create("Delay", "TotemDelay", false);

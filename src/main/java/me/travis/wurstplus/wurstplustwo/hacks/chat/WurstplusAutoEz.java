@@ -24,7 +24,7 @@ public class WurstplusAutoEz extends WurstplusHack {
 
         this.name = "Auto Ez";
         this.tag = "AutoEz";
-        this.description = "you just got nae nae'd by anasheclient...+ ";
+        this.description = "you just got nashe'd by anasheclient...+ ";
     }
 
     int delay_count = 0;

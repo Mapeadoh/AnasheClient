@@ -27,7 +27,7 @@ public class MapeadohNewHoleFill extends WurstplusHack {
     public MapeadohNewHoleFill() {
         super(WurstplusCategory.WURSTPLUS_COMBAT);
 
-        this.name = "New Holefill";
+        this.name = "Holefill";
         this.tag = "NewHoleFill";
         this.description = "asd";
 
@@ -35,8 +35,8 @@ public class MapeadohNewHoleFill extends WurstplusHack {
     WurstplusSetting blockmode = create("BlockMode","BlockMode", "Obi", combobox("Obi", "EC", "Web", "Skull"));
     WurstplusSetting range = create("Range", "Range", 3, 1, 6);
     WurstplusSetting holesPerSecond = create("HPS", "HolesPerSecond", 3, 1, 6);
-    WurstplusSetting fillMode = create("Mode", "Mode", "Normal", combobox("Normal"));
-    WurstplusSetting smartRange = create("Auto Range", "AutoRange", 2, 1, 5);
+    WurstplusSetting fillMode = create("Mode", "Mode", "Normal", combobox("Normal", "Smart", "Auto"));
+    WurstplusSetting smartRange = create("Player Range", "AutoRange", 2, 1, 5);
     WurstplusSetting doubleHoles = create("Double Fill","DoubleFill", true);
     WurstplusSetting rotate = create("Rotate", "Rotate", true);
     WurstplusSetting toggle = create("Toggle", "Toggle", false);
