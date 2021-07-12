@@ -10,6 +10,15 @@ import me.travis.wurstplus.Wurstplus;
 import me.travis.turok.draw.RenderHelp;
 
 public class StorageESP extends WurstplusHack {
+    public StorageESP() {
+        super(WurstplusCategory.WURSTPLUS_RENDER);
+
+        // Info.
+        this.name        = "Storage ESP";
+        this.tag         = "StorageESP";
+        this.description = "Is able to see storages in world";
+    }
+
     WurstplusSetting shulkeresp = create("ShulkerESP", "ShulkerESP", "ShulkerColor", combobox("ShulkerColor", "RGBMode"));
     WurstplusSetting shu_r = create("ShulkerR", "ShulkerR", 230, 0, 255);
     WurstplusSetting shu_g = create("ShulkerG", "ShulkerG", 0, 0, 255);
@@ -33,15 +42,6 @@ public class StorageESP extends WurstplusHack {
     WurstplusSetting a = create("Solid A", "StorageESPSolidA", 150, 0, 255);
 
     private int color_alpha;
-
-    public StorageESP() {
-        super(WurstplusCategory.WURSTPLUS_RENDER);
-
-        // Info.
-        this.name        = "Storage ESP";
-        this.tag         = "StorageESP";
-        this.description = "Is able to see storages in world";
-    }
 
     @Override
     public void render(WurstplusEventRender event) {
@@ -72,10 +72,13 @@ public class StorageESP extends WurstplusHack {
                 }
             }
 
-            if (tiles instanceof TileEntityDispenser ||
-                    tiles instanceof TileEntityDropper   ||
-                    tiles instanceof TileEntityHopper    ||
-                    tiles instanceof TileEntityFurnace   ||
+            if (tiles instanceof TileEntityDispenser           ||
+                    tiles instanceof TileEntityDropper         ||
+                    tiles instanceof TileEntityHopper          ||
+                    tiles instanceof TileEntityFurnace         ||
+                    tiles instanceof TileEntityMobSpawner      ||
+                    tiles instanceof TileEntityEnchantmentTable||
+                    tiles instanceof TileEntityBed             ||
                     tiles instanceof TileEntityBrewingStand) {
                 if (otheresp.get_value(true)) {
                     draw(tiles, ot_r.get_value(1), ot_g.get_value(1), ot_b.get_value(1));
