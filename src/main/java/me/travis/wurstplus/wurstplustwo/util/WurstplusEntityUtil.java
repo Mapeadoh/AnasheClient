@@ -101,5 +101,4 @@ public class WurstplusEntityUtil {
         return null;
 
     }
-
 }

@@ -49,7 +49,6 @@ public class WurstplusModuleManager {
 
 		// Combat.
 		add_hack(new AutoClick());
-		add_hack(new GodModule());
 		add_hack(new MapAutoLog());
 		add_hack(new WurstplusSurround());
 		add_hack(new WurstplusVelocity());
@@ -101,6 +100,7 @@ public class WurstplusModuleManager {
 		add_hack(new HP2PacketFly());
 		
 		// Render.
+		add_hack(new PortalESP());
 		add_hack(new Skeleton());
 		add_hack(new Ranges());
 		add_hack(new ExtraTab());
