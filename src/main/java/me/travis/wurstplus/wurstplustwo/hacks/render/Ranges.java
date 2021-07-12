@@ -8,6 +8,7 @@ import me.travis.mapeadoh.clientstuff.phobos.RenderUtil;
 import me.travis.mapeadoh.clientstuff.phobos.EntityUtil;
 import me.travis.mapeadoh.clientstuff.phobos.Render3DEvent;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusFriendUtil;
+import me.travis.wurstplus.wurstplustwo.util.WurstplusMessageUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
@@ -62,7 +63,7 @@ public class Ranges extends WurstplusHack {
                 Vec3d vec = new Vec3d(x + Math.sin((double) i * Math.PI / 180.0) * this.radius.get_value(4.5), y + 0.1, z + Math.cos((double) i * Math.PI / 180.0) * this.radius.get_value(4.5));
                 RayTraceResult result = Ranges.mc.world.rayTraceBlocks(new Vec3d(Ranges.mc.player.posX, Ranges.mc.player.posY + (double) Ranges.mc.player.getEyeHeight(), Ranges.mc.player.posZ), vec, false, false, true);
                 if (result != null && this.raytrace.get_value(false)) {
-                    send_client_message_simple("raytrace was not null");
+                    WurstplusMessageUtil.send_client_message_simple("raytrace was not null");
                     hVectors.add(result.hitVec);
                     continue;
                 }

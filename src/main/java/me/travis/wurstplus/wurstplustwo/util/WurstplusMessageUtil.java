@@ -23,20 +23,20 @@ public class WurstplusMessageUtil {
 	public static ChatFormatting r = ChatFormatting.RESET;
 	public static ChatFormatting r2 = ChatFormatting.DARK_RED;
 
-	public static String opener = b + Wurstplus.WURSTPLUS_NAME + ChatFormatting.GRAY + " > " + r;
+	public static String opener = ChatFormatting.GRAY + "[" + ChatFormatting.WHITE + "Ana" + ChatFormatting.DARK_PURPLE + "She" + ChatFormatting.GRAY + "] " + ChatFormatting.RESET;
 
 	public static void toggle_message(WurstplusHack module) {
-		if (module.is_active()) {
+		if (module.is_active()) {//ty iJese for this
 			if (module.get_tag().equals("AutoCrystal")) {
-				client_message_simple(opener + "omg esto va a ser" + ChatFormatting.DARK_BLUE + " epico " + ChatFormatting.RESET + "papus");
+				client_message_simple(opener + ChatFormatting.GRAY + " toggled " + ChatFormatting.RESET);
 			} else {
-				client_message_simple(opener + r + module.get_name() + ChatFormatting.DARK_GREEN + " Activado Bv");
-			}			
+				client_message_simple(opener + r + module.get_name() + ChatFormatting.GREEN + " on.");
+			}
 		} else {
 			if (module.get_tag().equals("AutoCrystal")) {
-				client_message_simple(opener + "desactivando" + r2 + " ca " + r + ":/");
+				client_message_simple(opener + ChatFormatting.GRAY + " toggled" + ChatFormatting.RESET);
 			} else {
-				client_message_simple(opener + r + module.get_name() + ChatFormatting.RED + " Desactivado");
+				client_message_simple(opener + r + module.get_name() + ChatFormatting.RED + " off.");
 			}
 		}
 	}

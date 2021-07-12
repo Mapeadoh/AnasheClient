@@ -5,7 +5,7 @@ import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 
 public class StairSpeed extends WurstplusHack {
     public StairSpeed(){
-        super(WurstplusCategory.WURSTPLUS_MISC);
+        super(WurstplusCategory.WURSTPLUS_MOVEMENT);
         this.name = "Stair Speed";
         this.tag = "StairSpeed";
         this.description = "lasube";

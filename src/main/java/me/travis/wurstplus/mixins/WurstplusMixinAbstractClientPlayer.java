@@ -34,11 +34,7 @@ public abstract class WurstplusMixinAbstractClientPlayer {
             } else {
                 r = new ResourceLocation("custom/cape.png");
             }
-
             callbackInfoReturnable.setReturnValue(r);
         }
-
-
     }
-
 }
