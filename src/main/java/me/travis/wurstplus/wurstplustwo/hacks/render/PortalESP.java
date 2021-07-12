@@ -119,10 +119,9 @@ public class PortalESP extends WurstplusHack {
                     (System.currentTimeMillis() % (360 * 32)) / (360f * 32)
             };
 
-            int color_rgb_o = Color.HSBtoRGB(tick_color[0], sat.get_value(1), brightness.get_value(1));
-
-            r.set_value((color_rgb_o >> 16) & 0xFF);
-            g.set_value((color_rgb_o >> 8) & 0xFF);
-            b.set_value(color_rgb_o & 0xFF);
+            int color_rgb = Color.HSBtoRGB(tick_color[0], sat.get_value(1), brightness.get_value(1));
+            r.set_value((color_rgb >> 16) & 0xFF);
+            g.set_value((color_rgb >> 8) & 0xFF);
+            b.set_value(color_rgb & 0xFF);
     }
 }
