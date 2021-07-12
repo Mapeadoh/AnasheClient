@@ -15,6 +15,7 @@ public class AntiAFK extends WurstplusHack {
         this.tag = "AntiAFKKick";
         this.description = "do not kick per afk";
     }
+    WurstplusSetting delay = create("MSGDelay", "MsgDelay", 30, 5, 60);
     WurstplusSetting msg = create("ChatMSG", "ChatMSG", "Stats", combobox("Stats", "GlobalMSG"));
     WurstplusSetting jump = create("Jump", "Jump", true);
     WurstplusSetting hit = create("Hit", "Hit", true);
@@ -32,11 +33,13 @@ public class AntiAFK extends WurstplusHack {
         if (AntiAFK.mc.player.ticksExisted % 20 == 0 && rotate.get_value(true)) {
             AntiAFK.mc.player.rotationYaw = this.random.nextInt(360) - 180;
         }
-        if (AntiAFK.mc.player.ticksExisted % 60== 0 && msg.in("Stats")) {
-            AntiAFK.mc.player.sendChatMessage("/stats");
-        }
-        if (AntiAFK.mc.player.ticksExisted % 60 == 0 && msg.in("GlobalMSG")) {
-            AntiAFK.mc.player.sendChatMessage("i was afk, dont attack me pls D:");
+        if (AntiAFK.mc.player.ticksExisted % delay.get_value(1)== 0 && msg.in("Stats")) {
+            if(msg.in("Stats")){
+                AntiAFK.mc.player.sendChatMessage("/stats");
+            }
+            if(msg.in("GlobalMSG")){
+                AntiAFK.mc.player.sendChatMessage("i was afk, dont attack me pls D:");
+            }
         }
         if (jump.get_value(true) && AntiAFK.mc.player.ticksExisted % 80 == 0) {
             AntiAFK.mc.player.jump();
