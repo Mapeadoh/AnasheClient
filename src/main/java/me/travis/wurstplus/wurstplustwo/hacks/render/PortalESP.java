@@ -24,12 +24,12 @@ public class PortalESP extends WurstplusHack {
         this.description = "a portal esp ._.";
     }
 
-    WurstplusSetting mode = create("Mode", "CityMode", "Pretty", combobox("Pretty", "Solid", "Outline"));
+    WurstplusSetting mode = create("Mode", "Mode", "Pretty", combobox("Pretty", "Solid", "Outline"));
     WurstplusSetting r = create("R", "R", 230, 0, 255);
     WurstplusSetting g = create("G", "G", 0, 0, 255);
     WurstplusSetting b = create("B", "B", 0, 0, 255);
     WurstplusSetting a = create("A", "A", 150, 0, 255);
-    WurstplusSetting off_set = create("Height", "CityOffSetSide", 0.2, 0.0, 1.0);
+    WurstplusSetting height = create("Height", "Height", 0.2, 0.0, 1.0);
     WurstplusSetting rainbow = create("RainBow", "RainBow", false);
     WurstplusSetting sat = create("Saturation", "Satiation", 0.8, 0, 1);
     WurstplusSetting brightness = create("Brightness", "Brightness", 0.8, 0, 1);
@@ -68,7 +68,7 @@ public class PortalESP extends WurstplusHack {
         @Override
         public void render (WurstplusEventRender event){
 
-            float off_set_h = (float) off_set.get_value(1.0);
+            float off_set_h = (float) height.get_value(1.0);
 
             for (BlockPos pos : blocks) {
 
