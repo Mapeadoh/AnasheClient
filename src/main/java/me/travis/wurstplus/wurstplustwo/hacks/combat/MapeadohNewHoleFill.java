@@ -28,7 +28,7 @@ public class MapeadohNewHoleFill extends WurstplusHack {
         super(WurstplusCategory.WURSTPLUS_COMBAT);
 
         this.name = "Holefill";
-        this.tag = "NewHoleFill";
+        this.tag = "HoleFill";
         this.description = "asd";
 
     }

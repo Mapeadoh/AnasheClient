@@ -15,7 +15,7 @@ public class AntiAFK extends WurstplusHack {
         this.tag = "AntiAFKKick";
         this.description = "do not kick per afk";
     }
-    WurstplusSetting msg = create("ChatMSG", "ChatMSG", "StatsCom", combobox("StatsCom", "GlobalMSG"));
+    WurstplusSetting msg = create("ChatMSG", "ChatMSG", "Stats", combobox("Stats", "GlobalMSG"));
     WurstplusSetting jump = create("Jump", "Jump", true);
     WurstplusSetting hit = create("Hit", "Hit", true);
     WurstplusSetting rotate = create("Rotate", "Rotate", true);
@@ -26,19 +26,19 @@ public class AntiAFK extends WurstplusHack {
         if (AntiAFK.mc.playerController.getIsHittingBlock()) {
             return;
         }
-        if (AntiAFK.mc.player.ticksExisted % 40 == 0 && this.hit.get_value(true)) {
+        if (AntiAFK.mc.player.ticksExisted % 40 == 0 && hit.get_value(true)) {
             AntiAFK.mc.player.connection.sendPacket(new CPacketAnimation(EnumHand.MAIN_HAND));
         }
-        if (AntiAFK.mc.player.ticksExisted % 20 == 0 && this.rotate.get_value(true)) {
+        if (AntiAFK.mc.player.ticksExisted % 20 == 0 && rotate.get_value(true)) {
             AntiAFK.mc.player.rotationYaw = this.random.nextInt(360) - 180;
         }
-        if (AntiAFK.mc.player.ticksExisted % 60== 0 && this.msg.in("StatsCom")) {
+        if (AntiAFK.mc.player.ticksExisted % 60== 0 && msg.in("Stats")) {
             AntiAFK.mc.player.sendChatMessage("/stats");
         }
-        if (AntiAFK.mc.player.ticksExisted % 60 == 0 && this.msg.in("GlobalMSG")) {
+        if (AntiAFK.mc.player.ticksExisted % 60 == 0 && msg.in("GlobalMSG")) {
             AntiAFK.mc.player.sendChatMessage("i was afk, dont attack me pls D:");
         }
-        if (!this.rotate.get_value(true) && !this.jump.get_value(true) && AntiAFK.mc.player.ticksExisted % 80 == 0) {
+        if (jump.get_value(true) && AntiAFK.mc.player.ticksExisted % 80 == 0) {
             AntiAFK.mc.player.jump();
         }
     }

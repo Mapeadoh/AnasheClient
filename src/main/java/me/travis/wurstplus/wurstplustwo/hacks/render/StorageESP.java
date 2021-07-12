@@ -10,10 +10,25 @@ import me.travis.wurstplus.Wurstplus;
 import me.travis.turok.draw.RenderHelp;
 
 public class StorageESP extends WurstplusHack {
-    WurstplusSetting shu_ = create("Shulker Color", "StorageESPShulker", "HUD", combobox("HUD", "Client"));
-    WurstplusSetting enc_ = create("Enchest Color", "StorageESPEnchest", "Client", combobox("HUD", "Client"));
-    WurstplusSetting che_ = create("Chest Color", "StorageESPChest", "Client", combobox("HUD", "Client"));
-    WurstplusSetting oth_ = create("Others Color", "StorageESPOthers", "Client", combobox("HUD", "Client"));
+    WurstplusSetting shulkeresp = create("ShulkerESP", "ShulkerESP", "ShulkerColor", combobox("ShulkerColor", "RGBMode"));
+    WurstplusSetting shu_r = create("ShulkerR", "ShulkerR", 230, 0, 255);
+    WurstplusSetting shu_g = create("ShulkerG", "ShulkerG", 0, 0, 255);
+    WurstplusSetting shu_b = create("ShulkerB", "ShulkerB", 0, 0, 255);
+
+    WurstplusSetting echestesp = create("EChestESP", "EChestESP", true);
+    WurstplusSetting ec_r = create("EChestR", "ECR", 204, 0, 255);
+    WurstplusSetting ec_g = create("EChestG", "ECG", 0, 0, 255);
+    WurstplusSetting ec_b = create("EChestB", "ECB", 255, 0, 255);
+
+    WurstplusSetting chestesp = create("ChestESP", "ChestESP", true);
+    WurstplusSetting ch_r = create("ChestR", "ChestR", 153, 0, 255);
+    WurstplusSetting ch_g = create("ChestG", "ChestG", 102, 0, 255);
+    WurstplusSetting ch_b = create("ChestB", "ChestB", 0, 0, 255);
+
+    WurstplusSetting otheresp = create("OtherESP", "OtherESP", true);
+    WurstplusSetting ot_r = create("OtherR", "OtR", 153, 0, 255);
+    WurstplusSetting ot_g = create("OtherG", "OtG", 102, 0, 255);
+    WurstplusSetting ot_b = create("OtherB", "OtB", 0, 0, 255);
     WurstplusSetting ot_a = create("Outline A", "StorageESPOutlineA", 150, 0, 255);
     WurstplusSetting a = create("Solid A", "StorageESPSolidA", 150, 0, 255);
 
@@ -30,10 +45,6 @@ public class StorageESP extends WurstplusHack {
 
     @Override
     public void render(WurstplusEventRender event) {
-        int nl_r = Wurstplus.client_r;
-        int nl_g = Wurstplus.client_g;
-        int nl_b = Wurstplus.client_b;
-
         color_alpha = a.get_value(1);
 
         for (TileEntity tiles : mc.world.loadedTileEntityList) {
@@ -42,26 +53,22 @@ public class StorageESP extends WurstplusHack {
 
                 int hex = (255 << 24) | shulker.getColor().getColorValue() & 0xFFFFFFFF;
 
-                if (shu_.in("HUD")) {
-                    draw(tiles, nl_r, nl_g, nl_b);
+                if (shulkeresp.in("RGBMode")) {
+                    draw(tiles, shu_r.get_value(1), shu_g.get_value(1), shu_b.get_value(1));
                 } else {
                     draw(tiles, (hex & 0xFF0000) >> 16, (hex & 0xFF00) >> 8, (hex & 0xFF));
                 }
             }
 
             if (tiles instanceof TileEntityEnderChest) {
-                if (enc_.in("HUD")) {
-                    draw(tiles, nl_r, nl_g, nl_b);
-                } else {
-                    draw(tiles, 204, 0, 255);
+                if (echestesp.get_value(true)) {
+                    draw(tiles, ec_r.get_value(1), ec_g.get_value(1), ec_b.get_value(1));
                 }
             }
 
             if (tiles instanceof TileEntityChest) {
-                if (che_.in("HUD")) {
-                    draw(tiles, nl_r, nl_g, nl_b);
-                } else {
-                    draw(tiles, 153, 102, 0);
+                if (chestesp.get_value(true)) {
+                    draw(tiles, ch_r.get_value(1), ch_g.get_value(1), ch_b.get_value(1));
                 }
             }
 
@@ -70,10 +77,8 @@ public class StorageESP extends WurstplusHack {
                     tiles instanceof TileEntityHopper    ||
                     tiles instanceof TileEntityFurnace   ||
                     tiles instanceof TileEntityBrewingStand) {
-                if (oth_.in("HUD")) {
-                    draw(tiles, nl_r, nl_g, nl_b);
-                } else {
-                    draw(tiles, 190, 190, 190);
+                if (otheresp.get_value(true)) {
+                    draw(tiles, ot_r.get_value(1), ot_g.get_value(1), ot_b.get_value(1));
                 }
             }
         }

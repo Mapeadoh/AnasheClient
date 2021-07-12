@@ -34,12 +34,11 @@ public class WurstplusHoleESP extends WurstplusHack {
 
 	WurstplusSetting bedrock_view 		= create("info", "HoleESPbedrock", "Bedrock");
 	WurstplusSetting bedrock_enable 	= create("Bedrock Holes", "HoleESPBedrockHoles", true);
-	// WurstplusSetting rgb_b 				= create("RGB Effect", "HoleColorRGBEffect", true);
 	WurstplusSetting rb 				= create("R", "HoleESPRb", 0, 0, 255);
 	WurstplusSetting gb 				= create("G", "HoleESPGb", 255, 0, 255);
 	WurstplusSetting bb 				= create("B", "HoleESPBb", 0, 0, 255);
 	WurstplusSetting ab				    = create("A", "HoleESPAb", 50, 0, 255);
-	WurstplusSetting rainbow_b			= create("RainbowBed", "RainbowModeBedrock", false);
+	WurstplusSetting rainbow_b			= create("RainbowBedrock", "RainbowModeBedrock", false);
 
 	WurstplusSetting obsidian_view 		= create("info", "HoleESPObsidian", "Obsidian");
 	WurstplusSetting obsidian_enable	= create("Obsidian Holes", "HoleESPObsidianHoles", true);

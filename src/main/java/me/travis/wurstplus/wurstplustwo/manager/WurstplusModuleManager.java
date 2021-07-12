@@ -37,7 +37,6 @@ public class WurstplusModuleManager {
 		add_hack(new DiscordInvite());
 
 		// Chat.
-		add_hack(new Spammer());
 		add_hack(new AutoMsg());
 		add_hack(new CBFactSpammer());
 		add_hack(new HP2PvPInfo());
@@ -126,9 +125,9 @@ public class WurstplusModuleManager {
 		add_hack(new FullBright());
 
 		// Misc.
+		add_hack(new DeathDisable());
 		add_hack(new YawLock());
 		add_hack(new AntiAFK());
-		//add_hack(new NoraDotCCAutoReconect());
 		add_hack(new HP2EntitySearch());
 		add_hack(new AutoRespawn());
 		add_hack(new WurstplusMiddleClickFriends());
