@@ -44,6 +44,13 @@ import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 
 public class NewCA extends WurstplusHack
 {
+    public NewCA() {
+    super(WurstplusCategory.WURSTPLUS_COMBAT);
+    this.name = "NewAutoCrystal";
+    this.tag = "NewAutoCrystal";
+    this.description = "hollowca Bv";
+    }
+
     WurstplusSetting debug = this.create("Debug", "CaDebug", false);
     WurstplusSetting place_crystal = this.create("Place", "CaPlace", true);
     WurstplusSetting break_crystal = this.create("Break", "CaBreak", true);
@@ -197,12 +204,7 @@ public class NewCA extends WurstplusHack
         return;
     }, (Predicate<WurstplusEventPacket.ReceivePacket>[])new Predicate[0]);
 
-    public NewCA() {
-        super(WurstplusCategory.WURSTPLUS_COMBAT);
-        this.name = "Auto Crystal";
-        this.tag = "AutoCrystal";
-        this.description = "kills people (if ur good)";
-    }
+
 
     public void do_ca() {
         this.did_anything = false;

@@ -42,9 +42,9 @@ public class WurstplusAutoCrystal extends WurstplusHack {
     public WurstplusAutoCrystal() {
         super(WurstplusCategory.WURSTPLUS_COMBAT);
 
-        this.name        = "Auto Crystal";
-        this.tag         = "AutoCrystal";
-        this.description = "kills people (if ur good)";
+        this.name        = "OldAutoCrystal";
+        this.tag         = "OldAutoCrystal";
+        this.description = "tf? use betterca, its better rofl";
     }
 
     WurstplusSetting debug = create("Debug", "CaDebug", false);
@@ -369,7 +369,7 @@ public class WurstplusAutoCrystal extends WurstplusHack {
 
         BlockPos best_block = null;
 
-        List<BlockPos> blocks = WurstplusCrystalUtil.possiblePlacePositions2((float) place_range.get_value(1), endcrystal.get_value(true), true);
+        List<BlockPos> blocks = WurstplusCrystalUtil.possiblePlacePositions((float) place_range.get_value(1), endcrystal.get_value(true), true);
 
         for (Entity player : mc.world.playerEntities) {
 
