@@ -13,7 +13,7 @@ to compile, idk use a tutorial, to open clickgui: rshift, to commands: . <br>
 <details>
   <summary>Pro Modules Bv</summary> <br>
   Instant Burrow<br>
-  w+2 ca<br>
+  hollow ca<br>
   NewHoleFill, includes Skull mode<br>
   AutoSelfBlock, mode: Webs and Skull <br>
   PvPInfo, announce some events like epearls or obtaining weakness effect <br><br>
