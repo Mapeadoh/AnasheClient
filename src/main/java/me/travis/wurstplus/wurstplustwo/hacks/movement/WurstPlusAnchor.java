@@ -21,7 +21,7 @@ public class WurstPlusAnchor extends WurstplusHack {
 
         this.name        = "Anchor";
         this.tag         = "WurstPlusAnchor";
-        this.description = "Spoiler: una basura total";
+        this.description = "WTF travis puso OnDisable en ves de disable ._.XD";
     }
 
     WurstplusSetting Pitch = create("Pitch", "AnchorPitch", 60, 0, 90);
@@ -96,7 +96,7 @@ public class WurstPlusAnchor extends WurstplusHack {
         }
     });
 
-    public void onDisable() {
+    public void disable() {
         AnchorING = false;
         holeblocks = 0;
     }

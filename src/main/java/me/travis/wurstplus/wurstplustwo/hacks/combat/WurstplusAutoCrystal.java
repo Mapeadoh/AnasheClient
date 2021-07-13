@@ -369,7 +369,7 @@ public class WurstplusAutoCrystal extends WurstplusHack {
 
         BlockPos best_block = null;
 
-        List<BlockPos> blocks = WurstplusCrystalUtil.possiblePlacePositions((float) place_range.get_value(1), endcrystal.get_value(true), true);
+        List<BlockPos> blocks = WurstplusCrystalUtil.possiblePlacePositions2((float) place_range.get_value(1), endcrystal.get_value(true), true);
 
         for (Entity player : mc.world.playerEntities) {
 
