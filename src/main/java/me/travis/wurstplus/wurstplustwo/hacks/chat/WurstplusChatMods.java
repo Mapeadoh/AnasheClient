@@ -28,7 +28,7 @@ public final class WurstplusChatMods extends WurstplusHack {
 
         this.name = "Chat Modifications";
         this.tag = "ChatModifications";
-        this.description = "this breaks things";
+        this.description = "> ur gae | anasheclient+";
     }
 
     // GuiNewChat nc = new GuiNewChat(mc);
@@ -136,7 +136,6 @@ public final class WurstplusChatMods extends WurstplusHack {
 
     String[] random_client_name = {
             "  nashe",
-            "  ",
             "  anashet",
             "  anotterratedclient",
             "  w+2better",
