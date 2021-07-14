@@ -34,7 +34,7 @@ public class WurstplusOffhand extends WurstplusHack {
 
     WurstplusSetting sword_gapple = create("Gapple in Sword", "SwordGapple", false);
     WurstplusSetting sword_gapple_hp = create("Sword Gapple HP", "SwordGappleHP", 20, 0, 36);
-//                  now working i think
+
     WurstplusSetting delay = create("Delay", "OffhandDelay", false);
 
     private boolean switching = false;
@@ -53,7 +53,7 @@ public class WurstplusOffhand extends WurstplusHack {
             float hp = mc.player.getHealth() + mc.player.getAbsorptionAmount();
 
             if (hp > totem_switch.get_value(1)) {
-                if (switch_mode.in("Crystal") && Wurstplus.get_hack_manager().get_module_with_tag("OldAutoCrystal").is_active() || Wurstplus.get_hack_manager().get_module_with_tag("NewAutoCrystal").is_active()) {
+                if (switch_mode.in("Crystal") && Wurstplus.get_hack_manager().get_module_with_tag("NewAutoCrystal").is_active()) {
                     swap_items(get_item_slot(Items.END_CRYSTAL),0);
                     return;
                 }
@@ -73,7 +73,7 @@ public class WurstplusOffhand extends WurstplusHack {
                     swap_items(get_item_slot(Items.GOLDEN_APPLE), delay.get_value(true) ? 1 : 0);
                     return;
                 }
-                if (switch_mode.in("Crystal") && !Wurstplus.get_hack_manager().get_module_with_tag("AutoCrystal").is_active()) {
+                if (switch_mode.in("Crystal") && !Wurstplus.get_hack_manager().get_module_with_tag("NewAutoCrystal").is_active()) {
                     swap_items(get_item_slot(Items.TOTEM_OF_UNDYING),0);
                     return;
                 }
