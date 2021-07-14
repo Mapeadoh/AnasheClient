@@ -65,7 +65,7 @@ public class WurstplusPvpHud extends WurstplusPinnable {
     public String aura_enabled() {
 
         try {
-            if (Wurstplus.get_hack_manager().get_module_with_tag("AutoCrystal").is_active()) {
+            if (Wurstplus.get_hack_manager().get_module_with_tag("OldAutoCrystal").is_active() || Wurstplus.get_hack_manager().get_module_with_tag("NewAutoCrystal").is_active()) {
                 return "\u00A7a 1";
             }
             return "\u00A74 0";
