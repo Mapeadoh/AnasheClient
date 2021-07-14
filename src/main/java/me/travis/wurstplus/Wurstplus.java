@@ -8,7 +8,6 @@ import me.travis.wurstplus.wurstplustwo.event.WurstplusEventRegister;
 import me.travis.wurstplus.wurstplustwo.guiscreen.WurstplusGUI;
 import me.travis.wurstplus.wurstplustwo.guiscreen.WurstplusHUD;
 import me.travis.wurstplus.wurstplustwo.manager.*;
-import me.travis.mapeadoh.clientstuff.salhack.*;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -38,9 +37,6 @@ public class Wurstplus {
 	private static WurstplusModuleManager module_manager;
 	private static WurstplusHUDManager hud_manager;
 
-	private static AlwaysEnabledModule alEnMod;
-	private static UUIDManager uuidMan;
-
 	public static WurstplusGUI click_gui;
 	public static WurstplusHUD click_hud;
 
@@ -66,9 +62,6 @@ public class Wurstplus {
 		config_manager = new WurstplusConfigManager();
 		module_manager = new WurstplusModuleManager();
 		hud_manager = new WurstplusHUDManager();
-
-		uuidMan = new UUIDManager();
-		alEnMod = new AlwaysEnabledModule();
 
 		WurstplusEventManager event_manager = new WurstplusEventManager();
 		WurstplusCommandManager command_manager = new WurstplusCommandManager(); // hack
@@ -156,10 +149,6 @@ public class Wurstplus {
 	}
 
 	public static WurstplusModuleManager get_module_manager() { return module_manager; }
-
-	public static UUIDManager getUuidMan(){ return uuidMan; }
-
-	public static AlwaysEnabledModule getAlEnMod(){ return alEnMod; }
 
 	public static WurstplusEventHandler get_event_handler() {
 		return WurstplusEventHandler.INSTANCE;
