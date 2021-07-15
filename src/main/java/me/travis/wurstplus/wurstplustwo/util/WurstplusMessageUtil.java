@@ -43,7 +43,7 @@ public class WurstplusMessageUtil {
 
 	public static void client_message_simple(String message) {
 		if (mc.player != null) {
-			final ITextComponent itc = new TextComponentString(message).setStyle(new Style().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentString("frank alachi"))));
+			final ITextComponent itc = new TextComponentString(message).setStyle(new Style().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentString("Argentina 1 Brazil 0"))));
 			mc.ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(itc, 5936);
 		}
 	}
@@ -63,7 +63,7 @@ public class WurstplusMessageUtil {
 	}
 
 	public static void send_client_error_message(String message) {
-		client_message(ChatFormatting.RED + opener + " " + r + message);
+		client_message(r2 + opener + " " + r + message);
 	}
 
 	public static class ChatMessage extends TextComponentBase {
