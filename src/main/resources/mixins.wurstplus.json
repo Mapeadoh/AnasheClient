@@ -9,7 +9,6 @@
 		"HP2NRMixinGuiIngame",
 		"HP2NRMixinLayerArmorBase",
 		"MixinEntityBoat",
-		"MixinGuiDisconnected",
 		"MixinItemRenderer",
 		"MixinModelPlayer",
 		"MixinRenderGlobal",

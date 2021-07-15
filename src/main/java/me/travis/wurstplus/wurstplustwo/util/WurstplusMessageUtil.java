@@ -23,18 +23,18 @@ public class WurstplusMessageUtil {
 	public static ChatFormatting r = ChatFormatting.RESET;
 	public static ChatFormatting r2 = ChatFormatting.DARK_RED;
 
-	public static String opener = ChatFormatting.GRAY + "[" + ChatFormatting.WHITE + "Ana" + ChatFormatting.DARK_PURPLE + "She" + ChatFormatting.GRAY + "] " + ChatFormatting.RESET;
+	public static String opener = ChatFormatting.GRAY + "[" + r + a + "Anash "+  r + ChatFormatting.WHITE +"eCli" + r + a + "ent+" + r + ChatFormatting.GRAY + "] " + r;
 
 	public static void toggle_message(WurstplusHack module) {
 		if (module.is_active()) {//ty iJese for this
-			if (module.get_tag().equals("AutoCrystal")) {
-				client_message_simple(opener + ChatFormatting.GRAY + " toggled " + ChatFormatting.RESET);
+			if (module.get_tag().equals("NewAutoCrystal")) {
+				client_message_simple(opener + a + module.get_name() + r + ChatFormatting.GRAY + " is " + r + ChatFormatting.GREEN + "on" + r);
 			} else {
-				client_message_simple(opener + r + module.get_name() + ChatFormatting.GREEN + " on.");
+				client_message_simple(ChatFormatting.BOLD + opener + r + module.get_name() + ChatFormatting.GREEN + " on.");
 			}
 		} else {
-			if (module.get_tag().equals("AutoCrystal")) {
-				client_message_simple(opener + ChatFormatting.GRAY + " toggled" + ChatFormatting.RESET);
+			if (module.get_tag().equals("NewAutoCrystal")) {
+				client_message_simple(opener + a + module.get_name() + r + ChatFormatting.GRAY + " is " + r + ChatFormatting.GREEN + "off" + r);
 			} else {
 				client_message_simple(opener + r + module.get_name() + ChatFormatting.RED + " off.");
 			}
@@ -55,15 +55,15 @@ public class WurstplusMessageUtil {
 	}
 
 	public static void send_client_message_simple(String message) {
-		client_message(ChatFormatting.DARK_AQUA + Wurstplus.WURSTPLUS_NAME + " " + r + message);
+		client_message(opener + " " + r + message);
 	}
 
 	public static void send_client_message(String message) {
-		client_message(ChatFormatting.DARK_AQUA + Wurstplus.WURSTPLUS_NAME + " " + r + message);
+		client_message(opener + " " + r + message);
 	}
 
 	public static void send_client_error_message(String message) {
-		client_message(ChatFormatting.RED + Wurstplus.WURSTPLUS_NAME + " " + r + message);
+		client_message(ChatFormatting.RED + opener + " " + r + message);
 	}
 
 	public static class ChatMessage extends TextComponentBase {
