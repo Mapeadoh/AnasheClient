@@ -126,6 +126,7 @@ public class WurstplusModuleManager {
 		add_hack(new FullBright());
 
 		// Misc.
+		add_hack(new AutoWither());
 		add_hack(new DeathDisable());
 		add_hack(new YawLock());
 		add_hack(new AntiAFK());

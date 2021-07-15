@@ -23,10 +23,10 @@ public class ExtraTab extends WurstplusHack {
     public static String getPlayerName(NetworkPlayerInfo networkPlayerInfoIn) {
         String name = networkPlayerInfoIn.getDisplayName() != null ? networkPlayerInfoIn.getDisplayName().getFormattedText() : ScorePlayerTeam.formatPlayerName(networkPlayerInfoIn.getPlayerTeam(), networkPlayerInfoIn.getGameProfile().getName());
         if (WurstplusFriendUtil.isFriend(name)) {
-            return ChatFormatting.AQUA + name;
+            return ChatFormatting.AQUA.toString() + name;
         }
         if (WurstplusEnemyUtil.isEnemy(name)) {
-            return ChatFormatting.RED + name;
+            return ChatFormatting.RED.toString() + name;
         }
         return name;
     }

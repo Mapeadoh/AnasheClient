@@ -1,55 +1,34 @@
 package me.travis.wurstplus.wurstplustwo.hacks.misc;
 
-import me.travis.mapeadoh.clientstuff.salhack.MinecraftEvent;
-import me.travis.mapeadoh.clientstuff.salhack.EventPlayerMotionUpdate;
+
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
-import me.zero.alpine.fork.listener.EventHandler;
-import me.zero.alpine.fork.listener.Listener;
-import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 public class YawLock extends WurstplusHack {
-    public YawLock() {
+    public YawLock(){
         super(WurstplusCategory.WURSTPLUS_MOVEMENT);
-        this.name = "LookLock";
+        this.name = "YawLock";
         this.tag = "YawLock";
-        this.description = "locks ur yaw and pitch for afk elytrafly";
+        this.description = "watafac w+1 era mejor q w+2";
     }
-    WurstplusSetting yawlockboolean = create("YawLock", "YawLock", false);
-    WurstplusSetting yawlock = create("Yaw", "Yaw", 0f, 0f, 365f);
-    WurstplusSetting pitchlockboolean = create("PitchLock", "PitchLock", false);
-    WurstplusSetting pitchlock = create("Pitch", "Pitch", 0f, 0f, 365f);
-    WurstplusSetting coordmode = create("CoordLock", "CoordLock", false);
-    WurstplusSetting cardinal = create("Cords", "Coords", 0d, 0d, 365d);
-    private float yaw;
-    private float pitch;
+
+    WurstplusSetting direction= create("Direction", "Direction", "North", combobox("North", "South", "West", "East"));
 
     @Override
-    public void enable() {
-        super.enable();
-
-        if (mc.player != null)
-        {
-            yaw = mc.player.rotationYaw;
-            pitch = mc.player.rotationPitch;
+    public void update() {
+        if (direction.in("North")) {
+            mc.player.rotationYaw = MathHelper.clamp(180, -180, 180);
+        }
+        else if (direction.in("South")) {
+            mc.player.rotationYaw = MathHelper.clamp(0, -180, 180);
+        }
+        else if (direction.in("West")) {
+            mc.player.rotationYaw = MathHelper.clamp(90, -180, 180);
+        }
+        else if (direction.in("East")) {
+            mc.player.rotationYaw = -90;
         }
     }
-
-    @EventHandler
-    private Listener<EventPlayerMotionUpdate> OnPlayerUpdate = new Listener<>(p_Event ->{
-         if (p_Event.getStage() != MinecraftEvent.Stage.Pre)
-            return;
-
-            Entity l_Entity = mc.player.isRiding() ? mc.player.getRidingEntity() : mc.player;
-
-            if (this.yawlockboolean.get_value(true))
-                mc.player.rotationYaw = yawlock.get_value(1);
-
-            if (this.pitchlockboolean.get_value(true))
-                mc.player.rotationPitch = pitchlock.get_value(1);
-
-            if (coordmode.get_value(true))
-                l_Entity.rotationYaw = Math.round((l_Entity.rotationYaw + 1.0f) / 45.0f) * 45.0f;
-        });
 }
