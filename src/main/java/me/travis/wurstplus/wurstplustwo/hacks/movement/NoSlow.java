@@ -15,7 +15,7 @@ public class NoSlow extends WurstplusHack {
         this.description = "";
     }
     WurstplusSetting webs = create("IgnoreWeb", "IgnoreWeb", true);
-    WurstplusSetting webspeed = create("WebSpeed", "WebSpeed", 2,0,5);
+    WurstplusSetting webspeed = create("WebSpeed", "WebSpeed", 2.0,0.0,100);
 
     @EventHandler
     private Listener<InputUpdateEvent> eventListener = new Listener<>(event -> {
@@ -28,6 +28,7 @@ public class NoSlow extends WurstplusHack {
         if (this.webs.get_value(true) && NoSlow.mc.player.isInWeb) {
             NoSlow.mc.player.motionX *= webspeed.get_value(1);
             NoSlow.mc.player.motionZ *= webspeed.get_value(1);
+            NoSlow.mc.player.motionY *= webspeed.get_value(1);
         }
     }
 }

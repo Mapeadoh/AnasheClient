@@ -69,6 +69,7 @@ public class WurstplusModuleManager {
 		add_hack(new NewHoleFill());
 
 		// Exploit.
+		add_hack(new Auto5b5tDupe());
 		add_hack(new WurstplusXCarry());
 		add_hack(new WurstplusNoSwing());
 		add_hack(new WurstplusPortalGodMode());
@@ -83,6 +84,8 @@ public class WurstplusModuleManager {
 		add_hack(new CrashExploit());
 
 		// Movement.
+		add_hack(new EntityControl());
+		add_hack(new NewStep());
 		//add_hack(new AutoWalk());
 		add_hack(new BoatFly());
 		add_hack(new SalhackElytraFly());
@@ -126,6 +129,7 @@ public class WurstplusModuleManager {
 		add_hack(new FullBright());
 
 		// Misc.
+		add_hack(new PacketCanceller());
 		add_hack(new AutoWither());
 		add_hack(new DeathDisable());
 		add_hack(new YawLock());
@@ -145,7 +149,6 @@ public class WurstplusModuleManager {
 
 		// Dev
 		add_hack(new Blink());
-		add_hack(new WP3ViewModel());
 
 		array_hacks.sort(Comparator.comparing(WurstplusHack::get_name));
 	}
