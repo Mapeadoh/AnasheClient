@@ -1,6 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.hacks.client;
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
@@ -29,11 +29,11 @@ public class WurstplusClickHUD extends WurstplusHack {
 	@Override
 	public void enable() {
 		if (mc.world != null && mc.player != null) {
-			Wurstplus.get_hack_manager().get_module_with_tag("GUI").set_active(false);
+			AnasheClient.get_hack_manager().get_module_with_tag("GUI").set_active(false);
 				
-			Wurstplus.click_hud.back = false;
+			AnasheClient.click_hud.back = false;
 
-			mc.displayGuiScreen(Wurstplus.click_hud);
+			mc.displayGuiScreen(AnasheClient.click_hud);
 		}
 	}
 }

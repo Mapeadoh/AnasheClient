@@ -1,6 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.hacks;
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.event.WurstplusEventBus;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRender;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRenderEntityModel;
@@ -131,33 +131,33 @@ public class WurstplusHack implements Listenable {
 	}
 
 	protected WurstplusSetting create(String name, String tag, int value, int min, int max) {
-		Wurstplus.get_setting_manager().register(new WurstplusSetting(this, name, tag, value, min, max));
+		AnasheClient.get_setting_manager().register(new WurstplusSetting(this, name, tag, value, min, max));
 
-		return Wurstplus.get_setting_manager().get_setting_with_tag(this, tag);
+		return AnasheClient.get_setting_manager().get_setting_with_tag(this, tag);
 	}
 
 	protected WurstplusSetting create(String name, String tag, double value, double min, double max) {
-		Wurstplus.get_setting_manager().register(new WurstplusSetting(this, name, tag, value, min, max));
+		AnasheClient.get_setting_manager().register(new WurstplusSetting(this, name, tag, value, min, max));
 
-		return Wurstplus.get_setting_manager().get_setting_with_tag(this, tag);
+		return AnasheClient.get_setting_manager().get_setting_with_tag(this, tag);
 	}
 
 	protected WurstplusSetting create(String name, String tag, boolean value) {
-		Wurstplus.get_setting_manager().register(new WurstplusSetting(this, name, tag, value));
+		AnasheClient.get_setting_manager().register(new WurstplusSetting(this, name, tag, value));
 
-		return Wurstplus.get_setting_manager().get_setting_with_tag(this, tag);
+		return AnasheClient.get_setting_manager().get_setting_with_tag(this, tag);
 	}
 
 	protected WurstplusSetting create(String name, String tag, String value) {
-		Wurstplus.get_setting_manager().register(new WurstplusSetting(this, name, tag, value));
+		AnasheClient.get_setting_manager().register(new WurstplusSetting(this, name, tag, value));
 
-		return Wurstplus.get_setting_manager().get_setting_with_tag(this, tag);
+		return AnasheClient.get_setting_manager().get_setting_with_tag(this, tag);
 	}
 
 	protected WurstplusSetting create(String name, String tag, String value, List<String> values) {
-		Wurstplus.get_setting_manager().register(new WurstplusSetting(this, name, tag, values, value));
+		AnasheClient.get_setting_manager().register(new WurstplusSetting(this, name, tag, values, value));
 
-		return Wurstplus.get_setting_manager().get_setting_with_tag(this, tag);
+		return AnasheClient.get_setting_manager().get_setting_with_tag(this, tag);
 	}
 
 	protected List<String> combobox(String... item) {

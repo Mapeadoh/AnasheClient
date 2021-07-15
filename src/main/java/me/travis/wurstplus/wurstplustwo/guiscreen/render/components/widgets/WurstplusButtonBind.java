@@ -1,6 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.guiscreen.render.components.widgets;
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.WurstplusDraw;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.components.WurstplusAbstractWidget;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.components.WurstplusFrame;
@@ -127,13 +127,13 @@ public class WurstplusButtonBind extends WurstplusAbstractWidget {
 	public void bind(char char_, int key) {
 		if (this.waiting) {
 			switch (key) {
-				case Wurstplus.WURSTPLUS_KEY_GUI_ESCAPE : {
+				case AnasheClient.WURSTPLUS_KEY_GUI_ESCAPE : {
 					this.waiting = false;
 
 					break;
 				}
 
-				case Wurstplus.WURSTPLUS_KEY_DELETE : {
+				case AnasheClient.WURSTPLUS_KEY_DELETE : {
 					this.master.get_module().set_bind(0);
 
 					this.waiting = false;
@@ -202,19 +202,19 @@ public class WurstplusButtonBind extends WurstplusAbstractWidget {
 
 		this.save_y = this.y + master_y;
 
-		int ns_r = Wurstplus.click_gui.theme_widget_name_r;
-		int ns_g = Wurstplus.click_gui.theme_widget_name_g;
-		int ns_b = Wurstplus.click_gui.theme_widget_name_b;
-		int ns_a = Wurstplus.click_gui.theme_widget_name_a;
+		int ns_r = AnasheClient.click_gui.theme_widget_name_r;
+		int ns_g = AnasheClient.click_gui.theme_widget_name_g;
+		int ns_b = AnasheClient.click_gui.theme_widget_name_b;
+		int ns_a = AnasheClient.click_gui.theme_widget_name_a;
 
-		int bg_r = Wurstplus.click_gui.theme_widget_background_r;
-		int bg_g = Wurstplus.click_gui.theme_widget_background_g;
-		int bg_b = Wurstplus.click_gui.theme_widget_background_b;
-		int bg_a = Wurstplus.click_gui.theme_widget_background_a;
+		int bg_r = AnasheClient.click_gui.theme_widget_background_r;
+		int bg_g = AnasheClient.click_gui.theme_widget_background_g;
+		int bg_b = AnasheClient.click_gui.theme_widget_background_b;
+		int bg_a = AnasheClient.click_gui.theme_widget_background_a;
 
-		int bd_r = Wurstplus.click_gui.theme_widget_border_r;
-		int bd_g = Wurstplus.click_gui.theme_widget_border_g;
-		int bd_b = Wurstplus.click_gui.theme_widget_border_b;
+		int bd_r = AnasheClient.click_gui.theme_widget_border_r;
+		int bd_g = AnasheClient.click_gui.theme_widget_border_g;
+		int bd_b = AnasheClient.click_gui.theme_widget_border_b;
 
 		if (this.waiting) {
 			WurstplusDraw.draw_rect(get_x(), this.save_y, get_x() + this.width, this.save_y + this.height, bg_r, bg_g, bg_b, bg_a);

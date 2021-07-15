@@ -2,7 +2,7 @@ package me.travis.wurstplus.wurstplustwo.guiscreen.render.components.widgets;
 
 
 import me.travis.turok.values.TurokDouble;
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.WurstplusDraw;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.components.WurstplusAbstractWidget;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.components.WurstplusFrame;
@@ -41,7 +41,7 @@ public class WurstplusSlider extends WurstplusAbstractWidget {
 	public WurstplusSlider(WurstplusFrame frame, WurstplusModuleButton master, String tag, int update_postion) {
 		this.frame   = frame;
 		this.master  = master;
-		this.setting = Wurstplus.get_setting_manager().get_setting_with_tag(master.get_module(), tag);
+		this.setting = AnasheClient.get_setting_manager().get_setting_with_tag(master.get_module(), tag);
 
 		this.x = master.get_x();
 		this.y = update_postion;
@@ -157,19 +157,19 @@ public class WurstplusSlider extends WurstplusAbstractWidget {
 
 		this.save_y = this.y + master_y;
 
-		int ns_r = Wurstplus.click_gui.theme_widget_name_r;
-		int ns_g = Wurstplus.click_gui.theme_widget_name_g;
-		int ns_b = Wurstplus.click_gui.theme_widget_name_b;
-		int ns_a = Wurstplus.click_gui.theme_widget_name_b;
+		int ns_r = AnasheClient.click_gui.theme_widget_name_r;
+		int ns_g = AnasheClient.click_gui.theme_widget_name_g;
+		int ns_b = AnasheClient.click_gui.theme_widget_name_b;
+		int ns_a = AnasheClient.click_gui.theme_widget_name_b;
 
-		int bg_r = Wurstplus.click_gui.theme_widget_background_r;
-		int bg_g = Wurstplus.click_gui.theme_widget_background_g;
-		int bg_b = Wurstplus.click_gui.theme_widget_background_b;
-		int bg_a = Wurstplus.click_gui.theme_widget_background_a;
+		int bg_r = AnasheClient.click_gui.theme_widget_background_r;
+		int bg_g = AnasheClient.click_gui.theme_widget_background_g;
+		int bg_b = AnasheClient.click_gui.theme_widget_background_b;
+		int bg_a = AnasheClient.click_gui.theme_widget_background_a;
 
-		int bd_r = Wurstplus.click_gui.theme_widget_border_r;
-		int bd_g = Wurstplus.click_gui.theme_widget_border_g;
-		int bd_b = Wurstplus.click_gui.theme_widget_border_b;
+		int bd_r = AnasheClient.click_gui.theme_widget_border_r;
+		int bd_g = AnasheClient.click_gui.theme_widget_border_g;
+		int bd_b = AnasheClient.click_gui.theme_widget_border_b;
 		int bd_a = 100;
 
 		if (this.double_ != 8192 && this.intenger == 8192) {

@@ -1,6 +1,5 @@
 package me.travis.mapeadoh.clientstuff.wp3;
 
-import me.travis.wurstplus.Wurstplus;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusEnemyUtil;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusFriendUtil;
 import net.minecraft.block.*;

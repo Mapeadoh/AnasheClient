@@ -1,6 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.hacks.chat;
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventPacket;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
@@ -183,10 +183,10 @@ public class WurstplusAnnouncer extends WurstplusHack {
     private void send_message(String s) {
         if (suffix.get_value(true)) {
             String i = " \u2763 ";
-            s += i + Wurstplus.smoth("sponsored by wurstplus two");
+            s += i + AnasheClient.smoth("sponsored by wurstplus two");
         }
         if (smol.get_value(true)) {
-            s = Wurstplus.smoth(s.toLowerCase());
+            s = AnasheClient.smoth(s.toLowerCase());
         }
         mc.player.connection.sendPacket(new CPacketChatMessage(s.replaceAll("\u00a7", "")));
     }

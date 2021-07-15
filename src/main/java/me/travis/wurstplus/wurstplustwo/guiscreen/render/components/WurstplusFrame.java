@@ -1,6 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.guiscreen.render.components;
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.WurstplusDraw;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
@@ -59,10 +59,10 @@ public class WurstplusFrame {
 		this.move_x = 0;
 		this.move_y = 0;
 
-		int size  = Wurstplus.get_hack_manager().get_modules_with_category(category).size();
+		int size  = AnasheClient.get_hack_manager().get_modules_with_category(category).size();
 		int count = 0;
 
-		for (WurstplusHack modules : Wurstplus.get_hack_manager().get_modules_with_category(category)) {
+		for (WurstplusHack modules : AnasheClient.get_hack_manager().get_modules_with_category(category)) {
 			WurstplusModuleButton buttons = new WurstplusModuleButton(modules, this);
 
 			buttons.set_y(this.height);
@@ -86,7 +86,7 @@ public class WurstplusFrame {
 
 		this.height = 25;
 
-		int size  = Wurstplus.get_hack_manager().get_modules_with_category(this.category).size();
+		int size  = AnasheClient.get_hack_manager().get_modules_with_category(this.category).size();
 		int count = 0;
 
 		for (WurstplusModuleButton buttons : this.module_button) {
@@ -266,19 +266,19 @@ public class WurstplusFrame {
 			border_a = 50;
 		} else border_a = Math.min((color_a), 120);
 
-		int nc_r = Wurstplus.click_gui.theme_frame_name_r;
-		int nc_g = Wurstplus.click_gui.theme_frame_name_g;
-		int nc_b = Wurstplus.click_gui.theme_frame_name_b;
-		int nc_a = Wurstplus.click_gui.theme_frame_name_a;
+		int nc_r = AnasheClient.click_gui.theme_frame_name_r;
+		int nc_g = AnasheClient.click_gui.theme_frame_name_g;
+		int nc_b = AnasheClient.click_gui.theme_frame_name_b;
+		int nc_a = AnasheClient.click_gui.theme_frame_name_a;
 
-		int bg_r = Wurstplus.click_gui.theme_frame_background_r;
-		int bg_g = Wurstplus.click_gui.theme_frame_background_g;
-		int bg_b = Wurstplus.click_gui.theme_frame_background_b;
-		int bg_a = Wurstplus.click_gui.theme_frame_background_a;
+		int bg_r = AnasheClient.click_gui.theme_frame_background_r;
+		int bg_g = AnasheClient.click_gui.theme_frame_background_g;
+		int bg_b = AnasheClient.click_gui.theme_frame_background_b;
+		int bg_a = AnasheClient.click_gui.theme_frame_background_a;
 
-		int bd_r = Wurstplus.click_gui.theme_frame_border_r;
-		int bd_g = Wurstplus.click_gui.theme_frame_border_g;
-		int bd_b = Wurstplus.click_gui.theme_frame_border_b;
+		int bd_r = AnasheClient.click_gui.theme_frame_border_r;
+		int bd_g = AnasheClient.click_gui.theme_frame_border_g;
+		int bd_b = AnasheClient.click_gui.theme_frame_border_b;
 		int bd_a = border_a;
 
 		this.frame_name = this.category.get_name();

@@ -1,6 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.hacks.movement;
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventPacket;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
@@ -35,7 +35,7 @@ public class NoFall extends WurstplusHack
         this.distance = this.create("BucketDistance", "NoFallDistance", 15, 0, 100);
         this.last = 0L;
         this.sendListener = new Listener<WurstplusEventPacket.SendPacket>(event -> {
-            if (Wurstplus.get_module_manager().get_module_with_tag("ElytraFly").is_active()) {
+            if (AnasheClient.get_module_manager().get_module_with_tag("ElytraFly").is_active()) {
                 return;
             }
             else {
@@ -52,7 +52,7 @@ public class NoFall extends WurstplusHack
 
     @Override
     public void update() {
-        if (Wurstplus.get_module_manager().get_module_with_tag("ElytraFly").is_active()) {
+        if (AnasheClient.get_module_manager().get_module_with_tag("ElytraFly").is_active()) {
             return;
         }
         if (this.bucket.get_value(true) && mc.player.fallDistance >= this.distance.get_value(15) && !WurstplusEntityUtil.isLiving((Entity)mc.player) && System.currentTimeMillis() - this.last > 100L) {

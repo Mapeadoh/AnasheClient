@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.manager;
 
 import me.travis.turok.draw.RenderHelp;
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.command.WurstplusCommand;
 import me.travis.wurstplus.wurstplustwo.command.WurstplusCommands;
 import me.travis.wurstplus.wurstplustwo.event.WurstplusEventBus;
@@ -44,7 +44,7 @@ public class WurstplusEventManager {
 			return;
 		}
 
-		Wurstplus.get_hack_manager().update();
+		AnasheClient.get_hack_manager().update();
 	}
 
 	@SubscribeEvent
@@ -53,7 +53,7 @@ public class WurstplusEventManager {
 			return;
 		}
 
-		Wurstplus.get_hack_manager().render(event);
+		AnasheClient.get_hack_manager().render(event);
 	}
 
 	@SubscribeEvent
@@ -72,10 +72,10 @@ public class WurstplusEventManager {
 		}
 
 		if (event.getType() == target) {
-			Wurstplus.get_hack_manager().render();
+			AnasheClient.get_hack_manager().render();
 
-			if (!Wurstplus.get_hack_manager().get_module_with_tag("GUI").is_active()) {
-				Wurstplus.get_hud_manager().render();
+			if (!AnasheClient.get_hack_manager().get_module_with_tag("GUI").is_active()) {
+				AnasheClient.get_hud_manager().render();
 			}
 
 			GL11.glPushMatrix();
@@ -94,7 +94,7 @@ public class WurstplusEventManager {
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
 	public void onKeyInput(InputEvent.KeyInputEvent event) {
 		if (Keyboard.getEventKeyState()) {
-			Wurstplus.get_hack_manager().bind(Keyboard.getEventKey());
+			AnasheClient.get_hack_manager().bind(Keyboard.getEventKey());
 		}
 	}
 

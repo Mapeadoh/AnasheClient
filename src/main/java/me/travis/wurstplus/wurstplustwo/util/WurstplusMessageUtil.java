@@ -1,7 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.util;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import me.travis.wurstplus.Wurstplus;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.ITextComponent;

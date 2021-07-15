@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.util.NonNullList;
 import net.minecraft.item.ItemShulkerBox;
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -40,7 +40,7 @@ public class WurstplusMixinGuiScreen
 
     @Inject(method = { "renderToolTip" }, at = { @At("HEAD") }, cancellable = true)
     public void renderToolTip(final ItemStack stack, final int x, final int y, final CallbackInfo info) {
-        if (Wurstplus.get_hack_manager().get_module_with_tag("ShulkerPreview").is_active() && stack.getItem() instanceof ItemShulkerBox) {
+        if (AnasheClient.get_hack_manager().get_module_with_tag("ShulkerPreview").is_active() && stack.getItem() instanceof ItemShulkerBox) {
             final NBTTagCompound tagCompound = stack.getTagCompound();
             if (tagCompound != null && tagCompound.hasKey("BlockEntityTag", 10)) {
                 final NBTTagCompound blockEntityTag = tagCompound.getCompoundTag("BlockEntityTag");

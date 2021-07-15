@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.guiscreen.hud;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.pinnables.WurstplusPinnable;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.init.MobEffects;
@@ -23,10 +23,10 @@ public class WurstplusEffectHud extends WurstplusPinnable {
 
         int counter = 12;
 
-        int nl_r = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorR").get_value(1);
-        int nl_g = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorG").get_value(1);
-        int nl_b = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorB").get_value(1);
-        int nl_a = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorA").get_value(1);
+        int nl_r = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorR").get_value(1);
+        int nl_g = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorG").get_value(1);
+        int nl_b = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorB").get_value(1);
+        int nl_a = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorA").get_value(1);
 
         final List<PotionEffect> effects = new ArrayList<>(mc.player.getActivePotionEffects());
 
@@ -58,7 +58,7 @@ public class WurstplusEffectHud extends WurstplusPinnable {
                 final String e = ChatFormatting.GREEN + get_friendly_potion_name(effect) + " " + ChatFormatting.RESET + Potion.getPotionDurationString(effect, 1.0f);
                 create_line(e, this.docking(1, e), counter, nl_r, nl_g, nl_b, nl_a);
                 counter += 12;
-            } else if (Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDAllPotions").get_value(true)) {
+            } else if (AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDAllPotions").get_value(true)) {
                 final String e = get_friendly_potion_name(effect) + " " + Potion.getPotionDurationString(effect, 1.0f);
                 create_line(e, this.docking(1, e), counter, nl_r, nl_g, nl_b, nl_a);
                 counter += 12;

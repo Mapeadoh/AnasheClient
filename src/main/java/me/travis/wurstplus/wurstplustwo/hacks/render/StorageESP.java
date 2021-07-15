@@ -6,7 +6,6 @@ import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRender;
-import me.travis.wurstplus.Wurstplus;
 import me.travis.turok.draw.RenderHelp;
 
 public class StorageESP extends WurstplusHack {

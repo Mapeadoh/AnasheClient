@@ -1,6 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.guiscreen.hud;
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.pinnables.WurstplusPinnable;
 import me.travis.wurstplus.wurstplustwo.hacks.combat.WurstplusOffhand;
 import net.minecraft.init.Items;
@@ -14,10 +14,10 @@ public class WurstplusPvpHud extends WurstplusPinnable {
 
     @Override
 	public void render() {
-		int nl_r = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorR").get_value(1);
-		int nl_g = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorG").get_value(1);
-		int nl_b = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorB").get_value(1);
-        int nl_a = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorA").get_value(1);
+		int nl_r = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorR").get_value(1);
+		int nl_g = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorG").get_value(1);
+		int nl_b = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorB").get_value(1);
+        int nl_a = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorA").get_value(1);
 
         String trap = "Trap: " + trap_enabled();
         String aura = "Aura: " + aura_enabled();
@@ -41,7 +41,7 @@ public class WurstplusPvpHud extends WurstplusPinnable {
 
     public String selftrap_enabled() {
         try {
-            if (Wurstplus.get_hack_manager().get_module_with_tag("SelfTrap").is_active()) {
+            if (AnasheClient.get_hack_manager().get_module_with_tag("SelfTrap").is_active()) {
                 return "\u00A7a 1";
             }
             return "\u00A74 0";
@@ -52,7 +52,7 @@ public class WurstplusPvpHud extends WurstplusPinnable {
 
     public String trap_enabled() {
         try {
-            if (Wurstplus.get_hack_manager().get_module_with_tag("Trap").is_active()) {
+            if (AnasheClient.get_hack_manager().get_module_with_tag("Trap").is_active()) {
                 return "\u00A7a 1";
             }
             return "\u00A74 0";
@@ -65,7 +65,7 @@ public class WurstplusPvpHud extends WurstplusPinnable {
     public String aura_enabled() {
 
         try {
-            if (Wurstplus.get_hack_manager().get_module_with_tag("OldAutoCrystal").is_active() || Wurstplus.get_hack_manager().get_module_with_tag("NewAutoCrystal").is_active()) {
+            if (AnasheClient.get_hack_manager().get_module_with_tag("OldAutoCrystal").is_active() || AnasheClient.get_hack_manager().get_module_with_tag("NewAutoCrystal").is_active()) {
                 return "\u00A7a 1";
             }
             return "\u00A74 0";
@@ -78,7 +78,7 @@ public class WurstplusPvpHud extends WurstplusPinnable {
     public String surround_enabled() {
 
         try {
-            if (Wurstplus.get_hack_manager().get_module_with_tag("Surround").is_active()) {
+            if (AnasheClient.get_hack_manager().get_module_with_tag("Surround").is_active()) {
                 return "\u00A7a 1";
             }
             return "\u00A74 0";
@@ -91,7 +91,7 @@ public class WurstplusPvpHud extends WurstplusPinnable {
     public String holefill_enabled() {
 
         try {
-            if (Wurstplus.get_hack_manager().get_module_with_tag("NewHoleFill").is_active()) {
+            if (AnasheClient.get_hack_manager().get_module_with_tag("NewHoleFill").is_active()) {
                 return "\u00A7a 1";
             }
             return "\u00A74 0";
@@ -104,7 +104,7 @@ public class WurstplusPvpHud extends WurstplusPinnable {
     public String burrow_enabled() {
 
         try {
-            if (Wurstplus.get_hack_manager().get_module_with_tag("InstantBurrow").is_active()) {
+            if (AnasheClient.get_hack_manager().get_module_with_tag("InstantBurrow").is_active()) {
                 return "\u00A7a 1";
             }
             return "\u00A74 0";
@@ -117,7 +117,7 @@ public class WurstplusPvpHud extends WurstplusPinnable {
     public String offhand_enabled() {
 
         try {
-            if (Wurstplus.get_hack_manager().get_module_with_tag("Offhand").is_active()) {
+            if (AnasheClient.get_hack_manager().get_module_with_tag("Offhand").is_active()) {
                 return "\u00A7a 1";
             }
             return "\u00A74 0";

@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.command.commands;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.command.WurstplusCommand;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusEzMessageUtil;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusMessageUtil;
@@ -31,7 +31,7 @@ public class WurstplusEzMessage extends WurstplusCommand {
             }
             WurstplusEzMessageUtil.set_message(ez.toString());
             WurstplusMessageUtil.send_client_message("ez message changed to " + ChatFormatting.BOLD + ez.toString());
-            Wurstplus.get_config_manager().save_settings();
+            AnasheClient.get_config_manager().save_settings();
             return true;
         }
 

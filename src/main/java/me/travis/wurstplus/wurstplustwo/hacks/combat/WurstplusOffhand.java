@@ -1,17 +1,15 @@
 package me.travis.wurstplus.wurstplustwo.hacks.combat;
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
-import me.travis.wurstplus.wurstplustwo.hacks.client.DiscordRPCModule;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusPlayerUtil;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemSword;
 import net.minecraft.util.math.BlockPos;
 
 
@@ -53,7 +51,7 @@ public class WurstplusOffhand extends WurstplusHack {
             float hp = mc.player.getHealth() + mc.player.getAbsorptionAmount();
 
             if (hp > totem_switch.get_value(1)) {
-                if (switch_mode.in("Crystal") && Wurstplus.get_hack_manager().get_module_with_tag("NewAutoCrystal").is_active()) {
+                if (switch_mode.in("Crystal") && AnasheClient.get_hack_manager().get_module_with_tag("NewAutoCrystal").is_active()) {
                     swap_items(get_item_slot(Items.END_CRYSTAL),0);
                     return;
                 }
@@ -73,7 +71,7 @@ public class WurstplusOffhand extends WurstplusHack {
                     swap_items(get_item_slot(Items.GOLDEN_APPLE), delay.get_value(true) ? 1 : 0);
                     return;
                 }
-                if (switch_mode.in("Crystal") && !Wurstplus.get_hack_manager().get_module_with_tag("NewAutoCrystal").is_active()) {
+                if (switch_mode.in("Crystal") && !AnasheClient.get_hack_manager().get_module_with_tag("NewAutoCrystal").is_active()) {
                     swap_items(get_item_slot(Items.TOTEM_OF_UNDYING),0);
                     return;
                 }

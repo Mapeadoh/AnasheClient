@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.guiscreen.hud;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.pinnables.WurstplusPinnable;
 
 
@@ -16,17 +16,17 @@ public class WurstplusCoordinates extends WurstplusPinnable {
 
 	@Override
 	public void render() {
-		int nl_r = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorR").get_value(1);
-		int nl_g = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorG").get_value(1);
-		int nl_b = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorB").get_value(1);
-		int nl_a = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorA").get_value(1);
+		int nl_r = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorR").get_value(1);
+		int nl_g = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorG").get_value(1);
+		int nl_b = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorB").get_value(1);
+		int nl_a = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorA").get_value(1);
 
-		String x = Wurstplus.g + "[" + Wurstplus.r + Integer.toString((int) (mc.player.posX)) + Wurstplus.g + "]" + Wurstplus.r;
-		String y = Wurstplus.g + "[" + Wurstplus.r + Integer.toString((int) (mc.player.posY)) + Wurstplus.g + "]" + Wurstplus.r;
-		String z = Wurstplus.g + "[" + Wurstplus.r + Integer.toString((int) (mc.player.posZ)) + Wurstplus.g + "]" + Wurstplus.r;
+		String x = AnasheClient.g + "[" + AnasheClient.r + Integer.toString((int) (mc.player.posX)) + AnasheClient.g + "]" + AnasheClient.r;
+		String y = AnasheClient.g + "[" + AnasheClient.r + Integer.toString((int) (mc.player.posY)) + AnasheClient.g + "]" + AnasheClient.r;
+		String z = AnasheClient.g + "[" + AnasheClient.r + Integer.toString((int) (mc.player.posZ)) + AnasheClient.g + "]" + AnasheClient.r;
 
-		String x_nether = Wurstplus.g + "[" + Wurstplus.r + Long.toString(Math.round(mc.player.dimension != -1 ? (mc.player.posX / 8) : (mc.player.posX * 8))) + Wurstplus.g + "]" + Wurstplus.r;
-		String z_nether = Wurstplus.g + "[" + Wurstplus.r + Long.toString(Math.round(mc.player.dimension != -1 ? (mc.player.posZ / 8) : (mc.player.posZ * 8))) + Wurstplus.g + "]" + Wurstplus.r;
+		String x_nether = AnasheClient.g + "[" + AnasheClient.r + Long.toString(Math.round(mc.player.dimension != -1 ? (mc.player.posX / 8) : (mc.player.posX * 8))) + AnasheClient.g + "]" + AnasheClient.r;
+		String z_nether = AnasheClient.g + "[" + AnasheClient.r + Long.toString(Math.round(mc.player.dimension != -1 ? (mc.player.posZ / 8) : (mc.player.posZ * 8))) + AnasheClient.g + "]" + AnasheClient.r;
 
 		String line = "XYZ " + x + y + z + " XZ " + x_nether + z_nether;
 

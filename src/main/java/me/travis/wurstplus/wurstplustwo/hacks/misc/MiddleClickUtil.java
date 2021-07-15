@@ -1,6 +1,5 @@
 package me.travis.wurstplus.wurstplustwo.hacks.misc;
 
-import me.travis.wurstplus.Wurstplus;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventPlayerTravel;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;

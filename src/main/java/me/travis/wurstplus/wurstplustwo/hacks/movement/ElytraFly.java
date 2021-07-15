@@ -1,14 +1,11 @@
 package me.travis.wurstplus.wurstplustwo.hacks.movement;
 
-import me.travis.wurstplus.Wurstplus;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusMathUtil;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.Entity;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.client.CPacketEntityAction;
+
 // Huzuni+2 ElytraFly by WarriorCrystal
 public class ElytraFly extends WurstplusHack {
     WurstplusSetting speed = create("Speed", "ElytraFlySpeed", 1.81, 0.5, 10.0);

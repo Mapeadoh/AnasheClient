@@ -1,6 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.hacks.chat;
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventPacket;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
@@ -99,7 +99,7 @@ public class WurstplusChatSuffix extends WurstplusHack {
 		if (accept_suffix) {
 			if (suffix_default) {
 				// Just default.
-				message += Wurstplus.WURSTPLUS_SIGN + convert_base(" | anasheclient+");
+				message += AnasheClient.WURSTPLUS_SIGN + convert_base(" | anasheclient+");
 			}
 
 			if (suffix_random) {
@@ -110,7 +110,7 @@ public class WurstplusChatSuffix extends WurstplusHack {
 				suffix_with_randoms.append(convert_base(random_string(random_client_name)));
 				suffix_with_randoms.append(convert_base(random_string(random_client_finish)));
 
-				message += Wurstplus.WURSTPLUS_SIGN + suffix_with_randoms.toString(); 
+				message += AnasheClient.WURSTPLUS_SIGN + suffix_with_randoms.toString();
 			}
 
 			// If message 256 string length substring.
@@ -130,7 +130,7 @@ public class WurstplusChatSuffix extends WurstplusHack {
 
 	// Convert the base using the TravisFont.
 	public String convert_base(String base) {
-		return Wurstplus.smoth(base);
+		return AnasheClient.smoth(base);
 	}
 
 	@Override

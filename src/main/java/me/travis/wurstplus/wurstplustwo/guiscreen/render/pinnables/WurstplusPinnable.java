@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.guiscreen.render.pinnables;
 
 import me.travis.turok.draw.RenderHelp;
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.WurstplusDraw;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -246,6 +246,6 @@ public class WurstplusPinnable {
 	}
 
 	protected boolean is_on_gui() {
-		return Wurstplus.click_hud.on_gui;
+		return AnasheClient.click_hud.on_gui;
 	}
 }

@@ -1,6 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.guiscreen.render.pinnables;
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.WurstplusDraw;
 import net.minecraft.client.Minecraft;
 
@@ -69,10 +69,10 @@ public class WurstplusFrame {
 
 		this.can = true;
 
-		int size  = Wurstplus.get_hud_manager().get_array_huds().size();
+		int size  = AnasheClient.get_hud_manager().get_array_huds().size();
 		int count = 0;
 
-		for (WurstplusPinnable pinnables : Wurstplus.get_hud_manager().get_array_huds()) {
+		for (WurstplusPinnable pinnables : AnasheClient.get_hud_manager().get_array_huds()) {
 			WurstplusPinnableButton pinnables_buttons = new WurstplusPinnableButton(this, pinnables.get_title(), pinnables.get_tag());
 
 			pinnables_buttons.set_y(this.height);

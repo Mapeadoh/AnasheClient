@@ -1,7 +1,7 @@
 package me.travis.wurstplus.mixins;
 
 import me.travis.mapeadoh.clientstuff.gamesense.TransformSideFirstPersonEvent;
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.event.WurstplusEventBus;
 //import com.gamesense.client.module.modules.render.NoRender;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -33,7 +33,7 @@ public class MixinItemRenderer {
         TransformSideFirstPersonEvent event = new TransformSideFirstPersonEvent(hand);
         WurstplusEventBus.EVENT_BUS.post(event);
 
-        if (Wurstplus.get_hack_manager().get_module_with_tag("ViewModel").is_active() && Wurstplus.get_setting_manager().get_setting_with_tag("ViewModel", "CancelEatAnim").get_value(true)) {
+        if (AnasheClient.get_hack_manager().get_module_with_tag("ViewModel").is_active() && AnasheClient.get_setting_manager().get_setting_with_tag("ViewModel", "CancelEatAnim").get_value(true)) {
             callbackInfo.cancel();
         }
     }
@@ -46,7 +46,7 @@ public class MixinItemRenderer {
     // por si los 2 mixins no andan bien juntos, agrego esto por las dudas
     @Inject(method={"renderFireInFirstPerson"}, at={@At(value="HEAD")}, cancellable=true)
     public void renderFireInFirstPersonHook(CallbackInfo info) {
-        if (Wurstplus.get_hack_manager().get_module_with_tag("NoRender").is_active() && Wurstplus.get_setting_manager().get_setting_with_tag("NoRender", "Fire").get_value(true)) {
+        if (AnasheClient.get_hack_manager().get_module_with_tag("NoRender").is_active() && AnasheClient.get_setting_manager().get_setting_with_tag("NoRender", "Fire").get_value(true)) {
             info.cancel();
         }
     }

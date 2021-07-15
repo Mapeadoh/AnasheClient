@@ -1,10 +1,10 @@
 package me.travis.wurstplus.wurstplustwo.hacks.combat;
 
 import me.travis.turok.draw.RenderHelp;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRender;
 import me.travis.wurstplus.wurstplustwo.util.*;
 import net.minecraft.util.math.Vec3d;
-import me.travis.wurstplus.Wurstplus;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.ItemSword;
@@ -496,19 +496,19 @@ public class NewAutoCrystal extends WurstplusHack
             }
             return true;
         }
-        if (Wurstplus.get_hack_manager().get_module_with_tag("Surround").is_active()) {
+        if (AnasheClient.get_hack_manager().get_module_with_tag("Surround").is_active()) {
             if (this.old_render.get_value(true)) {
                 this.render_block_init = null;
             }
             return true;
         }
-        if (Wurstplus.get_hack_manager().get_module_with_tag("HoleFill").is_active()) {
+        if (AnasheClient.get_hack_manager().get_module_with_tag("HoleFill").is_active()) {
             if (this.old_render.get_value(true)) {
                 this.render_block_init = null;
             }
             return true;
         }
-        if (Wurstplus.get_hack_manager().get_module_with_tag("Trap").is_active()) {
+        if (AnasheClient.get_hack_manager().get_module_with_tag("Trap").is_active()) {
             if (this.old_render.get_value(true)) {
                 this.render_block_init = null;
             }

@@ -16,11 +16,11 @@ import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
-@Mod(modid = "anasheclient", version = Wurstplus.WURSTPLUS_VERSION)
-public class Wurstplus {
+@Mod(modid = "anasheclient", version = AnasheClient.WURSTPLUS_VERSION)
+public class AnasheClient {
 
 	@Mod.Instance
-	private static Wurstplus MASTER;
+	private static AnasheClient MASTER;
 
 	public static final String WURSTPLUS_NAME = "AnasheClient+";
 	public static final String WURSTPLUS_VERSION = "B0.10";

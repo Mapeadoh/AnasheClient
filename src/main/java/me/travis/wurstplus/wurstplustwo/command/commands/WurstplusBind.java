@@ -1,6 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.command.commands;
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.command.WurstplusCommand;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusMessageUtil;
@@ -30,7 +30,7 @@ public class WurstplusBind extends WurstplusCommand {
 			return true;
 		}
 
-		WurstplusHack module_requested = Wurstplus.get_hack_manager().get_module_with_tag(module);
+		WurstplusHack module_requested = AnasheClient.get_hack_manager().get_module_with_tag(module);
 
 		if (module_requested == null) {
 			WurstplusMessageUtil.send_client_error_message("Module does not exist.");

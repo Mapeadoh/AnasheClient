@@ -1,5 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.hacks.movement;
 
+import me.travis.wurstplus.AnasheClient;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -8,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.CPacketEntityAction;
 import net.minecraft.network.play.client.CPacketEntityAction.Action;
 
-import me.travis.wurstplus.Wurstplus;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventPlayerTravel;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
@@ -50,10 +50,10 @@ public final class SalhackElytraFly extends WurstplusHack{
     public void enable()
     {
         super.enable();
-        Wurstplus.get_module_manager().get_module_with_tag("ElytraFly").set_enable();
+        AnasheClient.get_module_manager().get_module_with_tag("ElytraFly").set_enable();
 
         ElytraSlot = -1;
-            Flight = Wurstplus.get_module_manager().get_module_with_tag("PacketFly");
+            Flight = AnasheClient.get_module_manager().get_module_with_tag("PacketFly");
 
 
             ElytraSlot = -1;
@@ -94,7 +94,7 @@ public final class SalhackElytraFly extends WurstplusHack{
     public void disable()
     {
         super.disable();
-        Wurstplus.get_module_manager().get_module_with_tag("ElytraFly").set_disable();
+        AnasheClient.get_module_manager().get_module_with_tag("ElytraFly").set_disable();
 
         if (mc.player == null)
             return;

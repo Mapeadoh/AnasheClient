@@ -1,6 +1,6 @@
 package me.travis.wurstplus.mixins;
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityBoat;
@@ -18,21 +18,21 @@ public abstract class MixinEntityBoat/* extends MixinEntity*/ {
 
     @Inject(method={"applyOrientationToEntity"}, at={@At(value="HEAD")}, cancellable=true)
     public void applyOrientationToEntity(Entity entity, CallbackInfo ci) {
-        if ((Wurstplus.get_hack_manager().get_module_with_tag("BoatFly").is_active())) {
+        if ((AnasheClient.get_hack_manager().get_module_with_tag("BoatFly").is_active())) {
             ci.cancel();
         }
     }
 
     @Inject(method={"controlBoat"}, at={@At(value="HEAD")}, cancellable=true)
     public void controlBoat(CallbackInfo ci) {
-        if (Wurstplus.get_hack_manager().get_module_with_tag("BoatFly").is_active()) {
+        if (AnasheClient.get_hack_manager().get_module_with_tag("BoatFly").is_active()) {
             ci.cancel();
         }
     }
 
     @Inject(method={"updatePassenger"}, at={@At(value="HEAD")}, cancellable=true)
     public void updatePassenger(Entity passenger, CallbackInfo ci) {
-        if ((Wurstplus.get_hack_manager().get_module_with_tag("BoatFly").is_active()) && passenger == Minecraft.getMinecraft().player) {
+        if ((AnasheClient.get_hack_manager().get_module_with_tag("BoatFly").is_active()) && passenger == Minecraft.getMinecraft().player) {
             ci.cancel();
             float f = 0.0f;
             float f1 = (float)((((Entity)(Object)this).isDead ? (double)0.01f : this.getMountedYOffset()) + passenger.getYOffset());

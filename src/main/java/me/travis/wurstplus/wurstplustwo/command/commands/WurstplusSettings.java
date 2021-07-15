@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.command.commands;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.command.WurstplusCommand;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusMessageUtil;
 
@@ -27,11 +27,11 @@ public class WurstplusSettings extends WurstplusCommand {
 		ChatFormatting c = ChatFormatting.GRAY;
 
 		if (msg.equalsIgnoreCase("save")) {
-			Wurstplus.get_config_manager().save_settings();
+			AnasheClient.get_config_manager().save_settings();
 
 			WurstplusMessageUtil.send_client_message(ChatFormatting.GREEN + "Successfully " + c + "saved!");
 		} else if (msg.equalsIgnoreCase("load")) {
-			Wurstplus.get_config_manager().load_settings();
+			AnasheClient.get_config_manager().load_settings();
 
 			WurstplusMessageUtil.send_client_message(ChatFormatting.GREEN + "Successfully " + c + "loaded!");
 		} else {

@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.guiscreen.hud;
 
 import com.google.common.collect.Lists;
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.WurstplusDraw;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.pinnables.WurstplusPinnable;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
@@ -29,18 +29,18 @@ public class WurstplusArrayList extends WurstplusPinnable {
 		updateResolution();
 		int position_update_y = 2;
 
-		int nl_r = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorR").get_value(1);
-		int nl_g = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorG").get_value(1);
-		int nl_b = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorB").get_value(1);
-		int nl_a = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorA").get_value(1);
+		int nl_r = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorR").get_value(1);
+		int nl_g = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorG").get_value(1);
+		int nl_b = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorB").get_value(1);
+		int nl_a = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorA").get_value(1);
 
-		List<WurstplusHack> pretty_modules = Wurstplus.get_hack_manager().get_array_active_hacks().stream()
-			.sorted(Comparator.comparing(modules -> get(modules.array_detail() == null ? modules.get_tag() : modules.get_tag() + Wurstplus.g + " [" + Wurstplus.r + modules.array_detail() + Wurstplus.g + "]" + Wurstplus.r, "width")))
+		List<WurstplusHack> pretty_modules = AnasheClient.get_hack_manager().get_array_active_hacks().stream()
+			.sorted(Comparator.comparing(modules -> get(modules.array_detail() == null ? modules.get_tag() : modules.get_tag() + AnasheClient.g + " [" + AnasheClient.r + modules.array_detail() + AnasheClient.g + "]" + AnasheClient.r, "width")))
 			.collect(Collectors.toList());
 
 		int count = 0;
 
-		if (Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDArrayList").in("Top R") || Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDArrayList").in("Top L") ) {
+		if (AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDArrayList").in("Top R") || AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDArrayList").in("Top L") ) {
 			pretty_modules = Lists.reverse(pretty_modules);
 		}
 
@@ -63,10 +63,10 @@ public class WurstplusArrayList extends WurstplusPinnable {
 			if (flag) {
 				String module_name = (
 					modules.array_detail() == null ? modules.get_tag() :
-					modules.get_tag() + Wurstplus.g + " [" + Wurstplus.r + modules.array_detail() + Wurstplus.g + "]" + Wurstplus.r
+					modules.get_tag() + AnasheClient.g + " [" + AnasheClient.r + modules.array_detail() + AnasheClient.g + "]" + AnasheClient.r
 				);
 
-				if (Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDArrayList").in("Free")) {
+				if (AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDArrayList").in("Free")) {
 					create_line(module_name, this.docking(2, module_name), position_update_y, nl_r, nl_g, nl_b, nl_a);
 
 					position_update_y += get(module_name, "height") + 2;
@@ -77,19 +77,19 @@ public class WurstplusArrayList extends WurstplusPinnable {
 
 					this.set_height(position_update_y);
 				} else {
-					if (Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDArrayList").in("Top R")) {
+					if (AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDArrayList").in("Top R")) {
 						mc.fontRenderer.drawStringWithShadow(module_name, scaled_width - 2 - mc.fontRenderer.getStringWidth(module_name), 3 + count * 10, new WurstplusDraw.TravisColor(nl_r,nl_g,nl_b,nl_a).hex());
 						count++;
 					}
-					if (Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDArrayList").in("Top L")) {
+					if (AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDArrayList").in("Top L")) {
 						mc.fontRenderer.drawStringWithShadow(module_name, 2, 3 + count * 10, new WurstplusDraw.TravisColor(nl_r,nl_g,nl_b,nl_a).hex());
 						count++;
 					}
-					if (Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDArrayList").in("Bottom R")) {
+					if (AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDArrayList").in("Bottom R")) {
 						mc.fontRenderer.drawStringWithShadow(module_name, scaled_width - 2 - mc.fontRenderer.getStringWidth(module_name), scaled_height - (count * 10), new WurstplusDraw.TravisColor(nl_r,nl_g,nl_b,nl_a).hex());
 						count++;
 					}
-					if (Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDArrayList").in("Bottom L")) {
+					if (AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDArrayList").in("Bottom L")) {
 						mc.fontRenderer.drawStringWithShadow(module_name, 2, scaled_height - (count * 10), new WurstplusDraw.TravisColor(nl_r,nl_g,nl_b,nl_a).hex());
 						count++;
 					}

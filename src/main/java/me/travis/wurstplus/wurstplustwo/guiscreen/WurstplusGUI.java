@@ -1,6 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.guiscreen;
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.components.WurstplusFrame;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import net.minecraft.client.Minecraft;
@@ -88,9 +88,9 @@ public class WurstplusGUI extends GuiScreen {
 
 	@Override
 	public void onGuiClosed() {
-		Wurstplus.get_hack_manager().get_module_with_tag("GUI").set_active(false);
+		AnasheClient.get_hack_manager().get_module_with_tag("GUI").set_active(false);
 
-		Wurstplus.get_config_manager().save_settings();
+		AnasheClient.get_config_manager().save_settings();
 	}
 
 	@Override
@@ -98,7 +98,7 @@ public class WurstplusGUI extends GuiScreen {
 		for (WurstplusFrame frame : this.frame) {
 			frame.bind(char_, key);
 
-			if (key == Wurstplus.WURSTPLUS_KEY_GUI_ESCAPE && !frame.is_binding()) {
+			if (key == AnasheClient.WURSTPLUS_KEY_GUI_ESCAPE && !frame.is_binding()) {
 				mc.displayGuiScreen(null);
 			}
 

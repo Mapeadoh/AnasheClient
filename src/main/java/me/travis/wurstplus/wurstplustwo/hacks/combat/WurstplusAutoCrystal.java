@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.hacks.combat;
 
 import me.travis.turok.draw.RenderHelp;
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventEntityRemoved;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventMotionUpdate;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventPacket;
@@ -597,21 +597,21 @@ public class WurstplusAutoCrystal extends WurstplusHack {
             return true;
         }
 
-        if (Wurstplus.get_hack_manager().get_module_with_tag("Surround").is_active()) {
+        if (AnasheClient.get_hack_manager().get_module_with_tag("Surround").is_active()) {
             if (old_render.get_value(true)) {
                 render_block_init = null;
             }
             return true;
         }
 
-        if (Wurstplus.get_hack_manager().get_module_with_tag("HoleFill").is_active()) {
+        if (AnasheClient.get_hack_manager().get_module_with_tag("HoleFill").is_active()) {
             if (old_render.get_value(true)) {
                 render_block_init = null;
             }
             return true;
         }
 
-        if (Wurstplus.get_hack_manager().get_module_with_tag("Trap").is_active()) {
+        if (AnasheClient.get_hack_manager().get_module_with_tag("Trap").is_active()) {
             if (old_render.get_value(true)) {
                 render_block_init = null;
             }

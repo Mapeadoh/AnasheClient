@@ -1,6 +1,5 @@
 package me.travis.mapeadoh.clientstuff.phobos;
 
-import me.travis.wurstplus.Wurstplus;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusFriendUtil;
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
@@ -29,7 +28,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketEntityAction;
 import net.minecraft.network.play.client.CPacketUseEntity;
 import net.minecraft.potion.Potion;
@@ -41,8 +39,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 import java.awt.*;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.*;
 

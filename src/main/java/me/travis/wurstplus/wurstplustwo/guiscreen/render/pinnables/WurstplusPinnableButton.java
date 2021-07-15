@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.guiscreen.render.pinnables;
 
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.WurstplusDraw;
 
 
@@ -44,7 +44,7 @@ public class WurstplusPinnableButton {
 		this.name = name;
 		this.tag  = tag;
 
-		this.pinnable = Wurstplus.get_hud_manager().get_pinnable_with_tag(tag);
+		this.pinnable = AnasheClient.get_hud_manager().get_pinnable_with_tag(tag);
 
 		this.x = master.get_x();
 		this.y = master.get_y();

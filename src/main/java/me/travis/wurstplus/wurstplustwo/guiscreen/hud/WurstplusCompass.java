@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.guiscreen.hud;
 
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.WurstplusDraw;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.pinnables.WurstplusPinnable;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusMathUtil;
@@ -26,10 +26,10 @@ public class WurstplusCompass extends WurstplusPinnable {
     @Override
 	public void render() {
         
-        int r = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorR").get_value(1);
-        int g = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorG").get_value(1);
-        int b = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorB").get_value(1);
-        int a = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorA").get_value(1);
+        int r = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorR").get_value(1);
+        int g = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorG").get_value(1);
+        int b = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorB").get_value(1);
+        int a = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorA").get_value(1);
 
         for (Direction dir : Direction.values()) {
 
@@ -56,14 +56,14 @@ public class WurstplusCompass extends WurstplusPinnable {
     }
 
     private double get_x(double rad) {
-        return Math.sin(rad) * (Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDCompassScale").get_value(1));
+        return Math.sin(rad) * (AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDCompassScale").get_value(1));
     }
 
     private double get_y(double rad) {
 
         final double epic_pitch = WurstplusMathUtil.clamp2(mc.getRenderViewEntity().rotationPitch + 30f, -90f, 90f);
         final double pitch_radians = Math.toRadians(epic_pitch);
-        return Math.cos(rad) * Math.sin(pitch_radians) * (Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDCompassScale").get_value(1));
+        return Math.cos(rad) * Math.sin(pitch_radians) * (AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDCompassScale").get_value(1));
 
     }
 

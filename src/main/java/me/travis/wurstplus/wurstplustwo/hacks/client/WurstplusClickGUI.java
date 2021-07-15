@@ -1,6 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.hacks.client;
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
@@ -16,7 +16,7 @@ public class WurstplusClickGUI extends WurstplusHack {
 		this.tag         = "GUI";
 		this.description = "The main gui";
 
-		set_bind(Wurstplus.WURSTPLUS_KEY_GUI);
+		set_bind(AnasheClient.WURSTPLUS_KEY_GUI);
 	}
 
 	WurstplusSetting label_frame = create("info", "ClickGUIInfoFrame", "Frames");
@@ -62,32 +62,32 @@ public class WurstplusClickGUI extends WurstplusHack {
 	@Override
 	public void update() {
 		// Update frame colors.
-		Wurstplus.click_gui.theme_frame_name_r = name_frame_r.get_value(1);
-		Wurstplus.click_gui.theme_frame_name_g = name_frame_g.get_value(1);
-		Wurstplus.click_gui.theme_frame_name_b = name_frame_b.get_value(1);
+		AnasheClient.click_gui.theme_frame_name_r = name_frame_r.get_value(1);
+		AnasheClient.click_gui.theme_frame_name_g = name_frame_g.get_value(1);
+		AnasheClient.click_gui.theme_frame_name_b = name_frame_b.get_value(1);
 
-		Wurstplus.click_gui.theme_frame_background_r = background_frame_r.get_value(1);
-		Wurstplus.click_gui.theme_frame_background_g = background_frame_g.get_value(1);
-		Wurstplus.click_gui.theme_frame_background_b = background_frame_b.get_value(1);
-		Wurstplus.click_gui.theme_frame_background_a = background_frame_a.get_value(1);
+		AnasheClient.click_gui.theme_frame_background_r = background_frame_r.get_value(1);
+		AnasheClient.click_gui.theme_frame_background_g = background_frame_g.get_value(1);
+		AnasheClient.click_gui.theme_frame_background_b = background_frame_b.get_value(1);
+		AnasheClient.click_gui.theme_frame_background_a = background_frame_a.get_value(1);
 
-		Wurstplus.click_gui.theme_frame_border_r = border_frame_r.get_value(1);
-		Wurstplus.click_gui.theme_frame_border_g = border_frame_g.get_value(1);
-		Wurstplus.click_gui.theme_frame_border_b = border_frame_b.get_value(1);
+		AnasheClient.click_gui.theme_frame_border_r = border_frame_r.get_value(1);
+		AnasheClient.click_gui.theme_frame_border_g = border_frame_g.get_value(1);
+		AnasheClient.click_gui.theme_frame_border_b = border_frame_b.get_value(1);
 
 		// Update widget colors.
-		Wurstplus.click_gui.theme_widget_name_r = name_widget_r.get_value(1);
-		Wurstplus.click_gui.theme_widget_name_g = name_widget_g.get_value(1);
-		Wurstplus.click_gui.theme_widget_name_b = name_widget_b.get_value(1);
+		AnasheClient.click_gui.theme_widget_name_r = name_widget_r.get_value(1);
+		AnasheClient.click_gui.theme_widget_name_g = name_widget_g.get_value(1);
+		AnasheClient.click_gui.theme_widget_name_b = name_widget_b.get_value(1);
 
-		Wurstplus.click_gui.theme_widget_background_r = background_widget_r.get_value(1);
-		Wurstplus.click_gui.theme_widget_background_g = background_widget_g.get_value(1);
-		Wurstplus.click_gui.theme_widget_background_b = background_widget_b.get_value(1);
-		Wurstplus.click_gui.theme_widget_background_a = background_widget_a.get_value(1);
+		AnasheClient.click_gui.theme_widget_background_r = background_widget_r.get_value(1);
+		AnasheClient.click_gui.theme_widget_background_g = background_widget_g.get_value(1);
+		AnasheClient.click_gui.theme_widget_background_b = background_widget_b.get_value(1);
+		AnasheClient.click_gui.theme_widget_background_a = background_widget_a.get_value(1);
 
-		Wurstplus.click_gui.theme_widget_border_r = border_widget_r.get_value(1);
-		Wurstplus.click_gui.theme_widget_border_g = border_widget_g.get_value(1);
-		Wurstplus.click_gui.theme_widget_border_b = border_widget_b.get_value(1);
+		AnasheClient.click_gui.theme_widget_border_r = border_widget_r.get_value(1);
+		AnasheClient.click_gui.theme_widget_border_g = border_widget_g.get_value(1);
+		AnasheClient.click_gui.theme_widget_border_b = border_widget_b.get_value(1);
 		if (rainbowframe.get_value(true)) {
 			frame_rainbow();
 		}
@@ -111,7 +111,7 @@ public class WurstplusClickGUI extends WurstplusHack {
 	@Override
 	public void enable() {
 		if (mc.world != null && mc.player != null) {
-			mc.displayGuiScreen(Wurstplus.click_gui);
+			mc.displayGuiScreen(AnasheClient.click_gui);
 		}
 	}
 

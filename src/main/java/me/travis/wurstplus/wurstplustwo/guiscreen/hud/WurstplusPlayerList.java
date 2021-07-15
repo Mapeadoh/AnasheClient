@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.guiscreen.hud;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.pinnables.WurstplusPinnable;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusFriendUtil;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,10 +23,10 @@ public class WurstplusPlayerList extends WurstplusPinnable {
 
         int counter = 12;
 
-        int nl_r = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorR").get_value(1);
-		int nl_g = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorG").get_value(1);
-		int nl_b = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorB").get_value(1);
-		int nl_a = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorA").get_value(1);
+        int nl_r = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorR").get_value(1);
+		int nl_g = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorG").get_value(1);
+		int nl_b = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorB").get_value(1);
+		int nl_a = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDStringsColorA").get_value(1);
 
         df_health.setRoundingMode(RoundingMode.HALF_UP);
 
@@ -65,7 +65,7 @@ public class WurstplusPlayerList extends WurstplusPinnable {
 
         players = sortByValue(players);
 
-        int max = Wurstplus.get_setting_manager().get_setting_with_tag("HUD", "HUDMaxPlayers").get_value(1);
+        int max = AnasheClient.get_setting_manager().get_setting_with_tag("HUD", "HUDMaxPlayers").get_value(1);
         int count = 0;
 
         for (Map.Entry<String, Integer> player : players.entrySet()) {

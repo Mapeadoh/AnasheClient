@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.hacks.combat;
 
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
@@ -101,7 +101,7 @@ public class Killaura extends WurstplusHack {
 
 				if (entity != null && start_verify) {
 					// Tick.
-					float tick_to_hit  = 20.0f - Wurstplus.get_event_handler().get_tick_rate();
+					float tick_to_hit  = 20.0f - AnasheClient.get_event_handler().get_tick_rate();
 
 					// If possible hit or no.
 					boolean is_possible_attack = mc.player.getCooledAttackStrength(sync_tps.get_value(true) ? -tick_to_hit : 0.0f) >= 1;

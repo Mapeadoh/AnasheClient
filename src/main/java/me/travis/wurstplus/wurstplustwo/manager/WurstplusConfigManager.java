@@ -2,7 +2,7 @@ package me.travis.wurstplus.wurstplustwo.manager;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.*;
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.components.WurstplusFrame;
 import me.travis.wurstplus.wurstplustwo.guiscreen.render.pinnables.WurstplusPinnable;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
@@ -20,7 +20,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import static me.travis.wurstplus.Wurstplus.send_minecraft_log;
+import static me.travis.wurstplus.AnasheClient.send_minecraft_log;
 
 public class WurstplusConfigManager {
 
@@ -173,7 +173,7 @@ public class WurstplusConfigManager {
 
     private void save_hacks() throws IOException {
 
-        for (WurstplusHack hack : Wurstplus.get_hack_manager().get_array_hacks()) {
+        for (WurstplusHack hack : AnasheClient.get_hack_manager().get_array_hacks()) {
 
             final String file_name = ACTIVE_CONFIG_FOLDER + hack.get_tag() + ".txt";
             final Path file_path = Paths.get(file_name);
@@ -183,7 +183,7 @@ public class WurstplusConfigManager {
             final File file = new File(file_name);
             final BufferedWriter br = new BufferedWriter(new FileWriter(file));
 
-            for (WurstplusSetting setting : Wurstplus.get_setting_manager().get_settings_with_hack(hack)) {
+            for (WurstplusSetting setting : AnasheClient.get_setting_manager().get_settings_with_hack(hack)) {
                 switch (setting.get_type()) {
                     case "button":
                         br.write(setting.get_tag() + ":" + setting.get_value(true) + "\r\n");
@@ -210,7 +210,7 @@ public class WurstplusConfigManager {
 
     private void load_hacks() throws IOException {
 
-        for (WurstplusHack hack : Wurstplus.get_hack_manager().get_array_hacks()) {
+        for (WurstplusHack hack : AnasheClient.get_hack_manager().get_array_hacks()) {
 
             final String file_name = ACTIVE_CONFIG_FOLDER + hack.get_tag() + ".txt";
             final File file = new File(file_name);
@@ -228,7 +228,7 @@ public class WurstplusConfigManager {
                     final String tag = colune.split(":")[0];
                     final String value = colune.split(":")[1];
 
-                    WurstplusSetting setting = Wurstplus.get_setting_manager().get_setting_with_tag(hack, tag);
+                    WurstplusSetting setting = AnasheClient.get_setting_manager().get_setting_with_tag(hack, tag);
 
                     // send_minecraft_log("Attempting to assign value '" + value + "' to setting '" + tag + "'");
 
@@ -279,12 +279,12 @@ public class WurstplusConfigManager {
         JsonObject config = new JsonObject();
         JsonObject gui = new JsonObject();
 
-        config.add("name", new JsonPrimitive(Wurstplus.get_name()));
-        config.add("version", new JsonPrimitive(Wurstplus.get_version()));
-        config.add("user", new JsonPrimitive(Wurstplus.get_actual_user()));
+        config.add("name", new JsonPrimitive(AnasheClient.get_name()));
+        config.add("version", new JsonPrimitive(AnasheClient.get_version()));
+        config.add("user", new JsonPrimitive(AnasheClient.get_actual_user()));
         config.add("prefix", new JsonPrimitive(WurstplusCommandManager.get_prefix()));
 
-        for (WurstplusFrame frames_gui : Wurstplus.click_gui.get_array_frames()) {
+        for (WurstplusFrame frames_gui : AnasheClient.click_gui.get_array_frames()) {
             JsonObject frame_info = new JsonObject();
 
             frame_info.add("name", new JsonPrimitive(frames_gui.get_name()));
@@ -318,10 +318,10 @@ public class WurstplusConfigManager {
 
         WurstplusCommandManager.set_prefix(json_config.get("prefix").getAsString());
 
-        for (WurstplusFrame frames : Wurstplus.click_gui.get_array_frames()) {
+        for (WurstplusFrame frames : AnasheClient.click_gui.get_array_frames()) {
             JsonObject frame_info = json_gui.get(frames.get_tag()).getAsJsonObject();
 
-            WurstplusFrame frame_requested = Wurstplus.click_gui.get_frame_with_tag(frame_info.get("tag").getAsString());
+            WurstplusFrame frame_requested = AnasheClient.click_gui.get_frame_with_tag(frame_info.get("tag").getAsString());
 
             frame_requested.set_x(frame_info.get("x").getAsInt());
             frame_requested.set_y(frame_info.get("y").getAsInt());
@@ -341,12 +341,12 @@ public class WurstplusConfigManager {
         JsonObject main_frame = new JsonObject();
         JsonObject main_hud   = new JsonObject();
 
-        main_frame.add("name", new JsonPrimitive(Wurstplus.click_hud.get_frame_hud().get_name()));
-        main_frame.add("tag",  new JsonPrimitive(Wurstplus.click_hud.get_frame_hud().get_tag()));
-        main_frame.add("x",    new JsonPrimitive(Wurstplus.click_hud.get_frame_hud().get_x()));
-        main_frame.add("y",    new JsonPrimitive(Wurstplus.click_hud.get_frame_hud().get_y()));
+        main_frame.add("name", new JsonPrimitive(AnasheClient.click_hud.get_frame_hud().get_name()));
+        main_frame.add("tag",  new JsonPrimitive(AnasheClient.click_hud.get_frame_hud().get_tag()));
+        main_frame.add("x",    new JsonPrimitive(AnasheClient.click_hud.get_frame_hud().get_x()));
+        main_frame.add("y",    new JsonPrimitive(AnasheClient.click_hud.get_frame_hud().get_y()));
 
-        for (WurstplusPinnable pinnables_hud : Wurstplus.get_hud_manager().get_array_huds()) {
+        for (WurstplusPinnable pinnables_hud : AnasheClient.get_hud_manager().get_array_huds()) {
             JsonObject frame_info = new JsonObject();
 
             frame_info.add("title", new JsonPrimitive(pinnables_hud.get_title()));
@@ -383,13 +383,13 @@ public class WurstplusConfigManager {
         JsonObject  main_frame = main_hud.get("frame").getAsJsonObject();
         JsonObject  main_huds  = main_hud.get("hud").getAsJsonObject();
 
-        Wurstplus.click_hud.get_frame_hud().set_x(main_frame.get("x").getAsInt());
-        Wurstplus.click_hud.get_frame_hud().set_y(main_frame.get("y").getAsInt());
+        AnasheClient.click_hud.get_frame_hud().set_x(main_frame.get("x").getAsInt());
+        AnasheClient.click_hud.get_frame_hud().set_y(main_frame.get("y").getAsInt());
 
-        for (WurstplusPinnable pinnables : Wurstplus.get_hud_manager().get_array_huds()) {
+        for (WurstplusPinnable pinnables : AnasheClient.get_hud_manager().get_array_huds()) {
             JsonObject hud_info = main_huds.get(pinnables.get_tag()).getAsJsonObject();
 
-            WurstplusPinnable pinnable_requested = Wurstplus.get_hud_manager().get_pinnable_with_tag(hud_info.get("tag").getAsString());
+            WurstplusPinnable pinnable_requested = AnasheClient.get_hud_manager().get_pinnable_with_tag(hud_info.get("tag").getAsString());
 
             pinnable_requested.set_active(hud_info.get("state").getAsBoolean());
             pinnable_requested.set_dock(hud_info.get("dock").getAsBoolean());
@@ -411,7 +411,7 @@ public class WurstplusConfigManager {
         this.verify_file(file_path);
         final File file = new File(file_name);
         final BufferedWriter br = new BufferedWriter(new FileWriter(file));
-        for (final WurstplusHack modules : Wurstplus.get_hack_manager().get_array_hacks()) {
+        for (final WurstplusHack modules : AnasheClient.get_hack_manager().get_array_hacks()) {
             br.write(modules.get_tag() + ":" + modules.get_bind(1) + ":" + modules.is_active() + "\r\n");
         }
         br.close();
@@ -431,7 +431,7 @@ public class WurstplusConfigManager {
                 final String tag = colune.split(":")[0];
                 final String bind = colune.split(":")[1];
                 final String active = colune.split(":")[2];
-                final WurstplusHack module = Wurstplus.get_hack_manager().get_module_with_tag(tag);
+                final WurstplusHack module = AnasheClient.get_hack_manager().get_module_with_tag(tag);
                 module.set_bind(Integer.parseInt(bind));
                 module.set_active(Boolean.parseBoolean(active));
             } catch (Exception ignored) {}

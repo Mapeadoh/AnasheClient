@@ -1,6 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.command.commands;
 
-import me.travis.wurstplus.Wurstplus;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.command.WurstplusCommand;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusDrawnUtil;
@@ -26,7 +26,7 @@ public class WurstplusDrawn extends WurstplusCommand {
 
             if (is_module(message[1])) {
                 WurstplusDrawnUtil.add_remove_item(message[1]);
-                Wurstplus.get_config_manager().save_settings();
+                AnasheClient.get_config_manager().save_settings();
             } else {
                 WurstplusMessageUtil.send_client_error_message("cannot find module by name: " + message[1]);
             }
@@ -40,7 +40,7 @@ public class WurstplusDrawn extends WurstplusCommand {
 
     public boolean is_module(String s) {
 
-        List<WurstplusHack> modules = Wurstplus.get_hack_manager().get_array_hacks();
+        List<WurstplusHack> modules = AnasheClient.get_hack_manager().get_array_hacks();
 
         for (WurstplusHack module : modules) {
             if (module.get_tag().equalsIgnoreCase(s)) {
