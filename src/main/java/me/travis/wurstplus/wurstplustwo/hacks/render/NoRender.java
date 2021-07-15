@@ -19,8 +19,8 @@ public class NoRender extends WurstplusHack {
     public NoRender() {
         super(WurstplusCategory.WURSTPLUS_RENDER);
 
-        this.name        = "No Render"; //Commands and Clickgui
-        this.tag         = "NoRender"; //Config and Arraylist
+        this.name = "No Render"; //Commands and Clickgui
+        this.tag = "NoRender"; //Config and Arraylist
         this.description = "stop the renderization of some things"; //Useless but normally i add this
     }
 
@@ -38,10 +38,9 @@ public class NoRender extends WurstplusHack {
     WurstplusSetting noboss = create("NoBossOverlay", "NoBossOverlay", false);
 
 
-
     @Override
     public void update() {
-        if(falling.get_value(true))
+        if (falling.get_value(true))
             for (final Entity e : mc.world.loadedEntityList) {
                 if (e instanceof EntityFallingBlock) {
                     mc.world.removeEntity(e);
@@ -49,15 +48,18 @@ public class NoRender extends WurstplusHack {
                     if (this.mc.world == null) {
                         return;
                     }
-                    if (this.mc.world.isRaining() && weather.get_value(true)) {
-                        this.mc.world.setRainStrength(0.0f);
-                    }
-
                 }
             }
+        if(weather.get_value(true)){
+            if (mc.world == null) {
+                return;
+            }
+            if (mc.world.isRaining()) {
+                mc.world.setRainStrength(0.0f);
+            }
+            if (mc.world.isThundering()) {
+                mc.world.setThunderStrength(0.0f);
+            }
+        }
     }
 }
-
-
-
-
