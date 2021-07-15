@@ -11,8 +11,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber(Side.CLIENT)
-public class HP2LongJump extends WurstplusHack {
-    public HP2LongJump() {
+public class LongJump extends WurstplusHack {
+    public LongJump() {
         super(WurstplusCategory.WURSTPLUS_MOVEMENT);
         this.name = "Long Jump";
         this.tag = "LongJump";

@@ -20,9 +20,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-public class MapeadohSelfBlock extends WurstplusHack {
+public class SelfBlock extends WurstplusHack {
 
-    public MapeadohSelfBlock() {
+    public SelfBlock() {
         super(WurstplusCategory.WURSTPLUS_COMBAT);
 
         this.name        = "Self Block";

@@ -16,7 +16,7 @@ import net.minecraft.network.play.client.CPacketInput;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.world.World;
 
-public class PineapleFreecam extends WurstplusHack {
+public class Freecam extends WurstplusHack {
 
     private double posX;
     private double posY;
@@ -27,7 +27,7 @@ public class PineapleFreecam extends WurstplusHack {
     private boolean isRidingEntity;
     private Entity ridingEntity;
 
-    public PineapleFreecam (){
+    public Freecam(){
         super(WurstplusCategory.WURSTPLUS_MISC);
         this.name = "Freecam";
         this.tag = "Freecam";

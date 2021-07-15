@@ -27,9 +27,9 @@ import net.minecraft.network.play.client.CPacketPlayer;
 import java.util.stream.Collectors;
 
 
-public class MapeadohKillaura extends WurstplusHack {
+public class Killaura extends WurstplusHack {
 
-	public MapeadohKillaura() {
+	public Killaura() {
 		super(WurstplusCategory.WURSTPLUS_COMBAT);
 
 		this.name        = "Kill Aura 2";

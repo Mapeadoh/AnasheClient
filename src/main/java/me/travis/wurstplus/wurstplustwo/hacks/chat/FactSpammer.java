@@ -5,9 +5,9 @@ import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.travis.mapeadoh.clientstuff.cb.Facts;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 
-public class CBFactSpammer extends WurstplusHack {
+public class FactSpammer extends WurstplusHack {
 
-    public CBFactSpammer() {
+    public FactSpammer() {
         super(WurstplusCategory.WURSTPLUS_CHAT);
         this.name = "Fact Spammer";
         this.tag = "FactSpammer";

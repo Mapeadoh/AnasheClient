@@ -34,14 +34,14 @@ import java.util.WeakHashMap;
 
 //Module
 
-public class HP2PvPInfo extends WurstplusHack {
+public class PvPInfo extends WurstplusHack {
 
     //Strenght notifier
     private final Set<EntityPlayer> str;
 
 
     //Module Info
-    public HP2PvPInfo() {
+    public PvPInfo() {
         super(WurstplusCategory.WURSTPLUS_CHAT);
 
         this.name = "PvP Info"; //Commands and Clickgui

@@ -25,13 +25,13 @@ import java.util.List;
 
 //Module
 
-public class HP2MobOwner extends WurstplusHack {
+public class MobOwner extends WurstplusHack {
 
     private List<AbstractHorse> mobs;
     private Map<String, String> uuidToName;
 
     //Module Info
-    public HP2MobOwner() {
+    public MobOwner() {
         super(WurstplusCategory.WURSTPLUS_MISC);
 
         this.name        = "Mob Owner"; //Commands and Clickgui
@@ -45,10 +45,10 @@ public class HP2MobOwner extends WurstplusHack {
 
     @Override
     public void update() {
-        if (HP2MobOwner.mc.world == null) {
+        if (MobOwner.mc.world == null) {
             return;
         }
-        for (final Entity e : HP2MobOwner.mc.world.loadedEntityList) {
+        for (final Entity e : MobOwner.mc.world.loadedEntityList) {
             if (!(e instanceof AbstractHorse)) {
                 continue;
             }

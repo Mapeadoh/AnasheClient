@@ -5,9 +5,9 @@ import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import net.minecraft.util.math.AxisAlignedBB;
 
-public class MapeadohReverseStep extends WurstplusHack {
+public class ReverseStep extends WurstplusHack {
     
-    public MapeadohReverseStep() {
+    public ReverseStep() {
         super(WurstplusCategory.WURSTPLUS_MOVEMENT);
 
 		this.name        = "Reverse Step";

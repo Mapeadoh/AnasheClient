@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class MapeadohNewHoleFill extends WurstplusHack {
-    public MapeadohNewHoleFill() {
+public class NewHoleFill extends WurstplusHack {
+    public NewHoleFill() {
         super(WurstplusCategory.WURSTPLUS_COMBAT);
 
         this.name = "Holefill";

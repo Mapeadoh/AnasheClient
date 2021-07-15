@@ -11,8 +11,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.EnumHandSide;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 
-public class MapGSViewModel extends WurstplusHack {
-    public MapGSViewModel() {
+public class GSViewModel extends WurstplusHack {
+    public GSViewModel() {
         super(WurstplusCategory.WURSTPLUS_RENDER);
 
         this.name        = "GSViewModel";

@@ -38,8 +38,8 @@ public class WurstplusModuleManager {
 
 		// Chat.
 		add_hack(new AutoMsg());
-		add_hack(new CBFactSpammer());
-		add_hack(new HP2PvPInfo());
+		add_hack(new FactSpammer());
+		add_hack(new PvPInfo());
 		add_hack(new WurstplusVisualRange());
 		add_hack(new WurstplusTotempop());
 		add_hack(new WurstplusChatMods());
@@ -48,9 +48,9 @@ public class WurstplusModuleManager {
 		add_hack(new WurstplusAnnouncer());
 
 		// Combat.
-		add_hack(new MapNewAutoCrystal());
+		add_hack(new NewAutoCrystal());
 		add_hack(new AutoClick());
-		add_hack(new MapAutoLog());
+		add_hack(new AutoLog());
 		add_hack(new WurstplusSurround());
 		add_hack(new WurstplusVelocity());
 		add_hack(new WurstplusAutoCrystal());
@@ -62,11 +62,11 @@ public class WurstplusModuleManager {
 		add_hack(new WurstplusOffhand());
 		add_hack(new WurstplusAutoTotem());
 		add_hack(new WurstplusAutoMine());
-		add_hack(new MapeadohKillaura());
-		add_hack(new MapeadohSelfBlock());
+		add_hack(new Killaura());
+		add_hack(new SelfBlock());
 		add_hack(new FootXP());
 		add_hack(new ManualQuiver());
-		add_hack(new MapeadohNewHoleFill());
+		add_hack(new NewHoleFill());
 
 		// Exploit.
 		add_hack(new WurstplusXCarry());
@@ -76,10 +76,10 @@ public class WurstplusModuleManager {
 		add_hack(new WurstplusEntityMine());
 		add_hack(new WurstplusBuildHeight());
 		add_hack(new WurstplusCoordExploit());
-		add_hack(new PineapleTimer());
-		add_hack(new HP2WP3InstantBurrow());
+		add_hack(new Timer());
+		add_hack(new InstantBurrow());
 		add_hack(new AutoSalC1Dupe());
-		add_hack(new HP2ECBackPack());
+		add_hack(new ECBackPack());
 		add_hack(new CrashExploit());
 
 		// Movement.
@@ -92,13 +92,13 @@ public class WurstplusModuleManager {
 		add_hack(new WurstplusStep());
 		add_hack(new WurstplusSprint());
 		add_hack(new WurstPlusAnchor());
-		add_hack(new MapeadohReverseStep());
+		add_hack(new ReverseStep());
 		add_hack(new InvMove());
 		add_hack(new ElytraFly());
 		add_hack(new NoSlow());
-		add_hack(new HP2NoFall());
-		add_hack(new HP2LongJump());
-		add_hack(new HP2PacketFly());
+		add_hack(new NoFall());
+		add_hack(new LongJump());
+		add_hack(new PacketFly());
 		
 		// Render.
 		//add_hack(new PortalESP());
@@ -109,8 +109,8 @@ public class WurstplusModuleManager {
 		add_hack(new StorageESP());
 		add_hack(new WurstplusHighlight());
 		add_hack(new NoRender());
-		add_hack(new HP2MobOwner());
-		add_hack(new MapGSViewModel());
+		add_hack(new MobOwner());
+		add_hack(new GSViewModel());
 		add_hack(new NoWeather());
 		add_hack(new WurstplusHoleESP());
 		add_hack(new WurstplusShulkerPreview());
@@ -130,7 +130,7 @@ public class WurstplusModuleManager {
 		add_hack(new DeathDisable());
 		add_hack(new YawLock());
 		add_hack(new AntiAFK());
-		add_hack(new HP2EntitySearch());
+		add_hack(new EntitySearch());
 		add_hack(new AutoRespawn());
 		add_hack(new WurstplusMiddleClickFriends());
 		add_hack(new WurstplusStopEXP());
@@ -138,13 +138,13 @@ public class WurstplusModuleManager {
 		add_hack(new WurstplusAutoNomadHut());
 		add_hack(new WurstplusFastUtil());
 		add_hack(new WurstplusSpeedmine());
-		add_hack(new PineapleFreecam());
+		add_hack(new Freecam());
 		add_hack(new WurstplusFakePlayer());
 		add_hack(new MiddleClickUtil());
 		add_hack(new EffectSpoofer());
 
 		// Dev
-		add_hack(new HP2Blink());
+		add_hack(new Blink());
 		add_hack(new WP3ViewModel());
 
 		array_hacks.sort(Comparator.comparing(WurstplusHack::get_name));

@@ -42,9 +42,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 
-public class MapNewAutoCrystal extends WurstplusHack
+public class NewAutoCrystal extends WurstplusHack
 {
-    public MapNewAutoCrystal() {
+    public NewAutoCrystal() {
     super(WurstplusCategory.WURSTPLUS_COMBAT);
     this.name = "NewAutoCrystal";
     this.tag = "NewAutoCrystal";
@@ -183,11 +183,11 @@ public class MapNewAutoCrystal extends WurstplusHack
             if (event.get_packet() instanceof SPacketSoundEffect) {
                 packet = (SPacketSoundEffect)event.get_packet();
                 if (packet.getCategory() == SoundCategory.BLOCKS && packet.getSound() == SoundEvents.ENTITY_GENERIC_EXPLODE) {
-                    MapNewAutoCrystal.mc.world.loadedEntityList.iterator();
+                    NewAutoCrystal.mc.world.loadedEntityList.iterator();
                     while (iterator.hasNext()) {
                         e = iterator.next();
                         if (e instanceof EntityEnderCrystal && e.getDistance(packet.getX(), packet.getY(), packet.getZ()) <= 6.0) {
-                            MapNewAutoCrystal.mc.world.removeEntityFromWorld(e.getEntityId());
+                            NewAutoCrystal.mc.world.removeEntityFromWorld(e.getEntityId());
                         }
                     }
                 }
@@ -199,7 +199,7 @@ public class MapNewAutoCrystal extends WurstplusHack
                         useEntity = new CPacketUseEntity();
                         useEntity.action = CPacketUseEntity.Action.ATTACK;
                         useEntity.entityId = spawnPacket.getEntityID();
-                        MapNewAutoCrystal.mc.getConnection().sendPacket((Packet)useEntity);
+                        NewAutoCrystal.mc.getConnection().sendPacket((Packet)useEntity);
                     }
                 }
             }
@@ -226,7 +226,7 @@ public class MapNewAutoCrystal extends WurstplusHack
 
     public void do_ca() {
         this.did_anything = false;
-        if (MapNewAutoCrystal.mc.player == null || MapNewAutoCrystal.mc.world == null) {
+        if (NewAutoCrystal.mc.player == null || NewAutoCrystal.mc.world == null) {
             return;
         }
         if (this.rainbow_mode.get_value(true)) {
@@ -282,28 +282,28 @@ public class MapNewAutoCrystal extends WurstplusHack
         final double maximum_damage_self = this.max_self_damage.get_value(1);
         double best_distance = 0.0;
         EntityEnderCrystal best_crystal = null;
-        for (final Entity c : MapNewAutoCrystal.mc.world.loadedEntityList) {
+        for (final Entity c : NewAutoCrystal.mc.world.loadedEntityList) {
             if (!(c instanceof EntityEnderCrystal)) {
                 continue;
             }
             final EntityEnderCrystal crystal = (EntityEnderCrystal)c;
-            if (MapNewAutoCrystal.mc.player.getDistance((Entity)crystal) > (MapNewAutoCrystal.mc.player.canEntityBeSeen((Entity)crystal) ? this.hit_range.get_value(1) : this.hit_range_wall.get_value(1))) {
+            if (NewAutoCrystal.mc.player.getDistance((Entity)crystal) > (NewAutoCrystal.mc.player.canEntityBeSeen((Entity)crystal) ? this.hit_range.get_value(1) : this.hit_range_wall.get_value(1))) {
                 continue;
             }
-            if (!MapNewAutoCrystal.mc.player.canEntityBeSeen((Entity)crystal) && this.raytrace.get_value(true)) {
+            if (!NewAutoCrystal.mc.player.canEntityBeSeen((Entity)crystal) && this.raytrace.get_value(true)) {
                 continue;
             }
             if (this.attacked_crystals.containsKey(crystal) && this.attacked_crystals.get(crystal) > this.antiStuckTries.get_value(1) && this.anti_stuck.get_value(true)) {
                 continue;
             }
-            for (final EntityPlayer player : MapNewAutoCrystal.mc.world.playerEntities) {
-                if (player == MapNewAutoCrystal.mc.player) {
+            for (final EntityPlayer player : NewAutoCrystal.mc.world.playerEntities) {
+                if (player == NewAutoCrystal.mc.player) {
                     continue;
                 }
                 if (WurstplusFriendUtil.isFriend(player.getName())) {
                     continue;
                 }
-                if (player.getDistance((Entity) MapNewAutoCrystal.mc.player) >= this.enemyRange.get_value(1)) {
+                if (player.getDistance((Entity) NewAutoCrystal.mc.player) >= this.enemyRange.get_value(1)) {
                     continue;
                 }
                 if (player.isDead) {
@@ -312,7 +312,7 @@ public class MapNewAutoCrystal extends WurstplusHack
                 if (player.getHealth() <= 0.0f) {
                     continue;
                 }
-                final boolean no_place = this.faceplace_check.get_value(true) && MapNewAutoCrystal.mc.player.getHeldItemMainhand().getItem() == Items.DIAMOND_SWORD;
+                final boolean no_place = this.faceplace_check.get_value(true) && NewAutoCrystal.mc.player.getHeldItemMainhand().getItem() == Items.DIAMOND_SWORD;
                 double minimum_damage;
                 if ((player.getHealth() < this.faceplace_mode_damage.get_value(1) && this.faceplace_mode.get_value(true) && !no_place) || (this.get_armor_fucker(player) && !no_place)) {
                     minimum_damage = 2.0;
@@ -324,11 +324,11 @@ public class MapNewAutoCrystal extends WurstplusHack
                 if (target_damage < minimum_damage) {
                     continue;
                 }
-                final double self_damage = HollowCrystalUtil.calculateDamage(crystal, (Entity) MapNewAutoCrystal.mc.player);
+                final double self_damage = HollowCrystalUtil.calculateDamage(crystal, (Entity) NewAutoCrystal.mc.player);
                 if (self_damage > maximum_damage_self) {
                     continue;
                 }
-                if (this.anti_suicide.get_value(true) && MapNewAutoCrystal.mc.player.getHealth() + MapNewAutoCrystal.mc.player.getAbsorptionAmount() - self_damage <= 0.5) {
+                if (this.anti_suicide.get_value(true) && NewAutoCrystal.mc.player.getHealth() + NewAutoCrystal.mc.player.getAbsorptionAmount() - self_damage <= 0.5) {
                     continue;
                 }
                 if (target_damage <= best_damage || this.jumpy_mode.get_value(true)) {
@@ -337,10 +337,10 @@ public class MapNewAutoCrystal extends WurstplusHack
                 best_damage = target_damage;
                 best_crystal = crystal;
             }
-            if (!this.jumpy_mode.get_value(true) || MapNewAutoCrystal.mc.player.getDistanceSq((Entity)crystal) <= best_distance) {
+            if (!this.jumpy_mode.get_value(true) || NewAutoCrystal.mc.player.getDistanceSq((Entity)crystal) <= best_distance) {
                 continue;
             }
-            best_distance = MapNewAutoCrystal.mc.player.getDistanceSq((Entity)crystal);
+            best_distance = NewAutoCrystal.mc.player.getDistanceSq((Entity)crystal);
             best_crystal = crystal;
         }
         return best_crystal;
@@ -351,21 +351,21 @@ public class MapNewAutoCrystal extends WurstplusHack
         final double maximum_damage_self = this.max_self_damage.get_value(1);
         BlockPos best_block = null;
         final List<BlockPos> blocks = HollowCrystalUtil.possiblePlacePositions((float)this.place_range.get_value(1), this.endcrystal.get_value(true));
-        for (final EntityPlayer target : MapNewAutoCrystal.mc.world.playerEntities) {
+        for (final EntityPlayer target : NewAutoCrystal.mc.world.playerEntities) {
             if (WurstplusFriendUtil.isFriend(target.getName())) {
                 continue;
             }
             for (final BlockPos block : blocks) {
-                if (target == MapNewAutoCrystal.mc.player) {
+                if (target == NewAutoCrystal.mc.player) {
                     continue;
                 }
-                if (target.getDistance((Entity) MapNewAutoCrystal.mc.player) >= this.enemyRange.get_value(1)) {
+                if (target.getDistance((Entity) NewAutoCrystal.mc.player) >= this.enemyRange.get_value(1)) {
                     continue;
                 }
                 if (!WurstplusBlockUtil.rayTracePlaceCheck(block, this.raytrace.get_value(true))) {
                     continue;
                 }
-                if (!WurstplusBlockUtil.canSeeBlock(block) && MapNewAutoCrystal.mc.player.getDistance((double)block.getX(), (double)block.getY(), (double)block.getZ()) > this.wallPlaceRange.get_value(1)) {
+                if (!WurstplusBlockUtil.canSeeBlock(block) && NewAutoCrystal.mc.player.getDistance((double)block.getX(), (double)block.getY(), (double)block.getZ()) > this.wallPlaceRange.get_value(1)) {
                     continue;
                 }
                 if (target.isDead) {
@@ -374,7 +374,7 @@ public class MapNewAutoCrystal extends WurstplusHack
                 if (target.getHealth() <= 0.0f) {
                     continue;
                 }
-                final boolean no_place = this.faceplace_check.get_value(true) && MapNewAutoCrystal.mc.player.getHeldItemMainhand().getItem() == Items.DIAMOND_SWORD;
+                final boolean no_place = this.faceplace_check.get_value(true) && NewAutoCrystal.mc.player.getHeldItemMainhand().getItem() == Items.DIAMOND_SWORD;
                 double minimum_damage;
                 if ((target.getHealth() < this.faceplace_mode_damage.get_value(1) && this.faceplace_mode.get_value(true) && !no_place) || (this.get_armor_fucker(target) && !no_place)) {
                     minimum_damage = 2.0;
@@ -386,11 +386,11 @@ public class MapNewAutoCrystal extends WurstplusHack
                 if (target_damage < minimum_damage) {
                     continue;
                 }
-                final double self_damage = HollowCrystalUtil.calculateDamage(block.getX() + 0.5, block.getY() + 1.0, block.getZ() + 0.5, (Entity) MapNewAutoCrystal.mc.player);
+                final double self_damage = HollowCrystalUtil.calculateDamage(block.getX() + 0.5, block.getY() + 1.0, block.getZ() + 0.5, (Entity) NewAutoCrystal.mc.player);
                 if (self_damage > maximum_damage_self) {
                     continue;
                 }
-                if (this.anti_suicide.get_value(true) && MapNewAutoCrystal.mc.player.getHealth() + MapNewAutoCrystal.mc.player.getAbsorptionAmount() - self_damage <= 0.5) {
+                if (this.anti_suicide.get_value(true) && NewAutoCrystal.mc.player.getHealth() + NewAutoCrystal.mc.player.getAbsorptionAmount() - self_damage <= 0.5) {
                     continue;
                 }
                 if (target_damage <= best_damage) {
@@ -415,12 +415,12 @@ public class MapNewAutoCrystal extends WurstplusHack
         this.place_delay_counter = 0;
         this.already_attacking = false;
         boolean offhand_check = false;
-        if (MapNewAutoCrystal.mc.player.getHeldItemOffhand().getItem() != Items.END_CRYSTAL) {
-            if (MapNewAutoCrystal.mc.player.getHeldItemMainhand().getItem() != Items.END_CRYSTAL && this.auto_switch.get_value(true)) {
+        if (NewAutoCrystal.mc.player.getHeldItemOffhand().getItem() != Items.END_CRYSTAL) {
+            if (NewAutoCrystal.mc.player.getHeldItemMainhand().getItem() != Items.END_CRYSTAL && this.auto_switch.get_value(true)) {
                 if (this.find_crystals_hotbar() == -1) {
                     return;
                 }
-                MapNewAutoCrystal.mc.player.inventory.currentItem = this.find_crystals_hotbar();
+                NewAutoCrystal.mc.player.inventory.currentItem = this.find_crystals_hotbar();
                 return;
             }
         }
@@ -451,9 +451,9 @@ public class MapNewAutoCrystal extends WurstplusHack
         if (crystal == null) {
             return;
         }
-        if (this.anti_weakness.get_value(true) && MapNewAutoCrystal.mc.player.isPotionActive(MobEffects.WEAKNESS)) {
+        if (this.anti_weakness.get_value(true) && NewAutoCrystal.mc.player.isPotionActive(MobEffects.WEAKNESS)) {
             boolean should_weakness = true;
-            if (MapNewAutoCrystal.mc.player.isPotionActive(MobEffects.STRENGTH) && Objects.requireNonNull(MapNewAutoCrystal.mc.player.getActivePotionEffect(MobEffects.STRENGTH)).getAmplifier() == 2) {
+            if (NewAutoCrystal.mc.player.isPotionActive(MobEffects.STRENGTH) && Objects.requireNonNull(NewAutoCrystal.mc.player.getActivePotionEffect(MobEffects.STRENGTH)).getAmplifier() == 2) {
                 should_weakness = false;
             }
             if (should_weakness) {
@@ -462,15 +462,15 @@ public class MapNewAutoCrystal extends WurstplusHack
                 }
                 int new_slot = -1;
                 for (int i = 0; i < 9; ++i) {
-                    final ItemStack stack = MapNewAutoCrystal.mc.player.inventory.getStackInSlot(i);
+                    final ItemStack stack = NewAutoCrystal.mc.player.inventory.getStackInSlot(i);
                     if (stack.getItem() instanceof ItemSword || stack.getItem() instanceof ItemTool) {
                         new_slot = i;
-                        MapNewAutoCrystal.mc.playerController.updateController();
+                        NewAutoCrystal.mc.playerController.updateController();
                         break;
                     }
                 }
                 if (new_slot != -1) {
-                    MapNewAutoCrystal.mc.player.inventory.currentItem = new_slot;
+                    NewAutoCrystal.mc.player.inventory.currentItem = new_slot;
                 }
             }
         }
@@ -481,16 +481,16 @@ public class MapNewAutoCrystal extends WurstplusHack
         }
         this.add_attacked_crystal(crystal);
         if (this.client_side.get_value(true)) {
-            MapNewAutoCrystal.mc.world.removeEntityFromWorld(crystal.getEntityId());
+            NewAutoCrystal.mc.world.removeEntityFromWorld(crystal.getEntityId());
         }
         this.break_delay_counter = 0;
     }
 
     public boolean check_pause() {
-        if (this.find_crystals_hotbar() == -1 && MapNewAutoCrystal.mc.player.getHeldItemOffhand().getItem() != Items.END_CRYSTAL) {
+        if (this.find_crystals_hotbar() == -1 && NewAutoCrystal.mc.player.getHeldItemOffhand().getItem() != Items.END_CRYSTAL) {
             return true;
         }
-        if (this.stop_while_mining.get_value(true) && MapNewAutoCrystal.mc.gameSettings.keyBindAttack.isKeyDown() && MapNewAutoCrystal.mc.player.getHeldItemMainhand().getItem() instanceof ItemPickaxe) {
+        if (this.stop_while_mining.get_value(true) && NewAutoCrystal.mc.gameSettings.keyBindAttack.isKeyDown() && NewAutoCrystal.mc.player.getHeldItemMainhand().getItem() instanceof ItemPickaxe) {
             if (this.old_render.get_value(true)) {
                 this.render_block_init = null;
             }
@@ -519,7 +519,7 @@ public class MapNewAutoCrystal extends WurstplusHack
 
     private int find_crystals_hotbar() {
         for (int i = 0; i < 9; ++i) {
-            if (MapNewAutoCrystal.mc.player.inventory.getStackInSlot(i).getItem() == Items.END_CRYSTAL) {
+            if (NewAutoCrystal.mc.player.inventory.getStackInSlot(i).getItem() == Items.END_CRYSTAL) {
                 return i;
             }
         }
@@ -539,10 +539,10 @@ public class MapNewAutoCrystal extends WurstplusHack
     public void rotate_to_pos(final BlockPos pos) {
         float[] angle;
         if (this.rotate_mode.in("Const")) {
-            angle = WurstplusMathUtil.calcAngle(MapNewAutoCrystal.mc.player.getPositionEyes(MapNewAutoCrystal.mc.getRenderPartialTicks()), new Vec3d((double)(pos.getX() + 0.5f), (double)(pos.getY() + 0.5f), (double)(pos.getZ() + 0.5f)));
+            angle = WurstplusMathUtil.calcAngle(NewAutoCrystal.mc.player.getPositionEyes(NewAutoCrystal.mc.getRenderPartialTicks()), new Vec3d((double)(pos.getX() + 0.5f), (double)(pos.getY() + 0.5f), (double)(pos.getZ() + 0.5f)));
         }
         else {
-            angle = WurstplusMathUtil.calcAngle(MapNewAutoCrystal.mc.player.getPositionEyes(MapNewAutoCrystal.mc.getRenderPartialTicks()), new Vec3d((double)(pos.getX() + 0.5f), (double)(pos.getY() - 0.5f), (double)(pos.getZ() + 0.5f)));
+            angle = WurstplusMathUtil.calcAngle(NewAutoCrystal.mc.player.getPositionEyes(NewAutoCrystal.mc.getRenderPartialTicks()), new Vec3d((double)(pos.getX() + 0.5f), (double)(pos.getY() - 0.5f), (double)(pos.getZ() + 0.5f)));
         }
         if (this.rotate_mode.in("Off")) {
             this.is_rotating = false;
@@ -558,7 +558,7 @@ public class MapNewAutoCrystal extends WurstplusHack
     }
 
     public void rotate_to(final Entity entity) {
-        final float[] angle = WurstplusMathUtil.calcAngle(MapNewAutoCrystal.mc.player.getPositionEyes(MapNewAutoCrystal.mc.getRenderPartialTicks()), entity.getPositionVector());
+        final float[] angle = WurstplusMathUtil.calcAngle(NewAutoCrystal.mc.player.getPositionEyes(NewAutoCrystal.mc.getRenderPartialTicks()), entity.getPositionVector());
         if (this.rotate_mode.in("Off")) {
             this.is_rotating = false;
         }

@@ -19,7 +19,7 @@ import me.zero.alpine.fork.listener.EventHandler;
 import me.zero.alpine.fork.listener.Listener;
 
 
-public class HP2NoFall extends WurstplusHack
+public class NoFall extends WurstplusHack
 {
     WurstplusSetting packet;
     WurstplusSetting bucket;
@@ -28,7 +28,7 @@ public class HP2NoFall extends WurstplusHack
     @EventHandler
     public Listener<WurstplusEventPacket.SendPacket> sendListener;
 
-    public HP2NoFall() {
+    public NoFall() {
         super(WurstplusCategory.WURSTPLUS_MOVEMENT);
         this.packet = this.create("Packet", "NoFallPacket", true);
         this.bucket = this.create("Bucket", "NoFallBucket", false);
@@ -60,22 +60,22 @@ public class HP2NoFall extends WurstplusHack
             final RayTraceResult result = mc.world.rayTraceBlocks(posVec, posVec.add(0.0, -5.329999923706055, 0.0), true, true, false);
             if (result != null && result.typeOfHit == RayTraceResult.Type.BLOCK) {
                 EnumHand hand = EnumHand.MAIN_HAND;
-                if (HP2NoFall.mc.player.getHeldItemOffhand().getItem() == Items.WATER_BUCKET) {
+                if (NoFall.mc.player.getHeldItemOffhand().getItem() == Items.WATER_BUCKET) {
                     hand = EnumHand.OFF_HAND;
                 }
-                else if (HP2NoFall.mc.player.getHeldItemMainhand().getItem() != Items.WATER_BUCKET) {
+                else if (NoFall.mc.player.getHeldItemMainhand().getItem() != Items.WATER_BUCKET) {
                     for (int i = 0; i < 9; ++i) {
-                        if (HP2NoFall.mc.player.inventory.getStackInSlot(i).getItem() == Items.WATER_BUCKET) {
-                            HP2NoFall.mc.player.inventory.currentItem = i;
-                            HP2NoFall.mc.player.rotationPitch = 90.0f;
+                        if (NoFall.mc.player.inventory.getStackInSlot(i).getItem() == Items.WATER_BUCKET) {
+                            NoFall.mc.player.inventory.currentItem = i;
+                            NoFall.mc.player.rotationPitch = 90.0f;
                             this.last = System.currentTimeMillis();
                             return;
                         }
                     }
                     return;
                 }
-                HP2NoFall.mc.player.rotationPitch = 90.0f;
-                HP2NoFall.mc.playerController.processRightClick((EntityPlayer) HP2NoFall.mc.player, (World) HP2NoFall.mc.world, hand);
+                NoFall.mc.player.rotationPitch = 90.0f;
+                NoFall.mc.playerController.processRightClick((EntityPlayer) NoFall.mc.player, (World) NoFall.mc.world, hand);
                 this.last = System.currentTimeMillis();
             }
         }

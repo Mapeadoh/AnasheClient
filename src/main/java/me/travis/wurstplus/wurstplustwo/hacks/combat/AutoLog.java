@@ -9,8 +9,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketDisconnect;
 
-public class MapAutoLog extends WurstplusHack {
-    public MapAutoLog(){
+public class AutoLog extends WurstplusHack {
+    public AutoLog(){
         super(WurstplusCategory.WURSTPLUS_COMBAT);
         this.name = "AutoLogout";
         this.tag = "AutoLogout";

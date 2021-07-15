@@ -15,8 +15,8 @@ import me.travis.mapeadoh.clientstuff.postman.PacketEvent;
 
 import static me.travis.wurstplus.wurstplustwo.event.WurstplusEventBus.EVENT_BUS;
 
-public class NoraDotCCAutoReconect extends WurstplusHack {
-    public NoraDotCCAutoReconect() {
+public class AutoReconect extends WurstplusHack {
+    public AutoReconect() {
         super(WurstplusCategory.WURSTPLUS_MISC);
         this.name = "AutoReconnect";
         this.tag = "AutoReconnect";

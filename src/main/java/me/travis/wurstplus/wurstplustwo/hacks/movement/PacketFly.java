@@ -21,7 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-public class HP2PacketFly extends WurstplusHack {
+public class PacketFly extends WurstplusHack {
     WurstplusSetting fly_speed = this.create("Speed", "PhaseSpeed", 0.1f, 0.0, 5.0);
     WurstplusSetting fly_no_kick = this.create("Anti Kick", "PacketFlyNoKick", true);
     WurstplusSetting phase = this.create("Phase", " PacketFlyPhase", true);
@@ -36,7 +36,7 @@ public class HP2PacketFly extends WurstplusHack {
     @EventHandler
     public Listener<TickEvent.ClientTickEvent> on_tick_event;
 
-    public HP2PacketFly() {
+    public PacketFly() {
         super(WurstplusCategory.WURSTPLUS_EXPLOIT);
         this.name = "Packet Fly";
         this.tag = "PacketFly";
@@ -55,50 +55,50 @@ public class HP2PacketFly extends WurstplusHack {
                 this.fly_packets.add(fly_bounds[0]);
                 Minecraft.getMinecraft().player.connection.sendPacket((Packet)fly_bounds[0]);
             } else {
-                HP2PacketFly.mc.player.setVelocity(0.0, 0.0, 0.0);
-                if (HP2PacketFly.mc.world.getCollisionBoxes((Entity) HP2PacketFly.mc.player, HP2PacketFly.mc.player.getEntityBoundingBox().expand(-0.0625, 0.0, -0.0625)).isEmpty()) {
+                PacketFly.mc.player.setVelocity(0.0, 0.0, 0.0);
+                if (PacketFly.mc.world.getCollisionBoxes((Entity) PacketFly.mc.player, PacketFly.mc.player.getEntityBoundingBox().expand(-0.0625, 0.0, -0.0625)).isEmpty()) {
                     fly_speed_y[0] = 0.0;
-                    if (HP2PacketFly.mc.gameSettings.keyBindJump.isKeyDown()) {
-                        fly_speed_y_2[0] = this.fly_no_kick.get_value(true) ? (HP2PacketFly.mc.player.ticksExisted % 20 == 0 ? (double)-0.04f : (double)0.062f) : (double)0.062f;
-                    } else if (HP2PacketFly.mc.gameSettings.keyBindSneak.isKeyDown()) {
+                    if (PacketFly.mc.gameSettings.keyBindJump.isKeyDown()) {
+                        fly_speed_y_2[0] = this.fly_no_kick.get_value(true) ? (PacketFly.mc.player.ticksExisted % 20 == 0 ? (double)-0.04f : (double)0.062f) : (double)0.062f;
+                    } else if (PacketFly.mc.gameSettings.keyBindSneak.isKeyDown()) {
                         fly_speed_y_2[0] = -0.062;
                     } else {
-                        fly_n[0] = HP2PacketFly.mc.world.getCollisionBoxes((Entity) HP2PacketFly.mc.player, HP2PacketFly.mc.player.getEntityBoundingBox().expand(-0.0625, -0.0625, -0.0625)).isEmpty() ? (HP2PacketFly.mc.player.ticksExisted % 4 == 0 ? (double)(this.fly_no_kick.get_value(true) ? -0.04f : 0.0f) : 0.0) : 0.0;
+                        fly_n[0] = PacketFly.mc.world.getCollisionBoxes((Entity) PacketFly.mc.player, PacketFly.mc.player.getEntityBoundingBox().expand(-0.0625, -0.0625, -0.0625)).isEmpty() ? (PacketFly.mc.player.ticksExisted % 4 == 0 ? (double)(this.fly_no_kick.get_value(true) ? -0.04f : 0.0f) : 0.0) : 0.0;
                         fly_speed_y_2[0] = fly_n[0];
                     }
                     fly_direcional_speed[0] = TurokBlockInteractionHelper.directionSpeed(this.fly_speed.get_value(1.0));
-                    if (HP2PacketFly.mc.gameSettings.keyBindJump.isKeyDown() || HP2PacketFly.mc.gameSettings.keyBindSneak.isKeyDown() || HP2PacketFly.mc.gameSettings.keyBindForward.isKeyDown() || HP2PacketFly.mc.gameSettings.keyBindBack.isKeyDown() || HP2PacketFly.mc.gameSettings.keyBindRight.isKeyDown() || HP2PacketFly.mc.gameSettings.keyBindLeft.isKeyDown()) {
+                    if (PacketFly.mc.gameSettings.keyBindJump.isKeyDown() || PacketFly.mc.gameSettings.keyBindSneak.isKeyDown() || PacketFly.mc.gameSettings.keyBindForward.isKeyDown() || PacketFly.mc.gameSettings.keyBindBack.isKeyDown() || PacketFly.mc.gameSettings.keyBindRight.isKeyDown() || PacketFly.mc.gameSettings.keyBindLeft.isKeyDown()) {
                         if (fly_direcional_speed[0][0] != 0.0 || fly_speed_y_2[0] != 0.0 || fly_direcional_speed[0][1] != 0.0) {
-                            if (HP2PacketFly.mc.player.movementInput.jump && (HP2PacketFly.mc.player.moveStrafing != 0.0f || HP2PacketFly.mc.player.moveForward != 0.0f)) {
-                                HP2PacketFly.mc.player.setVelocity(0.0, 0.0, 0.0);
+                            if (PacketFly.mc.player.movementInput.jump && (PacketFly.mc.player.moveStrafing != 0.0f || PacketFly.mc.player.moveForward != 0.0f)) {
+                                PacketFly.mc.player.setVelocity(0.0, 0.0, 0.0);
                                 this.move(0.0, 0.0, 0.0);
                                 fly_i[0] = 0;
                                 while (fly_i[0] <= 3) {
-                                    HP2PacketFly.mc.player.setVelocity(0.0, fly_speed_y_2[0] * (double)fly_i[0], 0.0);
+                                    PacketFly.mc.player.setVelocity(0.0, fly_speed_y_2[0] * (double)fly_i[0], 0.0);
                                     this.move(0.0, fly_speed_y_2[0] * (double)fly_i[0], 0.0);
                                     fly_i[0] = fly_i[0] + 1;
                                 }
-                            } else if (HP2PacketFly.mc.player.movementInput.jump) {
-                                HP2PacketFly.mc.player.setVelocity(0.0, 0.0, 0.0);
+                            } else if (PacketFly.mc.player.movementInput.jump) {
+                                PacketFly.mc.player.setVelocity(0.0, 0.0, 0.0);
                                 this.move(0.0, 0.0, 0.0);
                                 fly_j[0] = 0;
                                 while (fly_j[0] <= 3) {
-                                    HP2PacketFly.mc.player.setVelocity(0.0, fly_speed_y_2[0] * (double)fly_j[0], 0.0);
+                                    PacketFly.mc.player.setVelocity(0.0, fly_speed_y_2[0] * (double)fly_j[0], 0.0);
                                     this.move(0.0, fly_speed_y_2[0] * (double)fly_j[0], 0.0);
                                     fly_j[0] = fly_j[0] + 1;
                                 }
                             } else {
                                 fly_k[0] = 0;
                                 while (fly_k[0] <= 2) {
-                                    HP2PacketFly.mc.player.setVelocity(fly_direcional_speed[0][0] * (double)fly_k[0], fly_speed_y_2[0] * (double)fly_k[0], fly_direcional_speed[0][1] * (double)fly_k[0]);
+                                    PacketFly.mc.player.setVelocity(fly_direcional_speed[0][0] * (double)fly_k[0], fly_speed_y_2[0] * (double)fly_k[0], fly_direcional_speed[0][1] * (double)fly_k[0]);
                                     this.move(fly_direcional_speed[0][0] * (double)fly_k[0], fly_speed_y_2[0] * (double)fly_k[0], fly_direcional_speed[0][1] * (double)fly_k[0]);
                                     fly_k[0] = fly_k[0] + 1;
                                 }
                             }
                         }
-                    } else if (this.fly_no_kick.get_value(true) && HP2PacketFly.mc.world.getCollisionBoxes((Entity) HP2PacketFly.mc.player, HP2PacketFly.mc.player.getEntityBoundingBox().expand(-0.0625, -0.0625, -0.0625)).isEmpty()) {
-                        HP2PacketFly.mc.player.setVelocity(0.0, HP2PacketFly.mc.player.ticksExisted % 2 == 0 ? (double)0.04f : (double)-0.04f, 0.0);
-                        this.move(0.0, HP2PacketFly.mc.player.ticksExisted % 2 == 0 ? (double)0.04f : (double)-0.04f, 0.0);
+                    } else if (this.fly_no_kick.get_value(true) && PacketFly.mc.world.getCollisionBoxes((Entity) PacketFly.mc.player, PacketFly.mc.player.getEntityBoundingBox().expand(-0.0625, -0.0625, -0.0625)).isEmpty()) {
+                        PacketFly.mc.player.setVelocity(0.0, PacketFly.mc.player.ticksExisted % 2 == 0 ? (double)0.04f : (double)-0.04f, 0.0);
+                        this.move(0.0, PacketFly.mc.player.ticksExisted % 2 == 0 ? (double)0.04f : (double)-0.04f, 0.0);
                     }
                 }
             }
@@ -134,15 +134,15 @@ public class HP2PacketFly extends WurstplusHack {
 
     @Override
     public void enable() {
-        if (HP2PacketFly.mc.world != null) {
+        if (PacketFly.mc.world != null) {
             if (this.phase.get_value(true)) {
-                HP2PacketFly.mc.player.noClip = true;
+                PacketFly.mc.player.noClip = true;
             }
             this.fly_teleport_id = 0;
             this.fly_packets.clear();
-            CPacketPlayer.Position fly_bounds = new CPacketPlayer.Position(HP2PacketFly.mc.player.posX, 0.0, HP2PacketFly.mc.player.posZ, HP2PacketFly.mc.player.onGround);
+            CPacketPlayer.Position fly_bounds = new CPacketPlayer.Position(PacketFly.mc.player.posX, 0.0, PacketFly.mc.player.posZ, PacketFly.mc.player.onGround);
             this.fly_packets.add((CPacketPlayer)fly_bounds);
-            HP2PacketFly.mc.player.connection.sendPacket((Packet)fly_bounds);
+            PacketFly.mc.player.connection.sendPacket((Packet)fly_bounds);
         }
     }
 
