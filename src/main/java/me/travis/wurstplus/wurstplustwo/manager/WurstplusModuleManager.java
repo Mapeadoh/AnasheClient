@@ -110,7 +110,7 @@ public class WurstplusModuleManager {
 		add_hack(new WurstplusHighlight());
 		add_hack(new NoRender());
 		add_hack(new MobOwner());
-		add_hack(new GSViewModel());
+		add_hack(new ViewModel());
 		add_hack(new NoWeather());
 		add_hack(new WurstplusHoleESP());
 		add_hack(new WurstplusShulkerPreview());

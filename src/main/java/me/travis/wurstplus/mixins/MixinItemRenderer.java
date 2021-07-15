@@ -33,7 +33,7 @@ public class MixinItemRenderer {
         TransformSideFirstPersonEvent event = new TransformSideFirstPersonEvent(hand);
         WurstplusEventBus.EVENT_BUS.post(event);
 
-        if (Wurstplus.get_hack_manager().get_module_with_tag("GSViewModel").is_active() && Wurstplus.get_setting_manager().get_setting_with_tag("GSViewModel", "CancelEatAnim").get_value(true)) {
+        if (Wurstplus.get_hack_manager().get_module_with_tag("ViewModel").is_active() && Wurstplus.get_setting_manager().get_setting_with_tag("ViewModel", "CancelEatAnim").get_value(true)) {
             callbackInfo.cancel();
         }
     }

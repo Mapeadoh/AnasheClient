@@ -11,12 +11,12 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.EnumHandSide;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 
-public class GSViewModel extends WurstplusHack {
-    public GSViewModel() {
+public class ViewModel extends WurstplusHack {
+    public ViewModel() {
         super(WurstplusCategory.WURSTPLUS_RENDER);
 
-        this.name        = "GSViewModel";
-        this.tag         = "GSViewModel";
+        this.name        = "ViewModel";
+        this.tag         = "ViewModel";
         this.description = "works?";
     }// works?
     WurstplusSetting mode = create("Mode", "Mode", "Value", combobox("Value", "Fov", "Both"/*ambos en ingles*/));
