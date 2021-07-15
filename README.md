@@ -25,7 +25,8 @@ to compile, idk use a tutorial, to open clickgui: rshift, to commands: . <br>
 ### what (exactly)
 > another w+2 skid with pasted code of a lot of hacks, phobos and w+3 modules incoming
 ### creds
-> Beat for nora.cc and god modules, very usefull <br>
+> BM for Tesla src, is not public but procyon exists <br>
+> Beat for nora.cc and very usefulls modules, ty <3 <br>
 > WarriorCrystal for the CB+ B11 src <br>
 > A Lot of Hacks, all in <me.travis.mapeadoh.clientstuff> package<br>
 > my clan (wtf a clan, cringeeeeee) for ideas <br>

@@ -102,9 +102,9 @@ public class WurstplusModuleManager {
 		
 		// Render.
 		//add_hack(new PortalESP());
-		//add_hack(new Skeleton());
+		add_hack(new Skeleton());
 		add_hack(new Ranges());
-		//add_hack(new ExtraTab());
+		add_hack(new ExtraTab());
 		add_hack(new Trajectories());
 		add_hack(new StorageESP());
 		add_hack(new WurstplusHighlight());

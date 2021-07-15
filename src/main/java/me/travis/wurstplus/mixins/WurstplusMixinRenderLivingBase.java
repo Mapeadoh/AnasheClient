@@ -1,20 +1,20 @@
 package me.travis.wurstplus.mixins;
 
-import me.travis.wurstplus.Wurstplus;
-import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRenderEntityModel;
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderLivingBase;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRenderEntityModel;
+import me.travis.wurstplus.Wurstplus;
+import net.minecraft.entity.Entity;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.RenderLivingBase;
+import org.spongepowered.asm.mixin.Mixin;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.entity.EntityLivingBase;
 
-@Mixin(RenderLivingBase.class)
-public abstract class WurstplusMixinRenderLivingBase<T extends EntityLivingBase> extends Render<T> {
-
+@Mixin({ RenderLivingBase.class })
+public abstract class WurstplusMixinRenderLivingBase<T extends EntityLivingBase> extends Render<T>
+{
     protected WurstplusMixinRenderLivingBase(final RenderManager renderManagerIn, final ModelBase modelBaseIn, final float shadowSizeIn) {
         super(renderManagerIn);
     }
@@ -30,7 +30,5 @@ public abstract class WurstplusMixinRenderLivingBase<T extends EntityLivingBase>
         }
         modelBase.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
     }
-
-
 }
 

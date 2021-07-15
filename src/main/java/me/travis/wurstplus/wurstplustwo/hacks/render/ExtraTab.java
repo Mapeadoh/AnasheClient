@@ -1,6 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.hacks.render;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import me.travis.wurstplus.wurstplustwo.event.WurstplusEventBus;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
@@ -27,10 +28,16 @@ public class ExtraTab extends WurstplusHack {
         if (WurstplusEnemyUtil.isEnemy(name)) {
             return ChatFormatting.RED + name;
         }
-        if (name.equalsIgnoreCase(mc.player.getName())) {
-            return ChatFormatting.GOLD + name;
-        }
         return name;
     }
 
+    @Override
+    public void enable(){
+        WurstplusEventBus.EVENT_BUS.subscribe(this);
+    }
+
+    @Override
+    public void disable(){
+        WurstplusEventBus.EVENT_BUS.unsubscribe(this);
+    }
 }
