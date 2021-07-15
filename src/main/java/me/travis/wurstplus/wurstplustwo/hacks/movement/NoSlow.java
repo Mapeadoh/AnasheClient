@@ -1,5 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.hacks.movement;
 
+import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.zero.alpine.fork.listener.EventHandler;
@@ -13,6 +14,8 @@ public class NoSlow extends WurstplusHack {
         this.tag = "NoSlow";
         this.description = "";
     }
+    WurstplusSetting webs = create("IgnoreWeb", "IgnoreWeb", true);
+    WurstplusSetting webspeed = create("WebSpeed", "WebSpeed", 2,0,5);
 
     @EventHandler
     private Listener<InputUpdateEvent> eventListener = new Listener<>(event -> {
@@ -20,9 +23,11 @@ public class NoSlow extends WurstplusHack {
             event.getMovementInput().moveStrafe *= 5;
             event.getMovementInput().moveForward *= 5;
         }
-        if (mc.player.isInWeb){
-            event.getMovementInput().moveStrafe *= 5;
-            event.getMovementInput().moveForward *= 5;
-        }
     });
+    public void update(){
+        if (this.webs.get_value(true) && NoSlow.mc.player.isInWeb) {
+            NoSlow.mc.player.motionX *= webspeed.get_value(1);
+            NoSlow.mc.player.motionZ *= webspeed.get_value(1);
+        }
+    }
 }
