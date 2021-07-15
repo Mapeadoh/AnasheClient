@@ -1,6 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.hacks.render;
 
 import me.travis.mapeadoh.clientstuff.gamesense.TransformSideFirstPersonEvent;
+import me.travis.wurstplus.wurstplustwo.event.WurstplusEventBus;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
@@ -9,12 +10,6 @@ import me.zero.alpine.fork.listener.Listener;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.EnumHandSide;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
-
-
-/**
- * @author GL_DONT_CARE (Viewmodel Transformations)
- * @author NekoPvP (Item FOV)
- */
 
 public class MapGSViewModel extends WurstplusHack {
     public MapGSViewModel() {
@@ -25,14 +20,14 @@ public class MapGSViewModel extends WurstplusHack {
         this.description = "works?";
     }// works?
     WurstplusSetting mode = create("Mode", "Mode", "Value", combobox("Value", "Fov", "Both"/*ambos en ingles*/));
-    WurstplusSetting cancel_eat = create("NoEatAnim", "CancelEatAnim", false);
-    WurstplusSetting x_left = create("LeftX", "LeftX", 0.0f, -2.0f, 2.0f);
-    WurstplusSetting y_left = create("LeftY", "LeftY", 0.2f, -2.0f, 2.0f);
-    WurstplusSetting z_left = create("LeftZ", "LeftZ", -1.2f, -2.0f, 2.0f);
+    WurstplusSetting cancel_eat = create("NoEatAnim", "CancelEatAnim", true);
+    WurstplusSetting x_left = create("LeftX", "LeftX", 0.0, -2.0, 2.0);
+    WurstplusSetting y_left = create("LeftY", "LeftY", 0.0, -2.0, 2.0);
+    WurstplusSetting z_left = create("LeftZ", "LeftZ", 0.0, -2.0, 2.0);
 
-    WurstplusSetting x_right = create("RightX", "RightX", 0.0d, -2.0d, 2.0d);
-    WurstplusSetting y_right = create("RightY", "RightY", 0.0d, -2.0d, 2.0D);
-    WurstplusSetting z_right = create("RightZ", "RightZ", 0.0d, -2.0d, 2.0d);
+    WurstplusSetting x_right = create("RightX", "RightX", 0.0, -2.0, 2.0);
+    WurstplusSetting y_right = create("RightY", "RightY", 0.0, -2.0, 2.0);
+    WurstplusSetting z_right = create("RightZ", "RightZ", 0.0, -2.0, 2.0);
 
     WurstplusSetting fov = create("ItemFov", "ItemFov", 130, 70, 200);
     /* original code lololololololol
@@ -47,23 +42,27 @@ public class MapGSViewModel extends WurstplusHack {
     DoubleSetting fov = registerDouble("Item FOV", 130, 70, 200);
     */
 
-    @SuppressWarnings("unused")
     @EventHandler
     private final Listener<TransformSideFirstPersonEvent> eventListener = new Listener<>(event -> {
         if (mode.in("Value") || mode.in("Both")) {
             if (event.getEnumHandSide() == EnumHandSide.RIGHT) {
-                GlStateManager.translate(x_right.get_value(1), y_right.get_value(1), z_right.get_value(1));
+                GlStateManager.translate(x_right.get_value(1d), y_right.get_value(1d), z_right.get_value(1d));
             } else if (event.getEnumHandSide() == EnumHandSide.LEFT) {
-                GlStateManager.translate(x_left.get_value(1), y_left.get_value(1), z_left.get_value(1));
+                GlStateManager.translate(x_left.get_value(1d), y_left.get_value(1d), z_left.get_value(1d));
             }
         }
     });
 
-    @SuppressWarnings("unused")
     @EventHandler
     private final Listener<EntityViewRenderEvent.FOVModifier> fovModifierListener = new Listener<>(event -> {
         if (mode.in("FOV") || mode.in("Both")) {
             event.setFOV(fov.get_value(1));
         }
     });
+    public void enable(){
+        WurstplusEventBus.EVENT_BUS.subscribe(this);
+    }
+    public void disable(){
+        WurstplusEventBus.EVENT_BUS.unsubscribe(this);
+    }
 }

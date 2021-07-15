@@ -11,12 +11,16 @@ public class NoSlow extends WurstplusHack {
         super(WurstplusCategory.WURSTPLUS_MOVEMENT);
         this.name = "No Slow";
         this.tag = "NoSlow";
-        this.description = "nose";
+        this.description = "";
     }
 
     @EventHandler
     private Listener<InputUpdateEvent> eventListener = new Listener<>(event -> {
         if (mc.player.isHandActive() && !mc.player.isRiding()) {
+            event.getMovementInput().moveStrafe *= 5;
+            event.getMovementInput().moveForward *= 5;
+        }
+        if (mc.player.isInWeb){
             event.getMovementInput().moveStrafe *= 5;
             event.getMovementInput().moveForward *= 5;
         }

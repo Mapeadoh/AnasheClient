@@ -14,7 +14,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// Travis.
+// dasdasdasdasdasdasd
 
 
 public class WurstplusHoleESP extends WurstplusHack {
@@ -24,7 +24,7 @@ public class WurstplusHoleESP extends WurstplusHack {
 
 		this.name        = "Hole ESP";
 		this.tag         = "HoleESP";
-		this.description = "lets you know where holes are";
+		this.description = "omg a hole";
 	}
 
 	WurstplusSetting mode 				= create("Mode", "HoleESPMode", "Pretty", combobox("Pretty", "Solid", "Outline"));

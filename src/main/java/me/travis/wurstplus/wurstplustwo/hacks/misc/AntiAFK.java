@@ -16,7 +16,7 @@ public class AntiAFK extends WurstplusHack {
         this.description = "do not kick per afk";
     }
     WurstplusSetting delay = create("MSGDelay", "MsgDelay", 30, 5, 60);
-    WurstplusSetting msg = create("ChatMSG", "ChatMSG", "Stats", combobox("Stats", "GlobalMSG"));
+    WurstplusSetting msg = create("ChatMSG", "ChatMSG", "Stats", combobox("Stats", "GlobalMSG", "None"));
     WurstplusSetting jump = create("Jump", "Jump", true);
     WurstplusSetting hit = create("Hit", "Hit", true);
     WurstplusSetting rotate = create("Rotate", "Rotate", true);
