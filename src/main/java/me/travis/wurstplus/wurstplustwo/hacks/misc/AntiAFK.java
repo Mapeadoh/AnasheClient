@@ -33,7 +33,7 @@ public class AntiAFK extends WurstplusHack {
         if (AntiAFK.mc.player.ticksExisted % 20 == 0 && rotate.get_value(true)) {
             AntiAFK.mc.player.rotationYaw = this.random.nextInt(360) - 180;
         }
-        if (AntiAFK.mc.player.ticksExisted % delay.get_value(1)== 0 && msg.in("Stats")) {
+        if (AntiAFK.mc.player.ticksExisted % delay.get_value(1)== 0) {
             if(msg.in("Stats")){
                 AntiAFK.mc.player.sendChatMessage("/stats");
             }
