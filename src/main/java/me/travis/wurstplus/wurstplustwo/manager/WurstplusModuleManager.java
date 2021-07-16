@@ -48,6 +48,7 @@ public class WurstplusModuleManager {
 		add_hack(new WurstplusAnnouncer());
 
 		// Combat.
+		add_hack(new NewOffhand());
 		add_hack(new NewAutoCrystal());
 		add_hack(new AutoClick());
 		add_hack(new AutoLog());

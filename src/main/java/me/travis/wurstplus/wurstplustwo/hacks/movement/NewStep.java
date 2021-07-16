@@ -12,16 +12,14 @@ import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 public class NewStep extends WurstplusHack
 {
     WurstplusSetting height;
-    WurstplusSetting reverse;
     WurstplusSetting mode;
 
     public NewStep() {
         super(WurstplusCategory.WURSTPLUS_MOVEMENT);
         this.height = this.create("Height", "Height", 2.5, 0.5, 2.5);
-        this.reverse = this.create("Reverse", "Reverse", false);
         this.mode = this.create("Mode", "Modes", "Normal", this.combobox("Vanilla", "Normal"));
-        this.name = "Step";
-        this.tag = "Step";
+        this.name = "NewStep";
+        this.tag = "NewStep";
         this.description = "pasted from tesla jijijiji";
     }
 
@@ -31,7 +29,7 @@ public class NewStep extends WurstplusHack
             return;
         }
         if (this.mode.in("Normal")) {
-            if (NewStep.mc.player != null && NewStep.mc.player.onGround && !NewStep.mc.player.isInWater() && !NewStep.mc.player.isOnLadder() && this.reverse.get_value(true)) {
+            if (NewStep.mc.player != null && NewStep.mc.player.onGround && !NewStep.mc.player.isInWater() && !NewStep.mc.player.isOnLadder()) {
                 for (double y = 0.0; y < this.height.get_value(1) + 0.5; y += 0.01) {
                     if (!NewStep.mc.world.getCollisionBoxes((Entity) NewStep.mc.player, NewStep.mc.player.getEntityBoundingBox().offset(0.0, -y, 0.0)).isEmpty()) {
                         NewStep.mc.player.motionY = -10.0;

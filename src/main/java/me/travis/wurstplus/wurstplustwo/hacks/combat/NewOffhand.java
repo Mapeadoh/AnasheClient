@@ -34,17 +34,19 @@ public class NewOffhand extends WurstplusHack {
     //another settings
     WurstplusSetting gapple_in_hole = create("Gapple In Hole", "OffhandGapple", false);
     WurstplusSetting gapple_hole_hp = create("Gapple Hole HP", "OffhandGappleHP", 8, 0, 36);
-    WurstplusSetting totemonfall = create("TotemOnFall", "TotemOnFall", false);
-    WurstplusSetting falldistance = create("FallDistance", "Distance", 24, 3, 100);
-    WurstplusSetting sword_gapple = create("Gapple in Sword", "SwordGapple", false);
+     WurstplusSetting sword_gapple = create("Gapple in Sword", "SwordGapple", false);
     WurstplusSetting sword_gapple_hp = create("Sword Gapple HP", "SwordGappleHP", 20, 0, 36);
     //WurstplusSetting totemonelytra = create("ElytraTotem", "ElytraTotem", true);
-    WurstplusSetting debug = create("Debug", "Debug", false);
+
+    //idk
+   // WurstplusSetting debug = create("Debug", "Debug", false);
+    WurstplusSetting nocreativebugs = create("NoCreativeMode", "NoCreat", true);
 
     WurstplusSetting delay = create("Delay", "OffhandDelay", false);
 
     private boolean switching = false;
     private int last_slot;
+    String iteminoffhand;
 
     private ChatFormatting r = ChatFormatting.RESET;
     private ChatFormatting da = ChatFormatting.DARK_AQUA;
@@ -53,37 +55,34 @@ public class NewOffhand extends WurstplusHack {
 
     @Override
     public void update() {
-        if (mc.player.isCreative()) {
-            this.toggle();
+        if(nocreativebugs.get_value(true)){
+            if (mc.player.isCreative()) {
+                this.toggle();
+            }
         }
 
         if (mc.currentScreen == null || mc.currentScreen instanceof GuiInventory) {
 
             if (switching) {
                 swap_items(last_slot, 2);
-                return;
+                    return;
             }
 
             float hp = mc.player.getHealth() + mc.player.getAbsorptionAmount();
 
             if (hp > totem_switch.get_value(1)) {
                 if (switch_mode.in("Crystal") && AnasheClient.get_hack_manager().get_module_with_tag("NewAutoCrystal").is_active()) {
-                    swap_items(get_item_slot(Items.END_CRYSTAL), 0);
+                    swap_items(get_item_slot(Items.END_CRYSTAL),0);
                     return;
                 }
                 if (gapple_in_hole.get_value(true) && hp > gapple_hole_hp.get_value(1) && is_in_hole()) {
                     swap_items(get_item_slot(Items.GOLDEN_APPLE), delay.get_value(true) ? 1 : 0);
                     return;
                 }
-                if (sword_gapple.get_value(true) && hp > sword_gapple_hp.get_value(1) && mc.player.getHeldItemMainhand().getItem() == Items.DIAMOND_SWORD) {
+                if (sword_gapple.get_value(true) && hp > sword_gapple_hp.get_value(1) && mc.player.getHeldItemMainhand().getItem() == Items.DIAMOND_SWORD){
                     swap_items(get_item_slot(Items.GOLDEN_APPLE), delay.get_value(true) ? 1 : 0);
                     return;
                 }
-                if (totemonfall.get_value(true) && mc.player.fallDistance >= falldistance.get_value(1)) {
-                    swap_items(get_item_slot(Items.TOTEM_OF_UNDYING), delay.get_value(true) ? 1 : 0);
-                    return;
-                }
-                //mode
                 if (switch_mode.in("Totem")) {
                     swap_items(get_item_slot(Items.TOTEM_OF_UNDYING), delay.get_value(true) ? 1 : 0);
                     return;
@@ -93,7 +92,7 @@ public class NewOffhand extends WurstplusHack {
                     return;
                 }
                 if (switch_mode.in("Crystal") && !AnasheClient.get_hack_manager().get_module_with_tag("NewAutoCrystal").is_active()) {
-                    swap_items(get_item_slot(Items.TOTEM_OF_UNDYING), 0);
+                    swap_items(get_item_slot(Items.TOTEM_OF_UNDYING),0);
                     return;
                 }
             } else {
@@ -108,7 +107,7 @@ public class NewOffhand extends WurstplusHack {
         }
 
     }
-    String iteminoffhand = "";
+
     public void swap_items(int slot, int step) {
         if (slot == -1) return;
         if (step == 0) {
@@ -125,20 +124,22 @@ public class NewOffhand extends WurstplusHack {
             mc.playerController.windowClick(0, 45, 0, ClickType.PICKUP, mc.player);
             mc.playerController.windowClick(0, slot, 0, ClickType.PICKUP, mc.player);
             switching = false;
-            Item offhanditem = mc.player.getHeldItemOffhand().getItem();
-            if (Items.END_CRYSTAL.equals(offhanditem)) {
-                iteminoffhand = "Ender Crystal";
-                return;
-            } else if (Items.GOLDEN_APPLE.equals(offhanditem)) {
-                iteminoffhand = "Gapple";
-                return;
-            } else if (Items.TOTEM_OF_UNDYING.equals(offhanditem)) {
-                iteminoffhand = "Totem";
-                return;
+        }
+        if (step == 3) {
+            String offhanditem = String.valueOf(mc.player.getHeldItemOffhand().getItem());
+            switch (offhanditem) {
+                case "Items.END_CRYSTAL":
+                    iteminoffhand = "Ender Crystal";
+                    return;
+                case "Items.GOLDEN_APPLE":
+                    iteminoffhand = "Gapple";
+                    return;
+                case "Items.TOTEM_OF_UNDYING":
+                    iteminoffhand = "Totem";
+                    return;
             }
-            if(debug.get_value(true)){
-                WurstplusMessageUtil.send_client_message(g + "[" + r + da + "OffHandModule" + r + g + "]" + r + " Now switching to: " + go + iteminoffhand);
-            }
+            WurstplusMessageUtil.send_client_message(g + "[" + r + da + "OffHandModule" + r + g + "]" + r + " Now switching to: " + go + iteminoffhand);
+
         }
 
         mc.playerController.updateController();
@@ -151,7 +152,11 @@ public class NewOffhand extends WurstplusHack {
         return mc.world.getBlockState(player_block.east()).getBlock() != Blocks.AIR
                 && mc.world.getBlockState(player_block.west()).getBlock() != Blocks.AIR
                 && mc.world.getBlockState(player_block.north()).getBlock() != Blocks.AIR
-                && mc.world.getBlockState(player_block.south()).getBlock() != Blocks.AIR;
+                && mc.world.getBlockState(player_block.south()).getBlock() != Blocks.AIR ||
+                mc.world.getBlockState(player_block.east()).getBlock() != Blocks.WATER
+                && mc.world.getBlockState(player_block.west()).getBlock() != Blocks.WATER
+                && mc.world.getBlockState(player_block.north()).getBlock() != Blocks.WATER
+                && mc.world.getBlockState(player_block.south()).getBlock() != Blocks.WATER;
     }
 
 
