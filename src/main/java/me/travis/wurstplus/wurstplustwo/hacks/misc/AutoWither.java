@@ -169,6 +169,7 @@ public class AutoWither extends WurstplusHack {
             this.rotationPlaceableZ = false;
             if (!this.checkBlocksInHotbar()) {
                 WurstplusMessageUtil.send_client_error_message("no blocks in hotbar");
+                this.toggle();
                 return;
             }
             List<BlockPos> blockPosList = BlockInteractionHelper.getSphere(mc.player.getPosition().down(), this.range.get_value(1), this.range.get_value(1), false, true, 0);
@@ -183,8 +184,8 @@ public class AutoWither extends WurstplusHack {
                 if (mode.in("Single")) {
                     if (this.debug.get_value(true)) {
                         WurstplusMessageUtil.send_client_error_message("[AutoWither] " + ChatFormatting.RED.toString() + "Position not valid, disabling.");
+                        this.toggle();
                     }
-                    this.disable();
                 }
                 return;
             }
