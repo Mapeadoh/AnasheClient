@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 
 public class WurstplusTotemCount extends WurstplusPinnable {
 	int totems = 0;
+	private int result;
 
 	public WurstplusTotemCount() {
 		super("Totem Count", "TotemCount", 1, 0, 0);
@@ -46,18 +47,18 @@ public class WurstplusTotemCount extends WurstplusPinnable {
 
 				if (stack.getItem() == Items.TOTEM_OF_UNDYING) {
 					mc.getRenderItem().renderItemAndEffectIntoGUI(stack, this.get_x(), this.get_y());
-					
-					create_line(Integer.toString(totems + off), 16 + 2, 16 - get(Integer.toString(totems + off), "height"), nl_r, nl_g, nl_b, nl_a);
+					result = totems + off;
+					create_line(Integer.toString(result), 16 + 2, 16 - get(Integer.toString(result), "height"), nl_r, nl_g, nl_b, nl_a);
 				}
 			}
 
 			mc.getRenderItem().zLevel = 0.0f;
 
-			RenderHelper.disableStandardItemLighting();		
-			
+			RenderHelper.disableStandardItemLighting();
+
 			GlStateManager.popMatrix();
 
-			this.set_width(16 + get(Integer.toString(totems + off), "width") + 2);
+			this.set_width(16 + get(Integer.toString(result), "width") + 2);
 			this.set_height(16);
 		}
 	}

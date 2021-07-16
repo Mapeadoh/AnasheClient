@@ -21,41 +21,35 @@ import me.zero.alpine.fork.listener.Listener;
 
 public class NoFall extends WurstplusHack
 {
-    WurstplusSetting packet;
-    WurstplusSetting bucket;
-    WurstplusSetting distance;
-    private long last;
-    @EventHandler
-    public Listener<WurstplusEventPacket.SendPacket> sendListener;
-
     public NoFall() {
         super(WurstplusCategory.WURSTPLUS_MOVEMENT);
-        this.packet = this.create("Packet", "NoFallPacket", true);
-        this.bucket = this.create("Bucket", "NoFallBucket", false);
-        this.distance = this.create("BucketDistance", "NoFallDistance", 15, 0, 100);
-        this.last = 0L;
-        this.sendListener = new Listener<WurstplusEventPacket.SendPacket>(event -> {
-            if (AnasheClient.get_module_manager().get_module_with_tag("ElytraFly").is_active()) {
-                return;
-            }
-            else {
-                if (event.get_packet() instanceof CPacketPlayer && this.packet.get_value(true)) {
-                    ((CPacketPlayer)event.get_packet()).onGround = true;
-                }
-                return;
-            }
-        }, (Predicate<WurstplusEventPacket.SendPacket>[])new Predicate[0]);
         this.name = "No Fall";
         this.tag = "NoFall";
         this.description = "MrCoffee404";
     }
 
-    @Override
-    public void update() {
-        if (AnasheClient.get_module_manager().get_module_with_tag("ElytraFly").is_active()) {
+    WurstplusSetting mode = create("Mode", "Mode", "Packet", combobox("Packet", "Bucket"));
+    WurstplusSetting distance = create("BucketDistance", "NoFallDistance", 15, 0, 100);;
+    private long last = 0L;
+    @EventHandler
+    public Listener<WurstplusEventPacket.SendPacket> sendListener = new Listener<WurstplusEventPacket.SendPacket>(event -> {
+        if (AnasheClient.get_module_manager().get_module_with_tag("SalEFly").is_active()) {
             return;
         }
-        if (this.bucket.get_value(true) && mc.player.fallDistance >= this.distance.get_value(15) && !WurstplusEntityUtil.isLiving((Entity)mc.player) && System.currentTimeMillis() - this.last > 100L) {
+        else {
+            if (event.get_packet() instanceof CPacketPlayer && mode.in("Packet")) {
+                ((CPacketPlayer)event.get_packet()).onGround = true;
+            }
+            return;
+        }
+    }, (Predicate<WurstplusEventPacket.SendPacket>[])new Predicate[0]);
+
+    @Override
+    public void update() {
+        if (AnasheClient.get_module_manager().get_module_with_tag("SalEFly").is_active()) {
+            return;
+        }
+        if (mode.in("Bucket") && mc.player.fallDistance >= this.distance.get_value(1) && !WurstplusEntityUtil.isLiving((Entity)mc.player) && System.currentTimeMillis() - this.last > 100L) {
             final Vec3d posVec = mc.player.getPositionVector();
             final RayTraceResult result = mc.world.rayTraceBlocks(posVec, posVec.add(0.0, -5.329999923706055, 0.0), true, true, false);
             if (result != null && result.typeOfHit == RayTraceResult.Type.BLOCK) {

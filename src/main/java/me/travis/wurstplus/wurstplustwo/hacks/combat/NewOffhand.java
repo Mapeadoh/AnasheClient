@@ -13,17 +13,15 @@ import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 
 
-public class WurstplusOffhand extends WurstplusHack {
-    public static WurstplusOffhand INSTANCE;
-    public WurstplusOffhand() {
+public class NewOffhand extends WurstplusHack {
+    public NewOffhand() {
         super(WurstplusCategory.WURSTPLUS_COMBAT);
 
-        this.name        = "Offhand";
-        this.tag         = "Offhand";
-        this.description = "Switches shit to ur offhand";
-        INSTANCE = this;
+        this.name        = "NewOffhandNotWorking";
+        this.tag         = "NewOffhandNotWorking";
+        this.description = "offhand wip, not active this";
     }
-
+    WurstplusSetting info = create("info", "NotActiveThis", "WIPNoActive");
     public WurstplusSetting switch_mode = create("Offhand", "OffhandOffhand", "Totem", combobox("Totem", "Crystal", "Gapple", "None"));
     WurstplusSetting totem_switch = create("Totem HP", "OffhandTotemHP", 16, 0, 36);
 
