@@ -41,10 +41,10 @@ public class WurstplusAutoCrystal extends WurstplusHack {
 
     public WurstplusAutoCrystal() {
         super(WurstplusCategory.WURSTPLUS_COMBAT);
-
-        this.name        = "OldAutoCrystal";
-        this.tag         = "OldAutoCrystal";
-        this.description = "tf? use betterca, its better rofl";
+        // readapted but the same code
+        this.name = "OldAuto Crystal";
+        this.tag = "OldAutoCrystal";
+        this.description = "kills people (if ur good)";
     }
 
     WurstplusSetting debug = create("Debug", "CaDebug", false);

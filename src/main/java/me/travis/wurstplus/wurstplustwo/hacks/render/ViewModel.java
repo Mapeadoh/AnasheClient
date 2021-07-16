@@ -10,6 +10,7 @@ import me.zero.alpine.fork.listener.Listener;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.EnumHandSide;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ViewModel extends WurstplusHack {
     public ViewModel() {
@@ -17,9 +18,9 @@ public class ViewModel extends WurstplusHack {
 
         this.name        = "ViewModel";
         this.tag         = "ViewModel";
-        this.description = "works?";
+        this.description = "pasted from gamesense";
     }// works?
-    WurstplusSetting mode = create("Mode", "Mode", "Value", combobox("Value", "Fov", "Both"/*ambos en ingles*/));
+    WurstplusSetting mode = create("Mode", "Mode", "Value", combobox("Value",  "Fov", "Both"/*ambos en ingles*/, "ItemFov"));
     WurstplusSetting cancel_eat = create("NoEatAnim", "CancelEatAnim", true);
     WurstplusSetting x_left = create("LeftX", "LeftX", 0.0, -2.0, 2.0);
     WurstplusSetting y_left = create("LeftY", "LeftY", 0.0, -2.0, 2.0);
@@ -29,18 +30,9 @@ public class ViewModel extends WurstplusHack {
     WurstplusSetting y_right = create("RightY", "RightY", 0.0, -2.0, 2.0);
     WurstplusSetting z_right = create("RightZ", "RightZ", 0.0, -2.0, 2.0);
 
-    WurstplusSetting fov = create("ItemFov", "ItemFov", 130, 70, 200);
-    /* original code lololololololol
-    ModeSetting type = registerMode("Type", Arrays.asList("Value", "FOV", "Both"), "Value");
-    public BooleanSetting cancelEating = registerBoolean("No Eat", false);
-    DoubleSetting xLeft = registerDouble("Left X", 0.0, -2.0, 2.0);
-    DoubleSetting yLeft = registerDouble("Left Y", 0.2, -2.0, 2.0);
-    DoubleSetting zLeft = registerDouble("Left Z", -1.2, -2.0, 2.0);
-    DoubleSetting xRight = registerDouble("Right X", 0.0, -2.0, 2.0);
-    DoubleSetting yRight = registerDouble("Right Y", 0.2, -2.0, 2.0);
-    DoubleSetting zRight = registerDouble("Right Z", -1.2, -2.0, 2.0);
-    DoubleSetting fov = registerDouble("Item FOV", 130, 70, 200);
-    */
+    WurstplusSetting itemfov = create("ItemFov", "ItemFov", 130, 70, 200);
+    WurstplusSetting normalfov = create("Fov", "Fov", 130, 70, 200);
+    private float fov;
 
     @EventHandler
     private final Listener<TransformSideFirstPersonEvent> eventListener = new Listener<>(event -> {
@@ -53,16 +45,30 @@ public class ViewModel extends WurstplusHack {
         }
     });
 
-    @EventHandler
-    private final Listener<EntityViewRenderEvent.FOVModifier> fovModifierListener = new Listener<>(event -> {
-        if (mode.in("FOV") || mode.in("Both")) {
-            event.setFOV(fov.get_value(1));
+    @SubscribeEvent
+    public void fovOn(final EntityViewRenderEvent.FOVModifier e) {
+        if (this.mode.in("ItemFov")) {
+            e.setFOV((float)this.itemfov.get_value(1));
         }
-    });
-    public void enable(){
-        WurstplusEventBus.EVENT_BUS.subscribe(this);
     }
-    public void disable(){
+
+    public void enable() {
+        WurstplusEventBus.EVENT_BUS.subscribe(this);
+        fov = ViewModel.mc.gameSettings.fovSetting;
+    }
+
+    public void disable() {
         WurstplusEventBus.EVENT_BUS.unsubscribe(this);
+        ViewModel.mc.gameSettings.fovSetting = fov;
+    }
+
+    @Override
+    public void update() {
+        if (ViewModel.mc.world == null) {
+            return;
+        }
+        if (this.mode.in("Fov") || mode.in("Both")) {
+            ViewModel.mc.gameSettings.fovSetting = (float)this.normalfov.get_value(1);
+        }
     }
 }

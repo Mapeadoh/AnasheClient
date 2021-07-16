@@ -48,7 +48,7 @@ public class NewAutoCrystal extends WurstplusHack
     super(WurstplusCategory.WURSTPLUS_COMBAT);
     this.name = "NewAutoCrystal";
     this.tag = "NewAutoCrystal";
-    this.description = "hollowCA with changes bc Bv";
+    this.description = "Mappingqq";
     }
 
     WurstplusSetting debug = this.create("Debug", "CaDebug", false);
