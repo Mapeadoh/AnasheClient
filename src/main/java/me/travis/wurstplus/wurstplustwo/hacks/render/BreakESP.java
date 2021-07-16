@@ -1,134 +1,80 @@
-/**package me.travis.wurstplus.wurstplustwo.hacks.render;
+package me.travis.wurstplus.wurstplustwo.hacks.render;
 
-import com.gamesense.api.event.events.DrawBlockDamageEvent;
-import com.gamesense.api.event.events.RenderEvent;
-import com.gamesense.api.setting.values.BooleanSetting;
-import com.gamesense.api.setting.values.ColorSetting;
-import com.gamesense.api.setting.values.IntegerSetting;
-import com.gamesense.api.setting.values.ModeSetting;
-import com.gamesense.api.util.render.GSColor;
 import me.travis.turok.draw.RenderHelp;
-import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRender;
-import com.gamesense.api.util.world.GeometryMasks;
-import com.gamesense.client.module.Category;
-import com.gamesense.client.module.Module;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
-import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
-import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
-import me.zero.alpine.fork.listener.EventHandler;
-import me.zero.alpine.fork.listener.Listener;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.math.AxisAlignedBB;
+import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRender;
+import java.util.HashMap;
+import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import net.minecraft.util.math.BlockPos;
+import io.netty.util.internal.ConcurrentSet;
+import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 
-import java.util.Arrays;
+public class BreakESP extends WurstplusHack
+{
+    WurstplusSetting ignoreSelf;
+    WurstplusSetting onlyObby;
+    WurstplusSetting alpha;
+    WurstplusSetting fade;
+    WurstplusSetting red;
+    WurstplusSetting green;
+    WurstplusSetting blue;
+    private ConcurrentSet test;
+    public ConcurrentSet breaking;
+    float inc;
+    BlockPos pos;
+    public static BreakESP INSTANCE;
+    private Map alphaMap;
+    private ArrayList options;
 
-
-public class BreakESP extends WurstplusHack {
-    public BreakESP(){
+    public BreakESP() {
         super(WurstplusCategory.WURSTPLUS_RENDER);
+        this.ignoreSelf = this.create("IgnoreSelf", "IgnoreSelf", false);
+        this.onlyObby = this.create("OnlyObi", "OnlyObi", true);
+        this.alpha = this.create("Alpha", "Alpha", 50, 0, 255);
+        this.fade = this.create("Fade", "Fade", false);
+        this.red = this.create("Red", "Red", 255, 0, 255);
+        this.green = this.create("Green", "Green", 255, 0, 255);
+        this.blue = this.create("Blue", "Blue", 255, 0, 255);
+        this.test = new ConcurrentSet();
+        this.breaking = new ConcurrentSet();
+        this.alphaMap = new HashMap();
         this.name = "BreakESP";
         this.tag = "BreakESP";
-        this.description = "romper e ese pe";
-
+        this.description = "Render BreakESP";
+        this.alphaMap.put(0, 28);
+        this.alphaMap.put(1, 56);
+        this.alphaMap.put(2, 84);
+        this.alphaMap.put(3, 112);
+        this.alphaMap.put(4, 140);
+        this.alphaMap.put(5, 168);
+        this.alphaMap.put(6, 196);
+        this.alphaMap.put(7, 224);
+        this.alphaMap.put(8, 255);
+        this.alphaMap.put(9, 255);
     }
 
-    WurstplusSetting mode = create("Render", "Render", "Both", combobox("Outline", "Fill", "Both"));
-    WurstplusSetting lineWidth = create("Width", "Width" 1, 0, 5);
-    WurstplusSetting range = create("Range", "Range", 100, 1, 200);
-    WurstplusSetting cancelAnimation = create("No Animation", "NoAnim", true);
-    WurstplusSetting r = create("R", "CityR", 0, 0, 255);
-    WurstplusSetting g = create("G", "CityG", 255, 0, 255);
-    WurstplusSetting b = create("B", "CityB", 0, 0, 255);
-    WurstplusSetting a = create("A", "CityA", 50, 0, 255);
-
-    boolean outline = false;
-    boolean solid   = false;
-
-    public void render(WurstplusEventRender event) {
-        if (mc.player == null || mc.world == null) {
-            return;
-        }
-
-        mc.renderGlobal.damagedBlocks.forEach((integer, destroyBlockProgress) -> {
-            if (destroyBlockProgress != null) {
-
-                BlockPos blockPos = destroyBlockProgress.getPosition();
-
-                if (mc.world.getBlockState(blockPos).getBlock() == Blocks.AIR) {
-                    return;
-                }
-
-
-                if (blockPos.getDistance((int) mc.player.posX, (int) mc.player.posY, (int) mc.player.posZ) <= range.getValue()) {
-
-                    int progress = destroyBlockProgress.getPartialBlockDamage();
-                    AxisAlignedBB axisAlignedBB = mc.world.getBlockState(blockPos).getSelectedBoundingBox(mc.world, blockPos);
-
-                    renderESP(axisAlignedBB, progress, r.get_value(1), g.get_value(1), b.get_value(1), a.get_value(1));
-                }
+    @Override
+    public void render(final WurstplusEventRender var1) {
+        //qqqqqqqqqqqqqq, joder q sueño mañana lo arreglo
+        AtomicInteger var3 = new AtomicInteger();
+        BreakESP.mc.renderGlobal.damagedBlocks.forEach((var1x, var2) -> {
+            if (var2 != null && (!this.ignoreSelf.get_value(true) || BreakESP.mc.world.getEntityByID((int)var1x) != BreakESP.mc.player) && (!this.onlyObby.get_value(true) || BreakESP.mc.world.getBlockState(var2.getPosition()).getBlock() == Blocks.OBSIDIAN)) {
+                var3.set((int) ((this.fade.get_value(true)) ? this.alphaMap.get(var2.getPartialBlockDamage()) : Integer.valueOf(this.alpha.get_value(1))));
+                this.render_block(var2.getPosition(), var3.get());
             }
         });
     }
 
-    private void renderESP(AxisAlignedBB axisAlignedBB, int i, int r_value, int g_value, int value, int progress) {
-
-        double centerX = axisAlignedBB.minX + ((axisAlignedBB.maxX - axisAlignedBB.minX) / 2);
-        double centerY = axisAlignedBB.minY + ((axisAlignedBB.maxY - axisAlignedBB.minY) / 2);
-        double centerZ = axisAlignedBB.minZ + ((axisAlignedBB.maxZ - axisAlignedBB.minZ) / 2);
-        double progressValX = progress * ((axisAlignedBB.maxX - centerX) / 10);
-        double progressValY = progress * ((axisAlignedBB.maxY - centerY) / 10);
-        double progressValZ = progress * ((axisAlignedBB.maxZ - centerZ) / 10);
-
-        AxisAlignedBB axisAlignedBB1 = new AxisAlignedBB(centerX - progressValX, centerY - progressValY, centerZ - progressValZ, centerX + progressValX, centerY + progressValY, centerZ + progressValZ);
-
-        if (mode.in("Pretty")) {
-            outline = true;
-            solid   = true;
-        }
-
-        if (mode.in("Solid")) {
-            outline = false;
-            solid   = true;
-        }
-
-        if (mode.in("Outline")) {
-            outline = true;
-            solid   = false;
-        }
-
-        if (solid) {
-            RenderHelp.prepare("quads");
-            RenderHelp.draw_cube(RenderHelp.get_buffer_build(),
-                    pos.getX(), pos.getY(), pos.getZ(),
-                    1, off_set_h, 1,
-                    r.get_value(1), g.get_value(1), b.get_value(1), a.get_value(1),
-                    "all"
-            );
-
-            RenderHelp.release();
-        }
-
-
-        if (outline) {
-            RenderHelp.prepare("lines");
-            RenderHelp.draw_cube_line(RenderHelp.get_buffer_build(),
-                    pos.getX(), pos.getY(), pos.getZ(),
-                    1, off_set_h, 1,
-                    r.get_value(1), g.get_value(1), b.get_value(1), a.get_value(1),
-                    "all"
-            );
-
-            RenderHelp.release();
-        }
-        }
+    public void render_block(final BlockPos pos, final int alpha) {
+        final BlockPos render_block = pos;
+        final float h = 1.0f;
+        RenderHelp.prepare("quads");
+        RenderHelp.draw_cube(RenderHelp.get_buffer_build(), (float)render_block.getX(), (float)render_block.getY(), (float)render_block.getZ(), 1.0f, h, 1.0f, this.red.get_value(1), this.green.get_value(1), this.blue.get_value(1), alpha, "all");
+        RenderHelp.release();
     }
-
-    @SuppressWarnings("unused")
-    @EventHandler
-    private final Listener<DrawBlockDamageEvent> drawBlockDamageEventListener = new Listener<>(event -> {
-        if (cancelAnimation.getValue()) {
-            event.cancel();
-        }
-    });
-}*/
+}
