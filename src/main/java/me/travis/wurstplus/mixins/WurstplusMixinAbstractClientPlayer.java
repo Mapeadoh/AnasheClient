@@ -30,9 +30,9 @@ public abstract class WurstplusMixinAbstractClientPlayer {
             }
             ResourceLocation r;
             if (AnasheClient.get_setting_manager().get_setting_with_tag("Capes", "CapeCape").in("OG")) {
-                r = new ResourceLocation("custom/cape-old.png");
+                r = new ResourceLocation("assets/minecraft/custom/cape-old.png");
             } else {
-                r = new ResourceLocation("custom/cape.png");
+                r = new ResourceLocation("assets/minecraft/custom/cape.png");
             }
             callbackInfoReturnable.setReturnValue(r);
         }

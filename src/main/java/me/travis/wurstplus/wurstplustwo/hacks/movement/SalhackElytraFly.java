@@ -120,14 +120,14 @@ public final class SalhackElytraFly extends WurstplusHack{
     {
         if (mc.player == null || Flight.is_active())
             return;
-
-        /// Player must be wearing an elytra.
+        /*
+        /// ionar, it no works
         if (mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.ELYTRA)
             return;
-
+        */
         if (!mc.player.isElytraFlying())
         {
-            if (!mc.player.onGround && auto_fly.get_value(true))
+            if (!mc.player.onGround && mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == Items.ELYTRA && auto_fly.get_value(true) )
             {
                 if (!InstantFlyTimer.passed(1000))
                     return;

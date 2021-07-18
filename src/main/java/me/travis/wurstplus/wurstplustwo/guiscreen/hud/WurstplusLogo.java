@@ -10,7 +10,7 @@ public class WurstplusLogo extends WurstplusPinnable {
         super("Logo", "Logo", 1, 0, 0);
     }
 
-    ResourceLocation r = new ResourceLocation("custom/anashelogo.png");
+    ResourceLocation r = new ResourceLocation("assets/minecraft/custom/anashelogo.png");
 
     @Override
 	public void render() {
