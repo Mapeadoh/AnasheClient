@@ -70,6 +70,7 @@ public class NewAutoCrystal extends WurstplusHack
     WurstplusSetting raytrace = this.create("Raytrace", "CaRaytrace", false);
     WurstplusSetting auto_switch = this.create("Auto Switch", "CaAutoSwitch", true);
     WurstplusSetting anti_suicide = this.create("Anti Suicide", "CaAntiSuicide", true);
+    WurstplusSetting anti_suicide_hp = create("AntiSuicideHP", "AntiSuicideHP", 5, 1,20);
     WurstplusSetting client_side = this.create("Client Side", "CaClientSide", false);
     WurstplusSetting jumpy_mode = this.create("Jumpy Mode", "CaJumpyMode", false);
     WurstplusSetting sound = create("NoExplodeSound", "NoExplodeSound", false);
@@ -328,7 +329,7 @@ public class NewAutoCrystal extends WurstplusHack
                 if (self_damage > maximum_damage_self) {
                     continue;
                 }
-                if (this.anti_suicide.get_value(true) && NewAutoCrystal.mc.player.getHealth() + NewAutoCrystal.mc.player.getAbsorptionAmount() - self_damage <= 0.5) {
+                if (this.anti_suicide.get_value(true) && NewAutoCrystal.mc.player.getHealth() + NewAutoCrystal.mc.player.getAbsorptionAmount() - self_damage <= anti_suicide_hp.get_value(1)) {
                     continue;
                 }
                 if (target_damage <= best_damage || this.jumpy_mode.get_value(true)) {
@@ -390,7 +391,7 @@ public class NewAutoCrystal extends WurstplusHack
                 if (self_damage > maximum_damage_self) {
                     continue;
                 }
-                if (this.anti_suicide.get_value(true) && NewAutoCrystal.mc.player.getHealth() + NewAutoCrystal.mc.player.getAbsorptionAmount() - self_damage <= 0.5) {
+                if (this.anti_suicide.get_value(true) && NewAutoCrystal.mc.player.getHealth() + NewAutoCrystal.mc.player.getAbsorptionAmount() - self_damage <= anti_suicide_hp.get_value(1)) {
                     continue;
                 }
                 if (target_damage <= best_damage) {
