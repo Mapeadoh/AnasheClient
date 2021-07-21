@@ -48,7 +48,8 @@ public class WurstplusModuleManager {
 		add_hack(new WurstplusAnnouncer());
 
 		// Combat.
-		add_hack(new NewOffhand());
+		add_hack(new PistonCrystal());
+		//add_hack(new NewOffhand());
 		add_hack(new NewAutoCrystal());
 		add_hack(new AutoClick());
 		add_hack(new AutoLog());
@@ -105,7 +106,7 @@ public class WurstplusModuleManager {
 		add_hack(new PacketFly());
 		
 		// Render.
-		//add_hack(new PortalESP());
+		add_hack(new PortalESP());
 		add_hack(new Skeleton());
 		add_hack(new Ranges());
 		add_hack(new ExtraTab());
@@ -130,6 +131,7 @@ public class WurstplusModuleManager {
 		add_hack(new FullBright());
 
 		// Misc.
+		add_hack(new PerspectiveMod());
 		add_hack(new PacketCanceller());
 		add_hack(new AutoWither());
 		add_hack(new DeathDisable());

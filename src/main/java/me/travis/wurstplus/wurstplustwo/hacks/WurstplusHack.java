@@ -71,6 +71,10 @@ public class WurstplusHack implements Listenable {
 		return this.bind;
 	}
 
+	public int get_keybind() {
+		return this.bind;
+	}
+
 	public String get_bind(String type) {
 		String converted_bind = "null";
 

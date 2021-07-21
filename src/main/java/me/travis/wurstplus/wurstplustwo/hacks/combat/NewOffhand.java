@@ -55,6 +55,7 @@ public class NewOffhand extends WurstplusHack {
 
     @Override
     public void update() {
+        AnasheClient.get_module_manager().get_module_with_tag("Offhand").set_disable();
         if(nocreativebugs.get_value(true)){
             if (mc.player.isCreative()) {
                 this.toggle();
@@ -123,9 +124,6 @@ public class NewOffhand extends WurstplusHack {
         if (step == 2) {
             mc.playerController.windowClick(0, 45, 0, ClickType.PICKUP, mc.player);
             mc.playerController.windowClick(0, slot, 0, ClickType.PICKUP, mc.player);
-            switching = false;
-        }
-        if (step == 3) {
             String offhanditem = String.valueOf(mc.player.getHeldItemOffhand().getItem());
             switch (offhanditem) {
                 case "Items.END_CRYSTAL":
@@ -139,7 +137,7 @@ public class NewOffhand extends WurstplusHack {
                     return;
             }
             WurstplusMessageUtil.send_client_message(g + "[" + r + da + "OffHandModule" + r + g + "]" + r + " Now switching to: " + go + iteminoffhand);
-
+            switching = false;
         }
 
         mc.playerController.updateController();

@@ -1,127 +1,96 @@
 package me.travis.wurstplus.wurstplustwo.hacks.render;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockPortal;
-import net.minecraft.entity.player.EntityPlayer;
 import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
-import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRender;
-import me.travis.turok.draw.RenderHelp;
-import net.minecraft.util.math.BlockPos;
-
-import java.awt.*;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import java.util.ArrayList;
 import java.util.List;
+import me.travis.mapeadoh.clientstuff.floppa.RenderUtil;
+import net.minecraft.util.math.BlockPos;
+import java.awt.Color;
 
-public class PortalESP extends WurstplusHack {
+public class PortalESP extends WurstplusHack
+{
+    WurstplusSetting range = create("Range", "Range", 50, 10, 100);
+    public WurstplusSetting colorr = create("ColorR", "ColorR", 200, 0, 255);
+    public WurstplusSetting colorg = create("ColorG", "ColorG", 0, 0, 255);
+    public WurstplusSetting colorb = create("ColorB", "ColorB", 255, 0, 255);
+    public WurstplusSetting colora = create("ColorA", "ColorA", 150, 0, 255);
+    WurstplusSetting rainbow = create("Rainbow", "Rainbow", false);
+    WurstplusSetting rainbow_sat = create("Saturation", "Saturation", 1.0, 0.1, 1.0);
+
+    public Color blockColor;
+
     public PortalESP() {
         super(WurstplusCategory.WURSTPLUS_RENDER);
-
-        // Info.
-        this.name        = "PortalESP";
-        this.tag         = "PortalESP";
-        this.description = "a portal esp ._.";
+        this.name = "PortalESP";
+        this.tag = "PortalESP";
+        this.description = "From floppa";
     }
 
-    WurstplusSetting mode = create("Mode", "Mode", "Pretty", combobox("Pretty", "Solid", "Outline"));
-    WurstplusSetting r = create("R", "R", 230, 0, 255);
-    WurstplusSetting g = create("G", "G", 0, 0, 255);
-    WurstplusSetting b = create("B", "B", 0, 0, 255);
-    WurstplusSetting a = create("A", "A", 150, 0, 255);
-    WurstplusSetting height = create("Height", "Height", 0.2, 0.0, 1.0);
-    WurstplusSetting rainbow = create("RainBow", "RainBow", false);
-    WurstplusSetting sat = create("Saturation", "Satiation", 0.8, 0, 1);
-    WurstplusSetting brightness = create("Brightness", "Brightness", 0.8, 0, 1);
-    WurstplusSetting range = create("Range", "Range", 20, 0, 100);
+    public void render(final float partialTicks) {
+        if (PortalESP.mc.player != null && PortalESP.mc.world != null) {
+            for (final BlockPos pos : this.getSphere(PortalESP.mc.getRenderViewEntity().getPosition(), this.range.get_value(1), (int)(float)this.range.get_value(1), false, true, 0)) {
+                RenderUtil.drawBlockESP(pos, this.blockColor.getRGB(), 2.0f);
+            }
+        }
+    }
 
-    private int color_alpha;
-
-    List<BlockPos> blocks = new ArrayList<>();
-
-    boolean outline = false;
-    boolean solid   = false;
-
-    @Override
-    public void update() {
-        blocks.clear();
-        for (EntityPlayer player : mc.world.playerEntities) {
-            if (mc.player.getDistance(player) > range.get_value(1) || mc.player == player) continue;
-
-            for (int x = (int) PortalESP.mc.player.posX - this.range.get_value(1); x <= (int) PortalESP.mc.player.posX + range.get_value(1); ++x) {
-                for (int y = (int) PortalESP.mc.player.posY - this.range.get_value(1); y <= (int) PortalESP.mc.player.posY + range.get_value(1); ++y) {
-                    int z = (int) Math.max(PortalESP.mc.player.posZ - (double) this.range.get_value(1), 0.0);
-                    BlockPos pos = new BlockPos(x, y, z);
-                    Block block = PortalESP.mc.world.getBlockState(pos).getBlock();
-                    if (block instanceof BlockPortal) {
-                        this.blocks.add(pos);
+    public List<BlockPos> getSphere(final BlockPos pos, final float r, final int h, final boolean hollow, final boolean sphere, final int plus_y) {
+        final ArrayList<BlockPos> circleblocks = new ArrayList<BlockPos>();
+        final int cx = pos.getX();
+        final int cy = pos.getY();
+        final int cz = pos.getZ();
+        for (int x = cx - (int)r; x <= cx + r; ++x) {
+            for (int z = cz - (int)r; z <= cz + r; ++z) {
+                int y = sphere ? (cy - (int)r) : cy;
+                while (true) {
+                    final float f = sphere ? (cy + r) : ((float)(cy + h));
+                    if (y >= f) {
+                        break;
                     }
-                    ++z;
+                    final double dist = (cx - x) * (cx - x) + (cz - z) * (cz - z) + (sphere ? ((cy - y) * (cy - y)) : 0);
+                    if (dist < r * r && (!hollow || dist >= (r - 1.0f) * (r - 1.0f))) {
+                        final BlockPos l = new BlockPos(x, y + plus_y, z);
+                        if (!l.equals((Object)new BlockPos(PortalESP.mc.player.posX, PortalESP.mc.player.posY, PortalESP.mc.player.posZ))) {
+                            if (this.getBlock(l) == Blocks.PORTAL) {
+                                circleblocks.add(l);
+                                this.blockColor = new Color(colorr.get_value(1), colorg.get_value(1), colorb.get_value(1), colora.get_value(1));
+                            }
+                        }
+                    }
+                    ++y;
                 }
             }
         }
-            if (rainbow.get_value(true)) {
-                cycle_rainbow();
-            }
+        return circleblocks;
+    }
+
+    public Block getBlock(final BlockPos pos) {
+        final IBlockState ibs = PortalESP.mc.world.getBlockState(pos);
+        final Block block = ibs.getBlock();
+        return block;
+    }
+
+    public void update(){
+        if (rainbow.get_value(true)) {
+            cycle_rainbow();
         }
+    }
+    public void cycle_rainbow() {
 
-        @Override
-        public void render (WurstplusEventRender event){
+        float[] tick_color = {
+                (System.currentTimeMillis() % (360 * 32)) / (360f * 32)
+        };
 
-            float off_set_h = (float) height.get_value(1.0);
+        int color_rgb_o = Color.HSBtoRGB(tick_color[0], rainbow_sat.get_value(1), 1);
 
-            for (BlockPos pos : blocks) {
+        colorr.set_value((color_rgb_o >> 16) & 0xFF);
+        colorg.set_value((color_rgb_o >> 8) & 0xFF);
+        colorb.set_value(color_rgb_o & 0xFF);
 
-                if (mode.in("Pretty")) {
-                    outline = true;
-                    solid = true;
-                }
-
-                if (mode.in("Solid")) {
-                    outline = false;
-                    solid = true;
-                }
-
-                if (mode.in("Outline")) {
-                    outline = true;
-                    solid = false;
-                }
-
-                if (solid) {
-                    RenderHelp.prepare("quads");
-                    RenderHelp.draw_cube(RenderHelp.get_buffer_build(),
-                            pos.getX(), pos.getY(), pos.getZ(),
-                            1, off_set_h, 1,
-                            r.get_value(1), g.get_value(1), b.get_value(1), a.get_value(1),
-                            "all"
-                    );
-
-                    RenderHelp.release();
-                }
-
-
-                if (outline) {
-                    RenderHelp.prepare("lines");
-                    RenderHelp.draw_cube_line(RenderHelp.get_buffer_build(),
-                            pos.getX(), pos.getY(), pos.getZ(),
-                            1, off_set_h, 1,
-                            r.get_value(1), g.get_value(1), b.get_value(1), a.get_value(1),
-                            "all"
-                    );
-
-                    RenderHelp.release();
-                }
-            }
-        }
-        public void cycle_rainbow () {
-
-            float[] tick_color = {
-                    (System.currentTimeMillis() % (360 * 32)) / (360f * 32)
-            };
-
-            int color_rgb = Color.HSBtoRGB(tick_color[0], sat.get_value(1), brightness.get_value(1));
-            r.set_value((color_rgb >> 16) & 0xFF);
-            g.set_value((color_rgb >> 8) & 0xFF);
-            b.set_value(color_rgb & 0xFF);
     }
 }
