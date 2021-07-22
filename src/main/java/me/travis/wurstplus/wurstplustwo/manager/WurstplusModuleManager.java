@@ -48,6 +48,8 @@ public class WurstplusModuleManager {
 		add_hack(new WurstplusAnnouncer());
 
 		// Combat.
+		add_hack(new AutoAnvil());
+		add_hack(new CevBreaker());
 		add_hack(new PistonCrystal());
 		//add_hack(new NewOffhand());
 		add_hack(new NewAutoCrystal());
