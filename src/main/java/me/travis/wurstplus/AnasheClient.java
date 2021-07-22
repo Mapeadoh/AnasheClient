@@ -7,6 +7,7 @@ import me.travis.wurstplus.wurstplustwo.event.WurstplusEventHandler;
 import me.travis.wurstplus.wurstplustwo.event.WurstplusEventRegister;
 import me.travis.wurstplus.wurstplustwo.guiscreen.WurstplusGUI;
 import me.travis.wurstplus.wurstplustwo.guiscreen.WurstplusHUD;
+import me.travis.wurstplus.wurstplustwo.hacks.client.WurstplusClickGUI;
 import me.travis.wurstplus.wurstplustwo.manager.*;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
@@ -69,8 +70,20 @@ public class AnasheClient {
 		send_minecraft_log("done");
 
 		send_minecraft_log("initialising guis");
+		if(WurstplusClickGUI.INSTANCE.customtitle.get_value(true)){
+			if(WurstplusClickGUI.INSTANCE.displaytitle.in("AnasheClient")){
+				Display.setTitle("AnasheClient+ | Backdoored by Nolebito");
+			} if(WurstplusClickGUI.INSTANCE.displaytitle.in("SinanBackdoor")){
+				Display.setTitle("SinanBackdoor | We have ur token Bv");
+			} if(WurstplusClickGUI.INSTANCE.displaytitle.in("NullWare+")){
+				Display.setTitle("NullWare Client +");
+			}if (WurstplusClickGUI.INSTANCE.displaytitle.in("W+2Better")){
+				Display.setTitle("W+2Better = tokenlogger, why are u using this lol");
+			}
+		} else {
+			Display.setTitle("AnasheClient+ | discord.gg/friv");
+		}
 
-		Display.setTitle("AnasheClient+ | Backdoored by Nolebito");
 		click_gui = new WurstplusGUI();
 		click_hud = new WurstplusHUD();
 

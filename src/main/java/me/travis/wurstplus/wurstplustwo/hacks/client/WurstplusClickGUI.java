@@ -8,7 +8,7 @@ import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import java.awt.*;
 
 public class WurstplusClickGUI extends WurstplusHack {
-
+public static WurstplusClickGUI INSTANCE;
 	public WurstplusClickGUI() {
 		super(WurstplusCategory.WURSTPLUS_CLIENT);
 
@@ -17,8 +17,10 @@ public class WurstplusClickGUI extends WurstplusHack {
 		this.description = "The main gui";
 
 		set_bind(AnasheClient.WURSTPLUS_KEY_GUI);
+		INSTANCE = this;
 	}
-
+	public WurstplusSetting customtitle = create("DisplayTitle", "DisplayTitle", true);
+	public WurstplusSetting displaytitle = create("DisplayTitleMode", "Display Modes", "AnasheClient", combobox("SinanBackdoor", "NullWare+", "W+2Better"));
 	WurstplusSetting label_frame = create("info", "ClickGUIInfoFrame", "Frames");
 
 	WurstplusSetting name_frame_r = create("Name R", "ClickGUINameFrameR", 109, 0, 255);

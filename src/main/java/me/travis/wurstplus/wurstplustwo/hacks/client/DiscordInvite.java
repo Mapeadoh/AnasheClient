@@ -25,7 +25,7 @@ public class DiscordInvite extends WurstplusHack {
         if(mode.in("NullName")){
             try {
                 if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-                    Desktop.getDesktop().browse(new URI("https://discord.gg/nullname"));
+                    Desktop.getDesktop().browse(new URI("https://discord.gg/friv"));
                 }
             } catch (Exception e) {e.printStackTrace();}
             toggle();
@@ -33,7 +33,7 @@ public class DiscordInvite extends WurstplusHack {
         if (mode.in("AnasheClient")){
             try {
                 if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-                    Desktop.getDesktop().browse(new URI("https://discord.gg/nullname"));
+                    Desktop.getDesktop().browse(new URI("https://discord.gg/friv"));
                 }
             } catch (Exception e) {e.printStackTrace();}
             toggle();

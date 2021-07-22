@@ -4,8 +4,6 @@ import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.lwjgl.input.Keyboard;
-import net.minecraftforge.fml.common.gameevent.InputEvent;
 
 public class PerspectiveMod extends WurstplusHack
 {
@@ -14,8 +12,8 @@ public class PerspectiveMod extends WurstplusHack
     public float cameraYaw;
 
     public PerspectiveMod() {
-        super(WurstplusCategory.WURSTPLUS_MISC);
-        this.name = "360Perspective";
+        super(WurstplusCategory.WURSTPLUS_RENDER);
+        this.name = "PerspectiveMod";
         this.tag = "PerspectiveMod";
         this.description = "pasted from floppahack again";
         PerspectiveMod.INSTANCE = this;
@@ -35,13 +33,10 @@ public class PerspectiveMod extends WurstplusHack
         }
     }
 
-    @SubscribeEvent
-    public void onKey(final InputEvent.KeyInputEvent event) {
-        if (Keyboard.isKeyDown(this.get_keybind())) {
+    public void enable() {
             this.cameraPitch = PerspectiveMod.mc.player.rotationPitch;
             this.cameraYaw = PerspectiveMod.mc.player.rotationYaw;
             PerspectiveMod.mc.gameSettings.thirdPersonView = (this.is_active() ? 1 : 0);
-        }
     }
 
     @SubscribeEvent

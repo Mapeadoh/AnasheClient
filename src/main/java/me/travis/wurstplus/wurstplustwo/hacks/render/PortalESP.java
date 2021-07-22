@@ -31,16 +31,16 @@ public class PortalESP extends WurstplusHack
         this.description = "From floppa";
     }
 
-    public void render(final float partialTicks) {
+    public void render() {
         if (PortalESP.mc.player != null && PortalESP.mc.world != null) {
-            for (final BlockPos pos : this.getSphere(PortalESP.mc.getRenderViewEntity().getPosition(), this.range.get_value(1), (int)(float)this.range.get_value(1), false, true, 0)) {
+            for (final BlockPos pos : this.getSphere(mc.getRenderViewEntity().getPosition(), range.get_value(1), range.get_value(1), false, true, 0)) {
                 RenderUtil.drawBlockESP(pos, this.blockColor.getRGB(), 2.0f);
             }
         }
     }
 
     public List<BlockPos> getSphere(final BlockPos pos, final float r, final int h, final boolean hollow, final boolean sphere, final int plus_y) {
-        final ArrayList<BlockPos> circleblocks = new ArrayList<BlockPos>();
+        final ArrayList<BlockPos> circleblocks = new ArrayList<>();
         final int cx = pos.getX();
         final int cy = pos.getY();
         final int cz = pos.getZ();
@@ -55,8 +55,8 @@ public class PortalESP extends WurstplusHack
                     final double dist = (cx - x) * (cx - x) + (cz - z) * (cz - z) + (sphere ? ((cy - y) * (cy - y)) : 0);
                     if (dist < r * r && (!hollow || dist >= (r - 1.0f) * (r - 1.0f))) {
                         final BlockPos l = new BlockPos(x, y + plus_y, z);
-                        if (!l.equals((Object)new BlockPos(PortalESP.mc.player.posX, PortalESP.mc.player.posY, PortalESP.mc.player.posZ))) {
-                            if (this.getBlock(l) == Blocks.PORTAL) {
+                        if (!l.equals(new BlockPos(PortalESP.mc.player.posX, PortalESP.mc.player.posY, PortalESP.mc.player.posZ))) {
+                            if (this.getBlock(l) == Blocks.PORTAL || getBlock(l) == Blocks.END_PORTAL) {
                                 circleblocks.add(l);
                                 this.blockColor = new Color(colorr.get_value(1), colorg.get_value(1), colorb.get_value(1), colora.get_value(1));
                             }
@@ -71,8 +71,7 @@ public class PortalESP extends WurstplusHack
 
     public Block getBlock(final BlockPos pos) {
         final IBlockState ibs = PortalESP.mc.world.getBlockState(pos);
-        final Block block = ibs.getBlock();
-        return block;
+        return ibs.getBlock();
     }
 
     public void update(){

@@ -78,9 +78,9 @@ public class PistonCrystal extends WurstplusHack
                 final CPacketUseEntity attackPacket = new CPacketUseEntity();
                 attackPacket.entityId = crystals.get(0).getEntityId();
                 attackPacket.action = CPacketUseEntity.Action.ATTACK;
-                PistonCrystal.mc.player.connection.sendPacket((Packet)attackPacket);
+                PistonCrystal.mc.player.connection.sendPacket(attackPacket);
                 if (this.timer.passed(this.breakDelay.get_value(1))) {
-                    PistonCrystal.mc.player.connection.sendPacket((Packet)new CPacketUseEntity());
+                    PistonCrystal.mc.player.connection.sendPacket(new CPacketUseEntity());
                 }
             }
         }
