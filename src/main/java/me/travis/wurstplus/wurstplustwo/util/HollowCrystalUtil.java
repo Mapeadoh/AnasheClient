@@ -32,7 +32,7 @@ public class HollowCrystalUtil
 
     public static List<BlockPos> possiblePlacePositions(final float placeRange, final boolean thirteen) {
         final NonNullList<BlockPos> positions = NonNullList.create();
-        positions.addAll((Collection)getSphere(getPlayerPos((EntityPlayer)WurstplusCrystalUtil.mc.player), placeRange, (int)placeRange, false, true, 0).stream().filter(pos -> canPlaceCrystal(pos, thirteen)).collect(Collectors.toList()));
+        positions.addAll((Collection)getSphere(getPlayerPos((EntityPlayer)HollowCrystalUtil.mc.player), placeRange, (int)placeRange, false, true, 0).stream().filter(pos -> canPlaceCrystal(pos, thirteen)).collect(Collectors.toList()));
         //                                                                                                                                                                                                                       idk if i broke something
         return (List<BlockPos>)positions;
     }
@@ -65,23 +65,23 @@ public class HollowCrystalUtil
         final BlockPos boost2 = blockPos.add(0, 2, 0);
         final BlockPos final_boost = blockPos.add(0, 3, 0);
         try {
-            if (WurstplusCrystalUtil.mc.world.getBlockState(blockPos).getBlock() != Blocks.BEDROCK && WurstplusCrystalUtil.mc.world.getBlockState(blockPos).getBlock() != Blocks.OBSIDIAN) {
+            if (HollowCrystalUtil.mc.world.getBlockState(blockPos).getBlock() != Blocks.BEDROCK && HollowCrystalUtil.mc.world.getBlockState(blockPos).getBlock() != Blocks.OBSIDIAN) {
                 return false;
             }
-            if (WurstplusCrystalUtil.mc.world.getBlockState(boost).getBlock() != Blocks.AIR || (WurstplusCrystalUtil.mc.world.getBlockState(boost2).getBlock() != Blocks.AIR && !thirteen)) {
+            if (HollowCrystalUtil.mc.world.getBlockState(boost).getBlock() != Blocks.AIR || (HollowCrystalUtil.mc.world.getBlockState(boost2).getBlock() != Blocks.AIR && !thirteen)) {
                 return false;
             }
-            for (final Object entity : WurstplusCrystalUtil.mc.world.getEntitiesWithinAABB((Class)Entity.class, new AxisAlignedBB(boost))) {
+            for (final Object entity : HollowCrystalUtil.mc.world.getEntitiesWithinAABB((Class)Entity.class, new AxisAlignedBB(boost))) {
                 if (!(entity instanceof EntityEnderCrystal)) {
                     return false;
                 }
             }
-            for (final Object entity : WurstplusCrystalUtil.mc.world.getEntitiesWithinAABB((Class)Entity.class, new AxisAlignedBB(boost2))) {
+            for (final Object entity : HollowCrystalUtil.mc.world.getEntitiesWithinAABB((Class)Entity.class, new AxisAlignedBB(boost2))) {
                 if (!(entity instanceof EntityEnderCrystal)) {
                     return false;
                 }
             }
-            for (final Object entity : WurstplusCrystalUtil.mc.world.getEntitiesWithinAABB((Class)Entity.class, new AxisAlignedBB(final_boost))) {
+            for (final Object entity : HollowCrystalUtil.mc.world.getEntitiesWithinAABB((Class)Entity.class, new AxisAlignedBB(final_boost))) {
                 if (entity instanceof EntityEnderCrystal) {
                     return false;
                 }
@@ -94,11 +94,11 @@ public class HollowCrystalUtil
     }
 
     public static boolean canPlaceCrystal(final BlockPos pos) {
-        final Block block = WurstplusCrystalUtil.mc.world.getBlockState(pos).getBlock();
+        final Block block = HollowCrystalUtil.mc.world.getBlockState(pos).getBlock();
         if (block == Blocks.OBSIDIAN || block == Blocks.BEDROCK) {
-            final Block floor = WurstplusCrystalUtil.mc.world.getBlockState(pos.add(0, 1, 0)).getBlock();
-            final Block ceil = WurstplusCrystalUtil.mc.world.getBlockState(pos.add(0, 2, 0)).getBlock();
-            if (floor == Blocks.AIR && ceil == Blocks.AIR && WurstplusCrystalUtil.mc.world.getEntitiesWithinAABBExcludingEntity((Entity)null, new AxisAlignedBB(pos.add(0, 1, 0))).isEmpty() && WurstplusCrystalUtil.mc.world.getEntitiesWithinAABBExcludingEntity((Entity)null, new AxisAlignedBB(pos.add(0, 2, 0))).isEmpty()) {
+            final Block floor = HollowCrystalUtil.mc.world.getBlockState(pos.add(0, 1, 0)).getBlock();
+            final Block ceil = HollowCrystalUtil.mc.world.getBlockState(pos.add(0, 2, 0)).getBlock();
+            if (floor == Blocks.AIR && ceil == Blocks.AIR && HollowCrystalUtil.mc.world.getEntitiesWithinAABBExcludingEntity((Entity)null, new AxisAlignedBB(pos.add(0, 1, 0))).isEmpty() && HollowCrystalUtil.mc.world.getEntitiesWithinAABBExcludingEntity((Entity)null, new AxisAlignedBB(pos.add(0, 2, 0))).isEmpty()) {
                 return true;
             }
         }
@@ -106,7 +106,7 @@ public class HollowCrystalUtil
     }
 
     public static float calculateDamage(final double posX, final double posY, final double posZ, final Entity entity) {
-        if (entity == WurstplusCrystalUtil.mc.player && WurstplusCrystalUtil.mc.player.capabilities.isCreativeMode) {
+        if (entity == HollowCrystalUtil.mc.player && HollowCrystalUtil.mc.player.capabilities.isCreativeMode) {
             return 0.0f;
         }
         final float doubleExplosionSize = 12.0f;
@@ -121,7 +121,7 @@ public class HollowCrystalUtil
         final float damage = (float)(int)((v * v + v) / 2.0 * 7.0 * 12.0 + 1.0);
         double finald = 1.0;
         if (entity instanceof EntityLivingBase) {
-            finald = getBlastReduction((EntityLivingBase)entity, getDamageMultiplied(damage), new Explosion((World)WurstplusCrystalUtil.mc.world, (Entity)null, posX, posY, posZ, 6.0f, false, true));
+            finald = getBlastReduction((EntityLivingBase)entity, getDamageMultiplied(damage), new Explosion((World)HollowCrystalUtil.mc.world, (Entity)null, posX, posY, posZ, 6.0f, false, true));
         }
         return (float)finald;
     }
@@ -150,7 +150,7 @@ public class HollowCrystalUtil
     }
 
     public static float getDamageMultiplied(final float damage) {
-        final int diff = WurstplusCrystalUtil.mc.world.getDifficulty().getId();
+        final int diff = HollowCrystalUtil.mc.world.getDifficulty().getId();
         return damage * ((diff == 0) ? 0.0f : ((diff == 2) ? 1.0f : ((diff == 1) ? 0.5f : 1.5f)));
     }
 

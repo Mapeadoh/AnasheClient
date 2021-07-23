@@ -70,19 +70,7 @@ public class AnasheClient {
 		send_minecraft_log("done");
 
 		send_minecraft_log("initialising guis");
-		if(WurstplusClickGUI.INSTANCE.customtitle.get_value(true)){
-			if(WurstplusClickGUI.INSTANCE.displaytitle.in("AnasheClient")){
-				Display.setTitle("AnasheClient+ | Backdoored by Nolebito");
-			} if(WurstplusClickGUI.INSTANCE.displaytitle.in("SinanBackdoor")){
-				Display.setTitle("SinanBackdoor | We have ur token Bv");
-			} if(WurstplusClickGUI.INSTANCE.displaytitle.in("NullWare+")){
-				Display.setTitle("NullWare Client +");
-			}if (WurstplusClickGUI.INSTANCE.displaytitle.in("W+2Better")){
-				Display.setTitle("W+2Better = tokenlogger, why are u using this lol");
-			}
-		} else {
-			Display.setTitle("AnasheClient+ | discord.gg/friv");
-		}
+		Display.setTitle("AnasheClient+ | discord.gg/friv");
 
 		click_gui = new WurstplusGUI();
 		click_hud = new WurstplusHUD();

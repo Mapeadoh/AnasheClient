@@ -30,6 +30,9 @@ public class WurstplusSurround extends WurstplusHack {
 
 	WurstplusSetting rotate = create("Rotate", "SurroundSmoth", true);
 	WurstplusSetting hybrid = create("Hybrid", "SurroundHybrid", true);
+	/* in test, if ca silentswitch works with surround (and modules with silentswitch like holefill or selftrap) i dont put this
+	WurstplusSetting hand_switch = create("Switch", "Switch", true);
+	WurstplusSetting switch_to = create("Switch To", "Switch To", "OffHand", combobox("OffHand", "MainHand"));*/
 	WurstplusSetting triggerable = create("Toggle", "SurroundToggle", true);
 	WurstplusSetting toggle_off_ground = create("ToggleOffGround", "TogleOffGround", true);
 	WurstplusSetting center = create("Center", "SurroundCenter", false);

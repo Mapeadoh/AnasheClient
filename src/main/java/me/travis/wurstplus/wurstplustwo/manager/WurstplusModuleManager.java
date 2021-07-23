@@ -109,7 +109,6 @@ public class WurstplusModuleManager {
 		
 		// Render.
 		add_hack(new PlayerGlow());
-		add_hack(new PortalESP());
 		add_hack(new Skeleton());
 		add_hack(new Ranges());
 		add_hack(new ExtraTab());

@@ -4,6 +4,7 @@ import me.travis.turok.draw.RenderHelp;
 import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRender;
 import me.travis.wurstplus.wurstplustwo.util.*;
+import net.minecraft.network.play.client.CPacketHeldItemChange;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemTool;
@@ -68,9 +69,8 @@ public class NewAutoCrystal extends WurstplusHack
     WurstplusSetting max_self_damage = this.create("Max Self Damage", "CaMaxSelfDamage", 6, 0, 20);
     WurstplusSetting rotate_mode = this.create("Rotate", "CaRotateMode", "Good", this.combobox("Off", "Old", "Const", "Good"));
     WurstplusSetting raytrace = this.create("Raytrace", "CaRaytrace", false);
-    WurstplusSetting auto_switch = this.create("Auto Switch", "CaAutoSwitch", true);
+    WurstplusSetting Switch = create("Switch", "Switch", "Silent", combobox("Silent", "Normal", "None"));
     WurstplusSetting anti_suicide = this.create("Anti Suicide", "CaAntiSuicide", true);
-    WurstplusSetting anti_suicide_hp = create("AntiSuicideHP", "AntiSuicideHP", 5, 1,20);
     WurstplusSetting client_side = this.create("Client Side", "CaClientSide", false);
     WurstplusSetting jumpy_mode = this.create("Jumpy Mode", "CaJumpyMode", false);
     WurstplusSetting sound = create("NoExplodeSound", "NoExplodeSound", false);
@@ -118,6 +118,7 @@ public class NewAutoCrystal extends WurstplusHack
     private int break_timeout;
     private int break_delay_counter;
     private int place_delay_counter;
+    private EnumHand hand = null;
     CPacketPlayer p;
     CPacketPlayerTryUseItemOnBlock p2;
     SPacketSoundEffect packet;
@@ -329,7 +330,7 @@ public class NewAutoCrystal extends WurstplusHack
                 if (self_damage > maximum_damage_self) {
                     continue;
                 }
-                if (this.anti_suicide.get_value(true) && NewAutoCrystal.mc.player.getHealth() + NewAutoCrystal.mc.player.getAbsorptionAmount() - self_damage <= anti_suicide_hp.get_value(1)) {
+                if (this.anti_suicide.get_value(true) && NewAutoCrystal.mc.player.getHealth() + NewAutoCrystal.mc.player.getAbsorptionAmount() - self_damage <= 0.5) {
                     continue;
                 }
                 if (target_damage <= best_damage || this.jumpy_mode.get_value(true)) {
@@ -391,7 +392,7 @@ public class NewAutoCrystal extends WurstplusHack
                 if (self_damage > maximum_damage_self) {
                     continue;
                 }
-                if (this.anti_suicide.get_value(true) && NewAutoCrystal.mc.player.getHealth() + NewAutoCrystal.mc.player.getAbsorptionAmount() - self_damage <= anti_suicide_hp.get_value(1)) {
+                if (this.anti_suicide.get_value(true) && NewAutoCrystal.mc.player.getHealth() + NewAutoCrystal.mc.player.getAbsorptionAmount() - self_damage <= 0.5) {
                     continue;
                 }
                 if (target_damage <= best_damage) {
@@ -416,22 +417,42 @@ public class NewAutoCrystal extends WurstplusHack
         this.place_delay_counter = 0;
         this.already_attacking = false;
         boolean offhand_check = false;
-        if (NewAutoCrystal.mc.player.getHeldItemOffhand().getItem() != Items.END_CRYSTAL) {
-            if (NewAutoCrystal.mc.player.getHeldItemMainhand().getItem() != Items.END_CRYSTAL && this.auto_switch.get_value(true)) {
-                if (this.find_crystals_hotbar() == -1) {
-                    return;
-                }
+        if (find_crystals_hotbar() != -1 && Switch.in("Normal") && !Switch.in("Silent")) {
                 NewAutoCrystal.mc.player.inventory.currentItem = this.find_crystals_hotbar();
+                return;
+        }
+            //silent switch
+            if(Switch.in("Silent")){
+                if(find_crystals_hotbar() != -1){
+                    if(mc.player.isHandActive()){
+                        hand = mc.player.getActiveHand();
+                    }
+                    mc.player.connection.sendPacket(new CPacketHeldItemChange(find_crystals_hotbar()));
+                }
+            }
+        if(mc.player.getHeldItemOffhand().getItem() != Items.END_CRYSTAL) {
+            if (mc.player.getHeldItemMainhand().getItem() != Items.END_CRYSTAL && Switch.in("Normal")) {
                 return;
             }
         }
-        else {
+        else{
             offhand_check = true;
         }
+
         this.did_anything = true;
         this.rotate_to_pos(target_block);
         WurstplusBlockUtil.placeCrystalOnBlock(target_block, offhand_check ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND);
         this.placePosList.add(target_block);
+
+        if (Switch.in("Silent")) {
+            if (find_crystals_hotbar() != -1) {
+                if ( hand != null) {
+                    mc.player.setActiveHand(hand);
+                }
+                mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
+
+            }
+        }
     }
 
     public boolean get_armor_fucker(final EntityPlayer p) {
