@@ -34,7 +34,7 @@ import me.zero.alpine.fork.listener.EventHandler;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventDamageBlock;
 import me.zero.alpine.fork.listener.Listener;
 import net.minecraft.entity.player.EntityPlayer;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 
 public class CevBreaker extends WurstplusHack

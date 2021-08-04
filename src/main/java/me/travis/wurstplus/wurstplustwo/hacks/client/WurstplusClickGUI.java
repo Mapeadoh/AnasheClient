@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.hacks.client;
 
 import me.travis.wurstplus.AnasheClient;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 
@@ -16,12 +16,11 @@ public static WurstplusClickGUI INSTANCE;
 		this.tag         = "GUI";
 		this.description = "The main gui";
 
-		set_bind(AnasheClient.WURSTPLUS_KEY_GUI);
 		INSTANCE = this;
 	}
 	public WurstplusSetting customtitle = create("DisplayTitle", "DisplayTitle", true);
 	public WurstplusSetting displaytitle = create("DisplayTitleMode", "Display Modes", "AnasheClient", combobox("SinanBackdoor", "NullWare+", "W+2Better"));
-	WurstplusSetting label_frame = create("info", "ClickGUIInfoFrame", "Frames");
+	//WurstplusSetting label_frame = create("info", "ClickGUIInfoFrame", "Frames");
 
 	WurstplusSetting name_frame_r = create("Name R", "ClickGUINameFrameR", 109, 0, 255);
 	WurstplusSetting name_frame_g = create("Name G", "ClickGUINameFrameG", 101, 0, 255);
@@ -39,7 +38,7 @@ public static WurstplusClickGUI INSTANCE;
 	WurstplusSetting border_frame_b = create("Border B", "ClickGUIBorderFrameB", 74, 0, 255);
 	WurstplusSetting rainbowborder = create("RainbowBorder", "RainbowBorder", false);
 
-	WurstplusSetting label_widget = create("info", "ClickGUIInfoWidget", "Widgets");
+	//WurstplusSetting label_widget = create("info", "ClickGUIInfoWidget", "Widgets");
 
 	WurstplusSetting name_widget_r = create("Name R", "ClickGUINameWidgetR", 197, 0, 255);
 	WurstplusSetting name_widget_g = create("Name G", "ClickGUINameWidgetG", 197, 0, 255);
@@ -107,20 +106,6 @@ public static WurstplusClickGUI INSTANCE;
 		}
 		if (rainbowborderwid.get_value(true)) {
 			widgetborder_rainbow();
-		}
-	}
-
-	@Override
-	public void enable() {
-		if (mc.world != null && mc.player != null) {
-			mc.displayGuiScreen(AnasheClient.click_gui);
-		}
-	}
-
-	@Override
-	public void disable() {
-		if (mc.world != null && mc.player != null) {
-			mc.displayGuiScreen(null);
 		}
 	}
 

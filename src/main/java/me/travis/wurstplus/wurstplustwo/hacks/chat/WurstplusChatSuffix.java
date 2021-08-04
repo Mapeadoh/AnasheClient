@@ -2,7 +2,7 @@ package me.travis.wurstplus.wurstplustwo.hacks.chat;
 
 import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventPacket;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.zero.alpine.fork.listener.EventHandler;
@@ -34,7 +34,7 @@ public class WurstplusChatSuffix extends WurstplusHack {
 
 	String[] random_client_name = {
 		"  nashe",
-		"  ",
+		" iJese ",
 		"  backdoored",
 		"  momerosplus",
 		"  discord.gg/nullname",

@@ -3,7 +3,7 @@ package me.travis.wurstplus.wurstplustwo.hacks.dev;
 import me.travis.mapeadoh.clientstuff.wp3.events.RenderItemEvent;
 import me.travis.mapeadoh.clientstuff.wp3.events.CommitEvent;
 import me.travis.mapeadoh.clientstuff.wp3.events.EventPriority;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 

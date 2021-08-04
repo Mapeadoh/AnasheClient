@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.hacks.movement;
 
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventMotionUpdate;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.zero.alpine.fork.listener.EventHandler;

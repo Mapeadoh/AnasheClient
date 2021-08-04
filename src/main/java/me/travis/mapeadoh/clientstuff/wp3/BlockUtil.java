@@ -1,7 +1,7 @@
 package me.travis.mapeadoh.clientstuff.wp3;
 
 import me.travis.wurstplus.wurstplustwo.event.WurstplusEventHandler;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

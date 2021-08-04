@@ -6,7 +6,7 @@ import net.minecraft.network.play.client.CPacketPlayer;
 import me.travis.mapeadoh.clientstuff.teslaclient.MotionUtils;
 import net.minecraft.entity.Entity;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 
 public class NewStep extends WurstplusHack

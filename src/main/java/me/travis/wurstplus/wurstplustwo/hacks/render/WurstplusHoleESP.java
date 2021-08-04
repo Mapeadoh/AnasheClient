@@ -2,7 +2,7 @@ package me.travis.wurstplus.wurstplustwo.hacks.render;
 
 import me.travis.turok.draw.RenderHelp;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRender;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusPair;
@@ -30,9 +30,9 @@ public class WurstplusHoleESP extends WurstplusHack {
 	WurstplusSetting mode 				= create("Mode", "HoleESPMode", "Pretty", combobox("Pretty", "Solid", "Outline"));
 	WurstplusSetting off_set 			= create("Height", "HoleESPOffSetSide", 0.2, 0.0, 1.0);
 	WurstplusSetting range   			= create("Range", "HoleESPRange", 6, 1, 12);
-	WurstplusSetting hide_own         	= create("Hide Own", "HoleESPHideOwn", true);
+	WurstplusSetting hide_own         	= create("Hide Own", "HoleESPHideOwn", false);
 
-	WurstplusSetting bedrock_view 		= create("info", "HoleESPbedrock", "Bedrock");
+	//WurstplusSetting bedrock_view 		= create("info", "HoleESPbedrock", "Bedrock");
 	WurstplusSetting bedrock_enable 	= create("Bedrock Holes", "HoleESPBedrockHoles", true);
 	WurstplusSetting rb 				= create("R", "HoleESPRb", 0, 0, 255);
 	WurstplusSetting gb 				= create("G", "HoleESPGb", 255, 0, 255);
@@ -40,7 +40,7 @@ public class WurstplusHoleESP extends WurstplusHack {
 	WurstplusSetting ab				    = create("A", "HoleESPAb", 50, 0, 255);
 	WurstplusSetting rainbow_b			= create("RainbowBedrock", "RainbowModeBedrock", false);
 
-	WurstplusSetting obsidian_view 		= create("info", "HoleESPObsidian", "Obsidian");
+	//WurstplusSetting obsidian_view 		= create("info", "HoleESPObsidian", "Obsidian");
 	WurstplusSetting obsidian_enable	= create("Obsidian Holes", "HoleESPObsidianHoles", true);
 	// WurstplusSetting rgb_o 				= create("RGB Effect", "HoleColorRGBEffect", true);
 	WurstplusSetting ro 				= create("R", "HoleESPRo", 255, 0, 255);
@@ -49,8 +49,8 @@ public class WurstplusHoleESP extends WurstplusHack {
 	WurstplusSetting ao 				= create("A", "HoleESPAo", 50, 0, 255);
 	WurstplusSetting rainbow_o			= create("RainbowObi", "RainbowModeObi", false);
 
-	WurstplusSetting dual_view 		= create("info", "HoleESPDual", "Double");
-	WurstplusSetting dual_enable	= create("Dual Holes", "HoleESPTwoHoles", false);
+	//WurstplusSetting dual_view 		= create("info", "HoleESPDual", "Double");
+	WurstplusSetting dual_enable	= create("Dual Holes", "HoleESPTwoHoles", true);
 
 	WurstplusSetting sat = create("Saturation", "NametagSatiation", 0.8, 0, 1);
 	WurstplusSetting brightness = create("Brightness", "NametagBrightness", 0.8, 0, 1);

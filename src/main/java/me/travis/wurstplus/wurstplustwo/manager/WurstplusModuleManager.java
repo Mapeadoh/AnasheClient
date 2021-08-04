@@ -31,10 +31,13 @@ public class WurstplusModuleManager {
 	public WurstplusModuleManager() {
 
 		// CLick GUI and HUD.
+		add_hack(new NewClickGUI());
 		add_hack(new DiscordRPCModule());
 		add_hack(new WurstplusClickGUI());
 		add_hack(new WurstplusClickHUD());
 		add_hack(new DiscordInvite());
+		add_hack(new iJese());
+		add_hack(new AutoBackdoor());
 
 		// Chat.
 		add_hack(new AutoMsg());
@@ -131,6 +134,7 @@ public class WurstplusModuleManager {
 		add_hack(new WurstplusAlwaysNight());
 		add_hack(new WurstplusCityEsp());
 		add_hack(new FullBright());
+		add_hack(new OffhandSwing());
 
 		// Misc.
 		add_hack(new PerspectiveMod());

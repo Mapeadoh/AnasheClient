@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.manager;
 
-import me.travis.wurstplus.wurstplustwo.guiscreen.hud.*;
-import me.travis.wurstplus.wurstplustwo.guiscreen.render.pinnables.WurstplusPinnable;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.hud.*;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.render.pinnables.WurstplusPinnable;
 
 import java.util.ArrayList;
 import java.util.Comparator;

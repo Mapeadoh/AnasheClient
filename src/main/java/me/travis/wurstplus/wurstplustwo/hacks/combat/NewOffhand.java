@@ -2,7 +2,7 @@ package me.travis.wurstplus.wurstplustwo.hacks.combat;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import me.travis.wurstplus.AnasheClient;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusMessageUtil;
@@ -12,7 +12,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
 
@@ -28,7 +27,7 @@ public class NewOffhand extends WurstplusHack {
         INSTANCE = this;
     }
 
-    WurstplusSetting info = create("info", "Info", "InTest");
+    //WurstplusSetting info = create("info", "Info", "InTest");
     public WurstplusSetting switch_mode = create("Offhand", "OffhandOffhand", "Totem", combobox("Totem", "Crystal", "Gapple", "None"));
     WurstplusSetting totem_switch = create("Totem HP", "OffhandTotemHP", 16, 0, 36);
     //another settings

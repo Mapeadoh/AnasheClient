@@ -40,14 +40,14 @@ import net.minecraft.util.math.BlockPos;
 import java.util.List;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import java.util.concurrent.ConcurrentHashMap;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 
 public class NewAutoCrystal extends WurstplusHack
 {
     public NewAutoCrystal() {
     super(WurstplusCategory.WURSTPLUS_COMBAT);
-    this.name = "NewAutoCrystal";
+    this.name = "New AutoCrystal";
     this.tag = "NewAutoCrystal";
     this.description = "Mappingqq";
     }

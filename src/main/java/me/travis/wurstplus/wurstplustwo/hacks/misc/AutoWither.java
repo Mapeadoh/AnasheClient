@@ -5,7 +5,7 @@ import java.util.List;
 import com.mojang.realmsclient.gui.ChatFormatting;
 
 import me.travis.mapeadoh.clientstuff.wp1.BlockInteractionHelper;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusMessageUtil;

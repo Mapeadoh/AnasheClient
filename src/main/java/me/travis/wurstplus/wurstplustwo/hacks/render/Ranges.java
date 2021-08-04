@@ -3,15 +3,13 @@ package me.travis.wurstplus.wurstplustwo.hacks.render;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRender;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.mapeadoh.clientstuff.phobos.RenderUtil;
 import me.travis.mapeadoh.clientstuff.phobos.EntityUtil;
-import me.travis.mapeadoh.clientstuff.phobos.Render3DEvent;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusFriendUtil;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusMessageUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
@@ -19,8 +17,6 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 import java.util.ArrayList;
-
-import static me.travis.wurstplus.wurstplustwo.util.WurstplusMessageUtil.send_client_message_simple;
 
 public class Ranges extends WurstplusHack {
 

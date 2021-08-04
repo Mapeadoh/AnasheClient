@@ -4,7 +4,7 @@ import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.event.WurstplusEventBus;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRender;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRenderEntityModel;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusMessageUtil;
 import me.zero.alpine.fork.listener.Listenable;
 import net.minecraft.client.Minecraft;
@@ -125,7 +125,7 @@ public class WurstplusHack implements Listenable {
 			}
 		}
 
-		if (!(this.tag.equals("GUI") || this.tag.equals("HUD")) && this.toggle_message) {
+		if (!(this.tag.equals("NewGUI") || this.tag.equals("HUD")) && this.toggle_message) {
 			WurstplusMessageUtil.toggle_message(this);
 		}
 	}
@@ -152,11 +152,11 @@ public class WurstplusHack implements Listenable {
 		return AnasheClient.get_setting_manager().get_setting_with_tag(this, tag);
 	}
 
-	protected WurstplusSetting create(String name, String tag, String value) {
+	/*protected WurstplusSetting create(String name, String tag, String value) {
 		AnasheClient.get_setting_manager().register(new WurstplusSetting(this, name, tag, value));
 
 		return AnasheClient.get_setting_manager().get_setting_with_tag(this, tag);
-	}
+	}*/
 
 	protected WurstplusSetting create(String name, String tag, String value, List<String> values) {
 		AnasheClient.get_setting_manager().register(new WurstplusSetting(this, name, tag, values, value));

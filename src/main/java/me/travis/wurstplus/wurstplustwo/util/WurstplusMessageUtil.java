@@ -25,15 +25,15 @@ public class WurstplusMessageUtil {
 	public static String opener = ChatFormatting.GRAY + "[" + r + a + "Anash"+  r + ChatFormatting.WHITE +"eCli" + r + a + "ent+" + r + ChatFormatting.GRAY + "] " + r;
 
 	public static void toggle_message(WurstplusHack module) {
-		if (module.is_active()) {//ty iJese for this
+		if (module.is_active()) {//ty iJese for this (att iJese: ez)
 			if (module.get_tag().equals("NewAutoCrystal")) {
-				client_message_simple(opener + a + module.get_name() + r + ChatFormatting.GRAY + " is " + r + ChatFormatting.GREEN + "on" + r);
+				client_message_simple(opener + a + module.get_name() + r + ChatFormatting.GRAY + " Toggled " + r + ChatFormatting.GREEN + "on" + r);
 			} else {
 				client_message_simple(ChatFormatting.BOLD + opener + r + module.get_name() + ChatFormatting.GREEN + " on.");
 			}
 		} else {
 			if (module.get_tag().equals("NewAutoCrystal")) {
-				client_message_simple(opener + a + module.get_name() + r + ChatFormatting.GRAY + " is " + r + r2 + "off" + r);
+				client_message_simple(opener + a + module.get_name() + r + ChatFormatting.GRAY + " Toggled " + r + r2 + "off" + r);
 			} else {
 				client_message_simple(opener + r + module.get_name() + ChatFormatting.RED + " off.");
 			}

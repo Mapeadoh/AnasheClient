@@ -12,7 +12,7 @@ import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import net.minecraft.entity.player.EntityPlayer;
 import java.util.HashMap;
 import net.minecraft.client.renderer.culling.ICamera;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 
 public class Skeleton extends WurstplusHack

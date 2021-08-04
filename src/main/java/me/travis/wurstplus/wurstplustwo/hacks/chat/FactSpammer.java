@@ -3,7 +3,7 @@ package me.travis.wurstplus.wurstplustwo.hacks.chat;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.travis.mapeadoh.clientstuff.cb.Facts;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 
 public class FactSpammer extends WurstplusHack {
 

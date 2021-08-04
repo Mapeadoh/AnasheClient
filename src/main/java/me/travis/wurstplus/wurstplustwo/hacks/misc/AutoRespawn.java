@@ -9,7 +9,7 @@ import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.zero.alpine.fork.listener.EventHandler;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventGUIScreen;
 import me.zero.alpine.fork.listener.Listener;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 
 public class AutoRespawn extends WurstplusHack

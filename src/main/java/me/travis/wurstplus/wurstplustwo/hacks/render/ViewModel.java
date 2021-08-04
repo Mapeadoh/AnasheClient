@@ -2,7 +2,7 @@ package me.travis.wurstplus.wurstplustwo.hacks.render;
 
 import me.travis.mapeadoh.clientstuff.gamesense.TransformSideFirstPersonEvent;
 import me.travis.wurstplus.wurstplustwo.event.WurstplusEventBus;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.zero.alpine.fork.listener.EventHandler;

@@ -1,13 +1,15 @@
 package me.travis.wurstplus;
 
+import club.minnced.discord.rpc.DiscordRPC;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import me.travis.turok.Turok;
 import me.travis.turok.task.Font;
 import me.travis.wurstplus.wurstplustwo.event.WurstplusEventHandler;
 import me.travis.wurstplus.wurstplustwo.event.WurstplusEventRegister;
-import me.travis.wurstplus.wurstplustwo.guiscreen.WurstplusGUI;
-import me.travis.wurstplus.wurstplustwo.guiscreen.WurstplusHUD;
-import me.travis.wurstplus.wurstplustwo.hacks.client.WurstplusClickGUI;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.WurstplusGUI;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.WurstplusHUD;
+import me.travis.wurstplus.wurstplustwo.guiscreen.newclickgui.ClickGUI;
+import me.travis.wurstplus.wurstplustwo.guiscreen.newclickgui.utils.CFontRenderer;
 import me.travis.wurstplus.wurstplustwo.manager.*;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
@@ -40,6 +42,9 @@ public class AnasheClient {
 
 	public static WurstplusGUI click_gui;
 	public static WurstplusHUD click_hud;
+	public static ClickGUI new_click_gui;
+
+	public static CFontRenderer fontRenderer;
 
 	public static Turok turok;
 
@@ -68,12 +73,14 @@ public class AnasheClient {
 		WurstplusCommandManager command_manager = new WurstplusCommandManager(); // hack
 
 		send_minecraft_log("done");
+		fontRenderer = new CFontRenderer(new java.awt.Font("Verdana", java.awt.Font.PLAIN, 18), true,true);
 
 		send_minecraft_log("initialising guis");
-		Display.setTitle("AnasheClient+ | discord.gg/friv");
+		Display.setTitle("AnasheClient+ | Another W+2 Skid");
 
 		click_gui = new WurstplusGUI();
 		click_hud = new WurstplusHUD();
+		new_click_gui = new ClickGUI();
 
 		send_minecraft_log("done");
 
@@ -90,6 +97,18 @@ public class AnasheClient {
 		WurstplusEventRegister.register_command_manager(command_manager);
 		WurstplusEventRegister.register_module_manager(event_manager);
 
+		if (module_manager.get_module_with_tag("NewGUI").is_active()) {
+			module_manager.get_module_with_tag("NewGUI").set_active(false);
+		}
+
+		if (module_manager.get_module_with_tag("HUD").is_active()) {
+			module_manager.get_module_with_tag("HUD").set_active(false);
+		}
+
+		if (module_manager.get_module_with_tag("DiscordRPCModule").is_active()) {
+			AnasheRPC.start();
+		}
+
 		send_minecraft_log("done");
 
 		send_minecraft_log("loading settings");
@@ -97,14 +116,6 @@ public class AnasheClient {
 		config_manager.load_settings();
 
 		send_minecraft_log("done");
-
-		if (module_manager.get_module_with_tag("GUI").is_active()) {
-			module_manager.get_module_with_tag("GUI").set_active(false);
-		}
-
-		if (module_manager.get_module_with_tag("HUD").is_active()) {
-			module_manager.get_module_with_tag("HUD").set_active(false);
-		}
 
 		send_minecraft_log("client started");
 		send_minecraft_log("se vienen cositas");

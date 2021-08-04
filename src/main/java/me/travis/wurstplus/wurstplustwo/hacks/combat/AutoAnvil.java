@@ -16,7 +16,6 @@ import net.minecraft.block.BlockAnvil;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusBlockInteractHelper;
 import java.util.List;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusFriendUtil;
-import java.util.Iterator;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.block.BlockAir;
@@ -28,7 +27,7 @@ import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import net.minecraft.util.math.Vec3d;
 import java.util.ArrayList;
 import net.minecraft.entity.player.EntityPlayer;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 
 public class AutoAnvil extends WurstplusHack

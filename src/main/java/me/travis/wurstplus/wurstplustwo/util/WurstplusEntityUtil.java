@@ -4,13 +4,13 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.entity.EntityLivingBase;
-import java.util.Iterator;
+
 import java.util.List;
 import net.minecraft.util.EnumHand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketUseEntity;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import net.minecraft.entity.Entity;
 import net.minecraft.client.Minecraft;
 

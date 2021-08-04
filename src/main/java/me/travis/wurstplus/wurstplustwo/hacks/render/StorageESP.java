@@ -2,7 +2,7 @@ package me.travis.wurstplus.wurstplustwo.hacks.render;
 
 
 import net.minecraft.tileentity.*;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRender;

@@ -6,7 +6,7 @@ import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventEntityRemoved
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventMotionUpdate;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventPacket;
 import me.travis.wurstplus.wurstplustwo.event.events.WurstplusEventRender;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.travis.wurstplus.wurstplustwo.hacks.chat.WurstplusAutoEz;
@@ -42,7 +42,7 @@ public class WurstplusAutoCrystal extends WurstplusHack {
     public WurstplusAutoCrystal() {
         super(WurstplusCategory.WURSTPLUS_COMBAT);
         // readapted but the same code
-        this.name = "OldAuto Crystal";
+        this.name = "Old AutoCrystal";
         this.tag = "OldAutoCrystal";
         this.description = "kills people (if ur good)";
     }

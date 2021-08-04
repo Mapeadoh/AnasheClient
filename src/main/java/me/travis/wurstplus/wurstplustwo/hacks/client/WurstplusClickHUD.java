@@ -1,7 +1,7 @@
 package me.travis.wurstplus.wurstplustwo.hacks.client;
 
 import me.travis.wurstplus.AnasheClient;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 
@@ -15,7 +15,7 @@ public class WurstplusClickHUD extends WurstplusHack {
 		this.description = "gui for pinnables";
 	}
 
-	WurstplusSetting frame_view = create("info", "HUDStringsList", "Strings");
+//	WurstplusSetting frame_view = create("info", "HUDStringsList", "Strings");
 
 	WurstplusSetting strings_r = create("Color R", "HUDStringsColorR", 255, 0, 255);
 	WurstplusSetting strings_g = create("Color G", "HUDStringsColorG", 255, 0, 255);

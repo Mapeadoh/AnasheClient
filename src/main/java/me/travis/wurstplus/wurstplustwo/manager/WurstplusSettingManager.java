@@ -1,6 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.manager;
 
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 
 import java.util.ArrayList;

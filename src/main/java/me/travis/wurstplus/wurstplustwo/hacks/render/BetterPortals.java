@@ -5,7 +5,7 @@ import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import net.minecraft.network.play.client.CPacketConfirmTeleport;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import me.travis.mapeadoh.clientstuff.phobos.PacketEvent;
-import me.travis.wurstplus.wurstplustwo.guiscreen.settings.WurstplusSetting;
+import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 
 public class BetterPortals extends WurstplusHack {
 
