@@ -111,12 +111,13 @@ public class Buttons extends Component {
 				drawOyveyIconRender(this.parent.getX() + this.parent.getWidth() - 13, this.parent.getY() + this.offset + 2 + 2);
 			}
 			else if(NewClickGUI.INSTANCE.icons.in("Future")) {
-				FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.open ? "-" : "+", this.parent.getX() + this.parent.getWidth() - 10, this.parent.getY() + this.offset + 2 + 2, Renderer.getFontColor());
-			}
-			else if(NewClickGUI.INSTANCE.icons.in("Font")) {
 				FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.open ? "" : "", this.parent.getX() + this.parent.getWidth() - 10, this.parent.getY() + this.offset + 2 + 2, Renderer.getFontColor());
 				drawFutureIconRender(this.parent.getX() + this.parent.getWidth() - 13, this.parent.getY() + this.offset + 2 + 2);
 			}
+			else if(NewClickGUI.INSTANCE.icons.in("Font")) {
+				FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.open ? "-" : "+", this.parent.getX() + this.parent.getWidth() - 10, this.parent.getY() + this.offset + 2 + 2, Renderer.getFontColor());
+			}
+
 
 		}
 		if (this.open && !this.subcomponents.isEmpty()) {
