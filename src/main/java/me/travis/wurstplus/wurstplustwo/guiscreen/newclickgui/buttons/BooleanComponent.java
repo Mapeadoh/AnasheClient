@@ -27,7 +27,7 @@ public class BooleanComponent extends Component {
 	public void renderComponent(){
 			Renderer.drawRectStatic(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + 16 + this.offset, Renderer.getTransColor(hovered));
 			Renderer.drawRectStatic(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 1, Renderer.getTransColor(false));
-			FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.setting.get_name(),this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, setting.get_value(true)?Renderer.getMainColor():Renderer.getFontColor());
+			FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.setting.get_name(),this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, setting.get_value(true)?Renderer.getActiveModulesColor():Renderer.getFontColor());
 	}
 
 

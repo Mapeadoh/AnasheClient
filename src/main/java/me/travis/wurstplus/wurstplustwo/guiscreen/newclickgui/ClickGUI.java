@@ -4,7 +4,11 @@ import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.newclickgui.frame.Component;
 import me.travis.wurstplus.wurstplustwo.guiscreen.newclickgui.frame.Frames;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
+import me.travis.wurstplus.wurstplustwo.hacks.client.NewClickGUI;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -76,6 +80,10 @@ public class ClickGUI extends GuiScreen {
 		if (keyCode == 1){
 			this.mc.displayGuiScreen(null);
 			AnasheClient.get_hack_manager().get_module_with_tag("NewGUI").set_active(false);
+			/**
+			 * temporal bc make a save settings on unload is a hard work (i think)
+			 */
+			AnasheClient.get_config_manager().save_settings();
 		}
 	}
 
@@ -83,9 +91,23 @@ public class ClickGUI extends GuiScreen {
 		return false;
 	}
 
-	public void initGui(){
 
+
+	/*public void initGui() {
+		if (OpenGlHelper.shadersSupported && this.mc.getRenderViewEntity() instanceof EntityPlayer && NewClickGUI.INSTANCE.blur.get_value(true)) {
+			if (this.mc.entityRenderer.getShaderGroup() != null) {
+				this.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+			}
+			this.mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
+		}
 	}
+	public void onGuiClosed() {
+		if (this.mc.entityRenderer.getShaderGroup() != null) {
+			this.mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+		}
+	}*/
+
+
 
 	public static Frames getFrameByName(String name){
 		Frames pa = null;

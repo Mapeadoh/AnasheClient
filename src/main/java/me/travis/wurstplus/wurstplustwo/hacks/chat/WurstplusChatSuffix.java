@@ -33,30 +33,23 @@ public class WurstplusChatSuffix extends WurstplusHack {
 	StringBuilder suffix;
 
 	String[] random_client_name = {
-		"  nashe",
-		" iJese ",
-		"  backdoored",
-		"  momerosplus",
-		"  discord.gg/nullname",
-		"  ananashei",
-		"  SuperA is puto",
-		"  secs",
-		"  anhacheklien",
-		"  rofl"
+			"  nashe",
+			"  anashet",
+			"  anotterratedclient",
+			"  w+2better",
+			"  nullware",
+			"  nullname backdoor",
+			"  autonewfagskiller",
+			"  anhacheklien",
+			"  momerosbackdoor"
 	};
 
 	String[] random_client_finish = {
-		" nais",
-		" mapiado is putita",
-		" by Nolebito",
-		" claient",
-		" on top :v",
-		" ",
-		" simiuleidor",
-		" ouns mi an ol",
-		"plosplos"
+			" plos",
+			" strong",
+			" | sponsored by mapeadoh",
+			" owns u"
 	};
-
 	@EventHandler
 	private Listener<WurstplusEventPacket.SendPacket> listener = new Listener<>(event -> {
 		// If not be the CPacketChatMessage return.

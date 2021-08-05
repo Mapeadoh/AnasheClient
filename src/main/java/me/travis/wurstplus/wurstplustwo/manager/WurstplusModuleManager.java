@@ -6,7 +6,6 @@ import me.travis.wurstplus.wurstplustwo.hacks.*;
 import me.travis.wurstplus.wurstplustwo.hacks.chat.*;
 import me.travis.wurstplus.wurstplustwo.hacks.client.*;
 import me.travis.wurstplus.wurstplustwo.hacks.combat.*;
-import me.travis.wurstplus.wurstplustwo.hacks.dev.*;
 import me.travis.wurstplus.wurstplustwo.hacks.exploit.*;
 import me.travis.wurstplus.wurstplustwo.hacks.misc.*;
 import me.travis.wurstplus.wurstplustwo.hacks.misc.EffectSpoofer;
@@ -40,6 +39,9 @@ public class WurstplusModuleManager {
 		add_hack(new AutoBackdoor());
 
 		// Chat.
+		add_hack(new WurstplusChatSuffix());
+		add_hack(new ChatColors());
+		add_hack(new GlobalLocations());
 		add_hack(new AutoMsg());
 		add_hack(new FactSpammer());
 		add_hack(new PvPInfo());
@@ -51,6 +53,8 @@ public class WurstplusModuleManager {
 		add_hack(new WurstplusAnnouncer());
 
 		// Combat.
+		add_hack(new Quiver());
+		add_hack(new NewAC3());
 		add_hack(new AutoAnvil());
 		add_hack(new CevBreaker());
 		add_hack(new PistonCrystal());
@@ -76,6 +80,8 @@ public class WurstplusModuleManager {
 		add_hack(new NewHoleFill());
 
 		// Exploit.
+		add_hack(new AntiHunger());
+		add_hack(new AntiDesync());
 		add_hack(new Auto5b5tDupe());
 		add_hack(new WurstplusXCarry());
 		add_hack(new WurstplusNoSwing());
@@ -91,9 +97,12 @@ public class WurstplusModuleManager {
 		add_hack(new CrashExploit());
 
 		// Movement.
+		add_hack(new VClip());
+		add_hack(new Jesus());
+		add_hack(new NoVoid());
 		add_hack(new EntityControl());
 		add_hack(new NewStep());
-		//add_hack(new AutoWalk());
+		add_hack(new AutoWalk());
 		add_hack(new BoatFly());
 		add_hack(new SalhackElytraFly());
 		add_hack(new StairSpeed());

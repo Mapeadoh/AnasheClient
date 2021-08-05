@@ -54,14 +54,21 @@ public class Renderer {
         return NewClickGUI.INSTANCE.guiColor;
     }
 
+    public static GSColor getActiveModulesColor() {
+        return NewClickGUI.INSTANCE.ActiveguiColor;
+    }
+
     public static GSColor getTransColor (boolean hovered) {
         GSColor transColor = new GSColor(195, 195, 195, NewClickGUI.INSTANCE.opacity.get_value(1) - 50);
 
         if (NewClickGUI.INSTANCE.background.in("Black")){
             transColor = new GSColor(0, 0, 0,NewClickGUI.INSTANCE.opacity.get_value(1) - 50);
         }
-        else if (NewClickGUI.INSTANCE.background.in("Silver")){
-            transColor = new GSColor(100, 100, 100,NewClickGUI.INSTANCE.opacity.get_value(1) - 50);
+        else if (NewClickGUI.INSTANCE.background.in("OldAnasheGUI")){
+            transColor = new GSColor(255, 255, 255, 72);
+        }
+        else if (NewClickGUI.INSTANCE.background.in("Custom")){
+            transColor = new GSColor(NewClickGUI.INSTANCE.name_frame_r.get_value(1), NewClickGUI.INSTANCE.name_frame_g.get_value(1), NewClickGUI.INSTANCE.name_frame_b.get_value(1),NewClickGUI.INSTANCE.opacity.get_value(1) - 50);
         }
 
         if (hovered) return new GSColor(transColor.darker().darker());

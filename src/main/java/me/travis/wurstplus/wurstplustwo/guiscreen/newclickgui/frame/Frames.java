@@ -70,7 +70,7 @@ public class Frames {
     }
 
     public void renderGUIFrame(final FontRenderer fontRenderer){
-        Renderer.drawRectGradient(this.x, this.y, this.x + this.width, this.y + this.barHeight, Renderer.getMainColor(), Renderer.getTransColor(false));
+        Renderer.drawRectStatic(this.x, this.y, this.x + this.width, this.y + this.barHeight, Renderer.getMainColor());
         if(font) AnasheClient.fontRenderer.drawStringWithShadow(this.category.name(), (float)(this.x + 2), (float)(this.y + 3), Renderer.getFontColor());
         else FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.category.get_name(), this.x + 2, this.y + 3, Renderer.getFontColor());
         if (this.open && !this.guicomponents.isEmpty()){

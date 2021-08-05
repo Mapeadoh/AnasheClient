@@ -10,6 +10,7 @@ import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.WurstplusGUI;
 import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.WurstplusHUD;
 import me.travis.wurstplus.wurstplustwo.guiscreen.newclickgui.ClickGUI;
 import me.travis.wurstplus.wurstplustwo.guiscreen.newclickgui.utils.CFontRenderer;
+import me.travis.wurstplus.wurstplustwo.hacks.client.NewClickGUI;
 import me.travis.wurstplus.wurstplustwo.manager.*;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
@@ -74,6 +75,8 @@ public class AnasheClient {
 
 		send_minecraft_log("done");
 		fontRenderer = new CFontRenderer(new java.awt.Font("Verdana", java.awt.Font.PLAIN, 18), true,true);
+
+
 
 		send_minecraft_log("initialising guis");
 		Display.setTitle("AnasheClient+ | Another W+2 Skid");

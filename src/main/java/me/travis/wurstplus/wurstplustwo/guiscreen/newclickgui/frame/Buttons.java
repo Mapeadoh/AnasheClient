@@ -3,6 +3,7 @@ package me.travis.wurstplus.wurstplustwo.guiscreen.newclickgui.frame;
 import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.guiscreen.newclickgui.buttons.*;
 import me.travis.wurstplus.wurstplustwo.guiscreen.newclickgui.utils.FontUtils;
+import me.travis.wurstplus.wurstplustwo.guiscreen.newclickgui.utils.GSColor;
 import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import me.travis.wurstplus.wurstplustwo.hacks.client.NewClickGUI;
@@ -11,6 +12,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Buttons extends Component {
@@ -21,9 +23,13 @@ public class Buttons extends Component {
 	private final ArrayList<Component> subcomponents;
 	public boolean open;
 	private final int height;
+	GSColor fontColor;
+	GSColor fontActiveColor;
 
-	private static final ResourceLocation opengui = new ResourceLocation("minecraft:opengui.png");
-	private static final ResourceLocation closedgui = new ResourceLocation("minecraft:closedgui.png");
+	private static final ResourceLocation opengui = new ResourceLocation("custom/close.png");
+	private static final ResourceLocation closedgui = new ResourceLocation("custom/open.png");
+	private static final ResourceLocation oyvey = new ResourceLocation("custom/oyvey.png");
+	private static final ResourceLocation future = new ResourceLocation("custom/future.png");
 
 	public Buttons(final WurstplusHack mod, final Frames parent, final int offset) {
 
@@ -75,9 +81,20 @@ public class Buttons extends Component {
 
 	@Override
 	public void renderComponent() {
+		// fontcolor
+		if(NewClickGUI.INSTANCE.background.in("Custom")){
+			fontColor = new GSColor(NewClickGUI.INSTANCE.font_r.get_value(1), NewClickGUI.INSTANCE.font_g.get_value(1), NewClickGUI.INSTANCE.font_b.get_value(1), NewClickGUI.INSTANCE.font_a.get_value(1));
+			fontActiveColor = new GSColor(NewClickGUI.INSTANCE.active_font_r.get_value(1), NewClickGUI.INSTANCE.active_font_g.get_value(1), NewClickGUI.INSTANCE.active_font_b.get_value(1), NewClickGUI.INSTANCE.active_font_a.get_value(1));
+		}
+		if(NewClickGUI.INSTANCE.background.in("OldAnasheGUI")){
+			fontActiveColor = new GSColor(130, 193, 242, 216);
+			fontColor = new GSColor(226, 226, 226, 90);
+		}
+		// render
 		Renderer.drawRectStatic(this.parent.getX(), this.parent.getY() + this.offset + 1, this.parent.getX() + this.parent.getWidth(), this.parent.getY() + 16 + this.offset, Renderer.getTransColor(isHovered));
 		Renderer.drawRectStatic(this.parent.getX(), this.parent.getY() + this.offset, this.parent.getX() + this.parent.getWidth(), this.parent.getY() + this.offset + 1, Renderer.getTransColor(false));
-		FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.mod.get_name(), this.parent.getX() + 2, this.parent.getY() + this.offset + 2 + 2, mod.is_active()?Renderer.getMainColor():Renderer.getFontColor());
+		FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.mod.get_name(), this.parent.getX() + 2, this.parent.getY() + this.offset + 2 + 2, mod.is_active()?this.fontActiveColor:this.fontColor);
+		// icon in the module
 		if (this.subcomponents.size() > 1) {
 			if (NewClickGUI.INSTANCE.icons.in("Image")) {
 				FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.open ? "" : "", this.parent.getX() + this.parent.getWidth() - 10, this.parent.getY() + this.offset + 2 + 2, Renderer.getFontColor());
@@ -89,9 +106,18 @@ public class Buttons extends Component {
 					drawClosedRender(this.parent.getX() + this.parent.getWidth() - 13, this.parent.getY() + this.offset + 2 + 2);
 				}
 			}
-			else {
-				FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.open ? "~" : ">", this.parent.getX() + this.parent.getWidth() - 10, this.parent.getY() + this.offset + 2 + 2, Renderer.getFontColor());
+			else if(NewClickGUI.INSTANCE.icons.in("OyVey")){
+				FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.open ? "" : "", this.parent.getX() + this.parent.getWidth() - 10, this.parent.getY() + this.offset + 2 + 2, Renderer.getFontColor());
+				drawOyveyIconRender(this.parent.getX() + this.parent.getWidth() - 13, this.parent.getY() + this.offset + 2 + 2);
 			}
+			else if(NewClickGUI.INSTANCE.icons.in("Future")) {
+				FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.open ? "-" : "+", this.parent.getX() + this.parent.getWidth() - 10, this.parent.getY() + this.offset + 2 + 2, Renderer.getFontColor());
+			}
+			else if(NewClickGUI.INSTANCE.icons.in("Font")) {
+				FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.open ? "" : "", this.parent.getX() + this.parent.getWidth() - 10, this.parent.getY() + this.offset + 2 + 2, Renderer.getFontColor());
+				drawFutureIconRender(this.parent.getX() + this.parent.getWidth() - 13, this.parent.getY() + this.offset + 2 + 2);
+			}
+
 		}
 		if (this.open && !this.subcomponents.isEmpty()) {
 			for (final Component comp : this.subcomponents) {
@@ -164,6 +190,27 @@ public class Buttons extends Component {
 	public void drawClosedRender(int x, int y){
 		GlStateManager.enableAlpha();
 		this.mc.getTextureManager().bindTexture(closedgui);
+		GlStateManager.color(1, 1, 1, 1);
+		GL11.glPushMatrix();
+		Gui.drawScaledCustomSizeModalRect(x,y,0,0,256,256,10,10,256,256);
+		GL11.glPopMatrix();
+		GlStateManager.disableAlpha();
+		GlStateManager.clear(GL11.GL_DEPTH_BUFFER_BIT);
+	}
+
+	public void drawOyveyIconRender(int x, int y){
+		GlStateManager.enableAlpha();
+		this.mc.getTextureManager().bindTexture(oyvey);
+		GlStateManager.color(1, 1, 1, 1);
+		GL11.glPushMatrix();
+		Gui.drawScaledCustomSizeModalRect(x,y,0,0,256,256,10,10,256,256);
+		GL11.glPopMatrix();
+		GlStateManager.disableAlpha();
+		GlStateManager.clear(GL11.GL_DEPTH_BUFFER_BIT);
+	}
+	public void drawFutureIconRender(int x, int y){
+		GlStateManager.enableAlpha();
+		this.mc.getTextureManager().bindTexture(future);
 		GlStateManager.color(1, 1, 1, 1);
 		GL11.glPushMatrix();
 		Gui.drawScaledCustomSizeModalRect(x,y,0,0,256,256,10,10,256,256);

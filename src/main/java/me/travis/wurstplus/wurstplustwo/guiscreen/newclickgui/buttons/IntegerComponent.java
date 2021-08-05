@@ -34,7 +34,7 @@ public class IntegerComponent extends Component {
 	public void renderComponent(){
 		Renderer.drawRectStatic(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 16, Renderer.getTransColor(hovered));
 		final int drag = this.set.get_value(1) / this.set.get_max(1) * this.parent.parent.getWidth();
-		Renderer.drawRectStatic(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + (int)this.renderWidth, this.parent.parent.getY() + this.offset + 16, Renderer.getMainColor());
+		Renderer.drawRectStatic(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + (int)this.renderWidth, this.parent.parent.getY() + this.offset + 16, Renderer.getActiveModulesColor());
 		Renderer.drawRectStatic(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 1, Renderer.getTransColor(false));
 		FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.set.get_name() + " " + ChatFormatting.GRAY + this.set.get_value(1), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, Renderer.getFontColor());
 	}

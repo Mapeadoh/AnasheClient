@@ -39,37 +39,10 @@ public class ModeComponent extends Component {
 
 	@Override
 	public void renderComponent() {
-			//Renderer.drawRectStatic(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 16, Renderer.getTransColor(hovered));
-			//Renderer.drawRectStatic(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 1, Renderer.getTransColor(false));
-			//FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.set.get_name() + " " + ChatFormatting.GRAY + this.set.get_current_value(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, Renderer.getFontColor());
 		Renderer.drawRectStatic(this.parent.parent.getX(), this.parent.parent.getY() + this.offset + 1, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 16, Renderer.getTransColor(hovered));
 		Renderer.drawRectStatic(this.parent.parent.getX(), this.parent.parent.getY() + this.offset, this.parent.parent.getX() + this.parent.parent.getWidth(), this.parent.parent.getY() + this.offset + 1, Renderer.getTransColor(false));
 		FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.set.get_name() + ": " + ChatFormatting.GRAY + this.set.get_current_value(), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, Renderer.getFontColor());
-// 		FontUtils.drawStringWithShadow(NewClickGUI.INSTANCE.customFont.get_value(true), this.setting.get_name() + " " + ChatFormatting.GRAY + this.setting.get_value(1), this.parent.parent.getX() + 2, this.parent.parent.getY() + this.offset + 4, Renderer.getFontColor());
 	}
-	
-	/*@Override
-	public void updateComponent(final int mouseX, final int mouseY){
-		this.hovered = this.isMouseOnButton(mouseX, mouseY);
-		this.y = this.parent.parent.getY() + this.offset;
-		this.x = this.parent.parent.getX();
-	}
-	
-	@Override
-	public void mouseClicked(final int mouseX, final int mouseY, final int button){
-		if (this.isMouseOnButton(mouseX, mouseY) && button == 0 && this.parent.open){
-			final int maxIndex = this.set.get_values().size() - 1;
-			this.modeIndex++;
-			if (this.modeIndex > maxIndex){
-				this.modeIndex = 0;
-			}
-			this.set.set_value(this.set.get_values().get(this.modeIndex));
-		}
-	}
-	
-	public boolean isMouseOnButton(final int x, final int y){
-		return x > this.x && x < this.x + 88 && y > this.y && y < this.y + 16;
-	}*/
 
 	public void updateComponent(int mouseX, int mouseY) {
 		this.y = this.parent.parent.getY() + this.offset;

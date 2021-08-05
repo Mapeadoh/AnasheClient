@@ -10,7 +10,7 @@ import java.awt.*;
 public class WurstplusClickGUI extends WurstplusHack {
 public static WurstplusClickGUI INSTANCE;
 	public WurstplusClickGUI() {
-		super(WurstplusCategory.WURSTPLUS_CLIENT);
+		super(WurstplusCategory.WURSTPLUS_HIDDEN);
 
 		this.name        = "GUI";
 		this.tag         = "GUI";

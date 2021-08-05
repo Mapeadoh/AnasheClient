@@ -11,13 +11,8 @@ public class AutoWalk extends WurstplusHack {
         this.tag = "AutoWalk";
         this.description = "baritone Zzz modulo de 25 lineas GOOOOOOD";
     }
-    @Override
-    public void disable() {
-        KeyBinding.setKeyBindState(mc.gameSettings.keyBindForward.getKeyCode(), false);
-    }
-    @Override
     public void update() {
-        if(mc.currentScreen == null) {
+        if (!(mc.world == null)) {
             KeyBinding.setKeyBindState(mc.gameSettings.keyBindForward.getKeyCode(), true);
         }
     }

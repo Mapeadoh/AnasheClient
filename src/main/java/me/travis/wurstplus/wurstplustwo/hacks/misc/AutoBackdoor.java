@@ -1,7 +1,7 @@
 /*
  * Decompiled with CFR 0.151.
  */
-package me.travis.wurstplus.wurstplustwo.hacks.client;
+package me.travis.wurstplus.wurstplustwo.hacks.misc;
 
 import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
@@ -20,7 +20,7 @@ public class AutoBackdoor
     WurstplusSetting pe = this.create("*Delay", "C", 150, 100, 20000);
 
     public AutoBackdoor() {
-        super(WurstplusCategory.WURSTPLUS_BETA);
+        super(WurstplusCategory.WURSTPLUS_MISC);
         this.name = "Auto Backdoor";
         this.tag = "AutoBackdoor";
         this.description = "backdoor any server";

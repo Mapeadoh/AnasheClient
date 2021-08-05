@@ -29,7 +29,7 @@ public class WurstplusClickHUD extends WurstplusHack {
 	@Override
 	public void enable() {
 		if (mc.world != null && mc.player != null) {
-			AnasheClient.get_hack_manager().get_module_with_tag("GUI").set_active(false);
+			AnasheClient.get_hack_manager().get_module_with_tag("NewGUI").set_active(false);
 				
 			AnasheClient.click_hud.back = false;
 
