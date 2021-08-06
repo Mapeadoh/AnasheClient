@@ -12,6 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.util.CombatRules;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -35,6 +36,10 @@ public class WurstplusCrystalUtil {
 
     public static BlockPos getPlayerPos(final EntityPlayer player) {
         return new BlockPos(Math.floor(player.posX), Math.floor(player.posY), Math.floor(player.posZ));
+    }
+    public static void breakCrystal(Entity crystal) {
+        mc.playerController.attackEntity((EntityPlayer)mc.player, crystal);
+        mc.player.swingArm(EnumHand.MAIN_HAND);
     }
 
     public static List<BlockPos> getSphere(final BlockPos pos, final float r, final int h, final boolean hollow, final boolean sphere, final int plus_y) {

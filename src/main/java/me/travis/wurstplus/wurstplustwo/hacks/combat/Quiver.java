@@ -2,6 +2,7 @@
 
 package me.travis.wurstplus.wurstplustwo.hacks.combat;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
@@ -23,12 +24,19 @@ public class Quiver extends WurstplusHack {
     WurstplusSetting speed = this.create("Speed", "QuiverSpeed", true);
     WurstplusSetting strength = this.create("Strength", "QuiverStrength", true);
     int randomVariation;
+    private ChatFormatting r = ChatFormatting.RESET;
+    private ChatFormatting b = ChatFormatting.BOLD;
 
     public Quiver() {
         super(WurstplusCategory.WURSTPLUS_COMBAT);
         this.name = "Quiver";
         this.tag = "Quiver";
-        this.description = "shoots arrow over you";
+        this.description = "fixed bc this module is shit";
+    }
+    public void enable(){
+        if(find_bow_hotbar() == -1){
+            WurstplusMessageUtil.send_client_error_message( "" + ChatFormatting.DARK_RED + b + "Quiver" + r + ChatFormatting.GRAY + "> " + r + "Error, bow not found");
+        }
     }
 
     public void update() {
@@ -68,7 +76,7 @@ public class Quiver extends WurstplusHack {
 
     private int find_bow_hotbar() {
         for(int i = 0; i < 9; ++i) {
-            if (mc.player.inventory.getStackInSlot(i).getItem() == Items.END_CRYSTAL) {
+            if (mc.player.inventory.getStackInSlot(i).getItem() == Items.BOW) {
                 return i;
             }
         }
@@ -85,6 +93,9 @@ public class Quiver extends WurstplusHack {
                 inInv = true;
                 this.switchArrow(i);
                 break;
+            }
+            else {
+                WurstplusMessageUtil.send_client_error_message( "" + ChatFormatting.DARK_RED + b + "Quiver" + r + ChatFormatting.GRAY + "> " + r + "Error, arrows not found");
             }
         }
 

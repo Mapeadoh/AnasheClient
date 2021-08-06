@@ -51,7 +51,7 @@ public class WurstplusOffhand extends WurstplusHack {
             float hp = mc.player.getHealth() + mc.player.getAbsorptionAmount();
 
             if (hp > totem_switch.get_value(1)) {
-                if (switch_mode.in("Crystal") && AnasheClient.get_hack_manager().get_module_with_tag("NewAutoCrystal").is_active()) {
+                if (switch_mode.in("Crystal") && AnasheClient.get_hack_manager().get_module_with_tag("NewAutoCrystal").is_active() || switch_mode.in("Crystal") && AnasheClient.get_hack_manager().get_module_with_tag("CachooxAC").is_active()) {
                     swap_items(get_item_slot(Items.END_CRYSTAL),0);
                     return;
                 }

@@ -53,6 +53,10 @@ public class WurstplusModuleManager {
 		add_hack(new WurstplusAnnouncer());
 
 		// Combat.
+		//add_hack(new Elevator());
+		//add_hack(new NewPistonAura());
+		add_hack(new AntiCrystal());
+		add_hack(new Elevator());
 		add_hack(new Quiver());
 		add_hack(new NewAC3());
 		add_hack(new AutoAnvil());
@@ -64,7 +68,6 @@ public class WurstplusModuleManager {
 		add_hack(new AutoLog());
 		add_hack(new WurstplusSurround());
 		add_hack(new WurstplusVelocity());
-		add_hack(new WurstplusAutoCrystal());
 		add_hack(new WurstplusTrap());
 		add_hack(new WurstplusSocks());
 		add_hack(new WurstplusSelfTrap());

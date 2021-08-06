@@ -9,6 +9,8 @@ import me.travis.wurstplus.wurstplustwo.util.WurstplusMessageUtil;
 import net.minecraft.block.BlockAir;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemPickaxe;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.client.CPacketHeldItemChange;
 import net.minecraft.util.math.BlockPos;
 
 public class WurstplusAutoMine extends WurstplusHack {
@@ -31,6 +33,9 @@ public class WurstplusAutoMine extends WurstplusHack {
     @Override
     protected void enable() {
         target_block = null;
+        if(findPickaxe() == -1){
+            WurstplusMessageUtil.send_client_error_message("cannot find pickaxe");
+        }
 
         for (EntityPlayer player : mc.world.playerEntities) {
             if (mc.player.getDistance(player) > range.get_value(1)) continue;
@@ -43,17 +48,21 @@ public class WurstplusAutoMine extends WurstplusHack {
         }
 
         if (target_block == null) {
-            WurstplusMessageUtil.send_client_message("cannot find block");
+            WurstplusMessageUtil.send_client_error_message("cannot find block");
             this.set_active(false);
             return;
         }
-
+        int prev_slot = mc.player.inventory.currentItem;
         int pickSlot = findPickaxe();
-        if (swap.get_value(true) && pickSlot != -1) {
-            mc.player.inventory.currentItem = pickSlot;
+        if (swap.get_value(true) && findPickaxe() != -1) {
+            mc.player.connection.sendPacket(new CPacketHeldItemChange(pickSlot));
         }
 
         WurstplusBreakUtil.set_current_block(target_block);
+
+        if (swap.get_value(true)) {
+            mc.player.connection.sendPacket((Packet)new CPacketHeldItemChange(prev_slot));
+        }
     }
 
     @Override

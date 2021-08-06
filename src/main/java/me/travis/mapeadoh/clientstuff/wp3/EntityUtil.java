@@ -32,6 +32,9 @@ public class EntityUtil implements Globals {
     public static boolean isSafe(Entity entity, int height, boolean floor) {
         return getUnsafeBlocks(entity, height, floor).size() == 0;
     }
+    public static boolean basicChecksEntity(Entity pl) {
+        return pl.getName().equals(mc.player.getName()) || WurstplusFriendUtil.isFriend(pl.getName()) || pl.isDead;
+    }
 
     public static List<Vec3d> getUnsafeBlocks(Entity entity, int height, boolean floor) {
         return getUnsafeBlocksFromVec3d(entity.getPositionVector(), height, floor);

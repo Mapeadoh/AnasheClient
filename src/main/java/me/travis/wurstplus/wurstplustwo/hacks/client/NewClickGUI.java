@@ -22,7 +22,7 @@ public class NewClickGUI extends WurstplusHack {
     }
     //public WurstplusSetting blur = create("Blur", "Blur", true);
      public WurstplusSetting icons = create("Icons", "Icons", "OyVey", combobox("Font", "Image", "OyVey", "Future"));
-    public WurstplusSetting background = create("Theme", "Theme", "Custom", combobox("Black", "OldAnasheGUI", "Gray", "Custom"));
+    public WurstplusSetting background = create("Theme", "Theme", "Custom", combobox("Black", "OldGUI", "Gray", "Custom"));
     public WurstplusSetting scrollspeed = create("ScrollSpeed", "ScrollSpeed", 10, 1, 20);
     public WurstplusSetting name_frame_r = create("CustomR", "CustomR", 0, 0, 255);
     public WurstplusSetting name_frame_g = create("CustomG", "CustomG", 0, 0, 255);

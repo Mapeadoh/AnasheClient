@@ -47,7 +47,7 @@ public class NewAutoCrystal extends WurstplusHack
 {
     public NewAutoCrystal() {
     super(WurstplusCategory.WURSTPLUS_COMBAT);
-    this.name = "New AutoCrystal";
+    this.name = "0.10 AutoCrystal";
     this.tag = "NewAutoCrystal";
     this.description = "Mappingqq";
     }

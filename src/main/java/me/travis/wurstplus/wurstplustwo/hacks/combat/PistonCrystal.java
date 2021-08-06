@@ -1,5 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.hacks.combat;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusFriendUtil;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.block.BlockObsidian;
@@ -442,6 +443,9 @@ public class PistonCrystal extends WurstplusHack
             output.append(" Pick");
         }
         return output.toString();
+    }
+    public static void printDebug(String text, Boolean error) {
+        WurstplusMessageUtil.send_client_message((error ? ChatFormatting.RESET : ChatFormatting.RED) + text);
     }
 
     private void printTimeCrystals() {

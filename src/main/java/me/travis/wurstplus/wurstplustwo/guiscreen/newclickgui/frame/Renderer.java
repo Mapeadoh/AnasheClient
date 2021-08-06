@@ -64,7 +64,7 @@ public class Renderer {
         if (NewClickGUI.INSTANCE.background.in("Black")){
             transColor = new GSColor(0, 0, 0,NewClickGUI.INSTANCE.opacity.get_value(1) - 50);
         }
-        else if (NewClickGUI.INSTANCE.background.in("OldAnasheGUI")){
+        else if (NewClickGUI.INSTANCE.background.in("OldGUI")){
             transColor = new GSColor(255, 255, 255, 72);
         }
         else if (NewClickGUI.INSTANCE.background.in("Custom")){

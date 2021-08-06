@@ -184,6 +184,13 @@ public class BlockUtil implements Globals {
         return BlockUtil.getState(pos).getBlock();
     }
 
+    public static Block GSgetBlock(double x, double y, double z) {
+        return BlockUtil.mc.world.getBlockState(new BlockPos(x, y, z)).getBlock();
+    }
+    public static Block GSgetBlock(BlockPos pos) {
+        return BlockUtil.getState(pos).getBlock();
+    }
+
     private static IBlockState getState(BlockPos pos) {
         return BlockUtil.mc.world.getBlockState(pos);
     }

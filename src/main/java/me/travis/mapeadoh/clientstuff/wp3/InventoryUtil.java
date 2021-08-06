@@ -1,6 +1,7 @@
 package me.travis.mapeadoh.clientstuff.wp3;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockObsidian;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
@@ -9,6 +10,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.*;
 import net.minecraft.network.play.client.CPacketHeldItemChange;
+import net.minecraft.util.NonNullList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +35,30 @@ public class InventoryUtil implements Globals {
             InventoryUtil.mc.player.inventory.currentItem = slot;
             InventoryUtil.mc.playerController.updateController();
         }
+    }
+
+    public static int findFirstItemSlot(Class<? extends Item> itemToFind, int lower, int upper) {
+        int slot = -1;
+        NonNullList mainInventory = InventoryUtil.mc.player.inventory.mainInventory;
+        for (int i = lower; i <= upper; ++i) {
+            ItemStack stack = (ItemStack)mainInventory.get(i);
+            if (stack == ItemStack.EMPTY || !itemToFind.isInstance((Object)stack.getItem()) || !itemToFind.isInstance((Object)stack.getItem())) continue;
+            slot = i;
+            break;
+        }
+        return slot;
+    }
+    public static int findObsidianSlot(boolean offHandActived, boolean activeBefore) {
+        int slot = -1;
+        NonNullList mainInventory = InventoryUtil.mc.player.inventory.mainInventory;
+        for (int i = 0; i < 9; ++i) {
+            Block block;
+            ItemStack stack = (ItemStack)mainInventory.get(i);
+            if (stack == ItemStack.EMPTY || !(stack.getItem() instanceof ItemBlock) || !((block = ((ItemBlock)stack.getItem()).getBlock()) instanceof BlockObsidian)) continue;
+            slot = i;
+            break;
+        }
+        return slot;
     }
 
     public static boolean isBlock(Item item, Class c) {

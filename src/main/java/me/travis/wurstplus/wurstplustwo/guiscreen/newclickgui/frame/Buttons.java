@@ -86,7 +86,7 @@ public class Buttons extends Component {
 			fontColor = new GSColor(NewClickGUI.INSTANCE.font_r.get_value(1), NewClickGUI.INSTANCE.font_g.get_value(1), NewClickGUI.INSTANCE.font_b.get_value(1), NewClickGUI.INSTANCE.font_a.get_value(1));
 			fontActiveColor = new GSColor(NewClickGUI.INSTANCE.active_font_r.get_value(1), NewClickGUI.INSTANCE.active_font_g.get_value(1), NewClickGUI.INSTANCE.active_font_b.get_value(1), NewClickGUI.INSTANCE.active_font_a.get_value(1));
 		}
-		if(NewClickGUI.INSTANCE.background.in("OldAnasheGUI")){
+		if(NewClickGUI.INSTANCE.background.in("OldGUI")){
 			fontActiveColor = new GSColor(130, 193, 242, 216);
 			fontColor = new GSColor(226, 226, 226, 90);
 		}
