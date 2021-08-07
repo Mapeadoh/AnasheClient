@@ -21,18 +21,18 @@ public class NewClickGUI extends WurstplusHack {
         INSTANCE = this;
     }
     //public WurstplusSetting blur = create("Blur", "Blur", true);
-     public WurstplusSetting icons = create("Icons", "Icons", "OyVey", combobox("Font", "Image", "OyVey", "Future"));
+     public WurstplusSetting icons = create("Icons", "Icons", "Future", combobox("Font", "Image", "OyVey", "Future"));
     public WurstplusSetting background = create("Theme", "Theme", "Custom", combobox("Black", "OldGUI", "Gray", "Custom"));
-    public WurstplusSetting scrollspeed = create("ScrollSpeed", "ScrollSpeed", 10, 1, 20);
+    public WurstplusSetting scrollspeed = create("ScrollSpeed", "ScrollSpeed", 20, 1, 30);
     public WurstplusSetting name_frame_r = create("CustomR", "CustomR", 0, 0, 255);
     public WurstplusSetting name_frame_g = create("CustomG", "CustomG", 0, 0, 255);
     public WurstplusSetting name_frame_b = create("CustomB", "CustomB", 0, 0, 255);
     public WurstplusSetting rainbowframe = create("RainbowFrame", "RainbowFrame", false);
-    public WurstplusSetting font_r = create("CustomFontR", "CustomFontR", 109, 0, 255);
-    public WurstplusSetting font_g = create("CustomFontG", "CustomFontG", 101, 0, 255);
-    public WurstplusSetting font_b = create("CustomFontB", "CustomFontB", 125, 0, 255);
-    public WurstplusSetting font_a = create("CustomFontA", "CustomFontA", 90, 0, 255);
-    public WurstplusSetting fontrainbow1 = create("RainbowFont", "RainbowFont2", false);
+    public WurstplusSetting font_r = create("CustomFontR", "CustomFontR", 255, 0, 255);
+    public WurstplusSetting font_g = create("CustomFontG", "CustomFontG", 255, 0, 255);
+    public WurstplusSetting font_b = create("CustomFontB", "CustomFontB", 255, 0, 255);
+    public WurstplusSetting font_a = create("CustomFontA", "CustomFontA", 239, 0, 255);
+    public WurstplusSetting fontrainbow1 = create("RainbowFont", "RainbowFont2", true);
     public WurstplusSetting active_font_r = create("ActiveFontR", "CustomFontR", 109, 0, 255);
     public WurstplusSetting active_font_g = create("ActiveFontG", "CustomFontG", 101, 0, 255);
     public WurstplusSetting active_font_b = create("ActiveFontB", "CustomFontB", 125, 0, 255);

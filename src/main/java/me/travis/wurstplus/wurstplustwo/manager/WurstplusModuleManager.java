@@ -100,6 +100,7 @@ public class WurstplusModuleManager {
 		add_hack(new CrashExploit());
 
 		// Movement.
+		add_hack(new PhobosSpeed());
 		add_hack(new VClip());
 		add_hack(new Jesus());
 		add_hack(new NoVoid());
@@ -291,6 +292,29 @@ public class WurstplusModuleManager {
 		}
 
 		return module_requested;
+	}
+	public WurstplusHack getModule(Class clazz) {
+		for (WurstplusHack module : get_array_hacks()) {
+			if (!clazz.isInstance(module)) continue;
+			return module;
+		}
+		return null;
+	}
+	public WurstplusHack getModuleWithModule(WurstplusHack module) {
+		for (WurstplusHack module_ : get_array_hacks()) {
+			if (!module.equals(module_)) continue;
+			return module;
+		}
+		return module;
+	}
+	public WurstplusHack getModuleWithName(String theMod) {
+		for (WurstplusHack mod : get_array_hacks()) {
+			if (mod.get_name().equalsIgnoreCase(theMod)) {
+				return mod;
+			}
+		}
+
+		return null;
 	}
 
 	public ArrayList<WurstplusHack> get_modules_with_category(WurstplusCategory category) {

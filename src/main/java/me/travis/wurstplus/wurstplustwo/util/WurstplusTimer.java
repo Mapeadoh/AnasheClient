@@ -3,6 +3,7 @@ package me.travis.wurstplus.wurstplustwo.util;
 public class WurstplusTimer {
 
     private long time;
+    private float timer = 1.0f;
 
     public WurstplusTimer() {
         this.time = -1L;
@@ -18,6 +19,12 @@ public class WurstplusTimer {
 
     public long getTime(final long time) {
         return time / 1000000L;
+    }
+
+    public void setTimer(float timer) {
+        if (timer > 0.0f) {
+            this.timer = timer;
+        }
     }
 
 }
