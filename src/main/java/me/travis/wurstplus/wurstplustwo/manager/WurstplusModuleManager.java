@@ -124,6 +124,7 @@ public class WurstplusModuleManager {
 		add_hack(new PacketFly());
 		
 		// Render.
+		add_hack(new BurrowESP());
 		add_hack(new PlayerGlow());
 		add_hack(new Skeleton());
 		add_hack(new Ranges());
