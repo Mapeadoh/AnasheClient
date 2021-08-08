@@ -1,4 +1,4 @@
-package me.travis.mapeadoh.clientstuff.noradotcc;
+package me.travis.mapeadoh.clientstuff.noraAndDelux;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;

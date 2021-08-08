@@ -6,15 +6,18 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import me.travis.mapeadoh.clientstuff.gamesense.BlockUtil;
-import me.travis.mapeadoh.clientstuff.gamesense.PlayerUtil;
 import me.travis.mapeadoh.clientstuff.gamesense.SpoofRotationUtil;
+import me.travis.mapeadoh.clientstuff.phobos.EntityUtil;
+import me.travis.wurstplus.AnasheClient;
 import me.travis.wurstplus.wurstplustwo.event.events.BlockChangeEvent;
 import me.travis.wurstplus.wurstplustwo.guiscreen.wp2clickgui.settings.WurstplusSetting;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
+import me.travis.wurstplus.wurstplustwo.hacks.chat.WurstplusAutoEz;
 import me.travis.wurstplus.wurstplustwo.util.HoleUtil;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusEntityUtil;
 import me.travis.wurstplus.wurstplustwo.util.WurstplusMessageUtil;
+import me.travis.wurstplus.wurstplustwo.util.WurstplusPlayerUtil;
 import me.zero.alpine.fork.listener.EventHandler;
 import me.zero.alpine.fork.listener.Listener;
 import net.minecraft.block.Block;
@@ -41,31 +44,25 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 
-
-public class Elevator extends WurstplusHack {
-    public Elevator() {
-        super(WurstplusCategory.WURSTPLUS_COMBAT);
-        this.name = "Elevator";
-        this.tag = "Elevator";
-        this.description = "STOP HOLECAMPING FUCK";
-    }
-    WurstplusSetting target = create("Target", "Target", "Nearest", combobox("Nearest", "Looking"));
-    WurstplusSetting placeMode = create("Place Mode", "PlaceMode", "Torch", combobox("Block", "Torch", "Both"));
-    WurstplusSetting supportDelay = create("SupportDelay", "SupportDelay", 0, 0, 8);
-    WurstplusSetting pistonDelay = create("PistonDelay", "PistonDelay", 0, 0, 8);
-    WurstplusSetting redstoneDelay = create("RedstoneDelay", "RedstoneDelay", 0, 0, 8);
-    WurstplusSetting blocksPerTick = create("Blocks per Tick", "BlocksPerTick", 4, 1, 8);
-    WurstplusSetting tickBreakRedstone = create("Tick Break Redstone", "TickBreakResdtone", 2, 0, 10);
-    WurstplusSetting enemyRange = create("Range","Range", 4.9, 0.0, 6.0);
-    WurstplusSetting debugMode = create("Debug Mode", "Debug", false);
-    WurstplusSetting trapMode = create("Trap Mode", "TrapMode",false);
-    WurstplusSetting trapAfter = create("Trap After","TrapAfter", false);
-    WurstplusSetting rotate = create("Rotate", "Rotate", false);
-    WurstplusSetting forceBurrow = create("Force Burrow", "Burrow", false);
+public class Elevator
+        extends WurstplusHack {
+    WurstplusSetting target;
+    WurstplusSetting placeMode;
+    WurstplusSetting supportDelay;
+    WurstplusSetting pistonDelay;
+    WurstplusSetting redstoneDelay;
+    WurstplusSetting blocksPerTick;
+    WurstplusSetting tickBreakRedstone;
+    WurstplusSetting enemyRange;
+    WurstplusSetting debugMode;
+    WurstplusSetting trapMode;
+    WurstplusSetting trapAfter;
+    WurstplusSetting rotate;
+    WurstplusSetting forceBurrow;
     EntityPlayer aimTarget;
     double[][] sur_block;
     double[] enemyCoordsDouble;
-    int[][] disp_surblock = new int[][]{{1, 0, 0}, {-1, 0, 0}, {0, 0, 1}, {0, 0, -1}};
+    int[][] disp_surblock;
     int[] slot_mat;
     int[] enemyCoordsInt;
     int[] meCoordsInt;
@@ -82,33 +79,60 @@ public class Elevator extends WurstplusHack {
     boolean redstonePlaced;
     structureTemp toPlace;
     @EventHandler
-    private final Listener<BlockChangeEvent> blockChangeEventListener = new Listener<BlockChangeEvent>(event -> {
-        if (Elevator.mc.player == null || Elevator.mc.world == null) {
-            return;
-        }
-        if (event.getBlock() == null || event.getPosition() == null) {
-            return;
-        }
-        BlockPos temp = this.compactBlockPos(2);
-        if (event.getPosition().getX() == temp.getX() && event.getPosition().getY() == temp.getY() && event.getPosition().getZ() == temp.getZ()) {
-            if (event.getBlock() instanceof BlockRedstoneTorch) {
-                if ((Integer)this.tickBreakRedstone.get_value(1) == 0) {
-                    this.breakBlock(temp);
-                    this.lastStage = 2;
-                } else {
-                    this.lastStage = 3;
-                }
-            } else if (event.getBlock() instanceof BlockAir && (Integer)this.redstoneDelay.get_value(1) == 0) {
-                this.placeBlock(temp, 0.0, 0.0, 0.0, false, false, this.slot_mat[2], -1);
-                Elevator.mc.world.setBlockState(temp, Blocks.REDSTONE_TORCH.getDefaultState());
+    private final Listener<BlockChangeEvent> blockChangeEventListener;
+    final ArrayList<EnumFacing> exd;
+
+    public Elevator() {
+        super(WurstplusCategory.WURSTPLUS_COMBAT);
+        this.name = "Elevator";
+        this.tag = "Elevator";
+        this.description = "Elevator";
+        this.target = this.create("Target", "Target", "Nearest", this.combobox("Nearest", "Looking"));
+        this.placeMode = this.create("Place", "Place", "Torch", this.combobox("Torch", "Block", "Both"));
+        this.supportDelay = this.create("Support Delay", "Support Delay", 0, 0, 8);
+        this.pistonDelay = this.create("Piston Delay", "Piston Delay", 0, 0, 8);
+        this.redstoneDelay = this.create("Redstone Delay", "Redstone Delay", 0, 0, 8);
+        this.blocksPerTick = this.create("Blocks per Tick", "Blocks per Tick", 4, 1, 8);
+        this.tickBreakRedstone = this.create("Tick Break Redstone", "Tick Break Redstone", 2, 0, 10);
+        this.enemyRange = this.create("Range", "Range", 4.9, 0.0, 6.0);
+        this.debugMode = this.create("Debug Mode", "Debug Mode", false);
+        this.trapMode = this.create("Trap Mode", "Trap Mode", false);
+        this.trapAfter = this.create("Trap After", "Trap After", false);
+        this.rotate = this.create("Rotate", "Rotate", false);
+        this.forceBurrow = this.create("Force Burrow", "Force Burrow", false);
+        this.disp_surblock = new int[][]{{1, 0, 0}, {-1, 0, 0}, {0, 0, 1}, {0, 0, -1}};
+        BlockPos[] temp = new BlockPos[1];
+        boolean n = false;
+        BlockPos blockPos = null;
+        this.blockChangeEventListener = new Listener<BlockChangeEvent>(event -> {
+            if (Elevator.mc.player == null || Elevator.mc.world == null) {
+                return;
             }
-        }
-    }, new Predicate[0]);
-    final ArrayList<EnumFacing> exd = new ArrayList<EnumFacing>(){
-        {
-            this.add(EnumFacing.DOWN);
-        }
-    };
+            if (event.getBlock() == null || event.getPosition() == null) {
+                return;
+            }
+            event.getPosition().getX();
+            temp[0] = this.compactBlockPos(2);
+            if (0 == blockPos.getX() && event.getPosition().getY() == temp[0].getY() && event.getPosition().getZ() == temp[0].getZ()) {
+                if (event.getBlock() instanceof BlockRedstoneTorch) {
+                    if (this.tickBreakRedstone.get_value(2) == 0) {
+                        this.breakBlock(temp[0]);
+                        this.lastStage = 2;
+                    } else {
+                        this.lastStage = 3;
+                    }
+                } else if (event.getBlock() instanceof BlockAir && this.redstoneDelay.get_value(0) == 0) {
+                    this.placeBlock(temp[0], 0.0, 0.0, 0.0, false, false, this.slot_mat[2], -1);
+                    Elevator.mc.world.setBlockState(temp[0], Blocks.REDSTONE_TORCH.getDefaultState());
+                }
+            }
+        }, new Predicate[0]);
+        this.exd = new ArrayList<EnumFacing>(){
+            {
+                this.add(EnumFacing.DOWN);
+            }
+        };
+    }
 
     private void breakBlock(BlockPos pos) {
         EnumFacing side;
@@ -116,7 +140,7 @@ public class Elevator extends WurstplusHack {
             Elevator.mc.player.inventory.currentItem = this.slot_mat[3];
         }
         if ((side = BlockUtil.getPlaceableSide(pos)) != null) {
-            if (this.rotate.get_value(true)) {
+            if (this.rotate.get_value(false)) {
                 BlockPos neighbour = pos.offset(side);
                 EnumFacing opposite = side.getOpposite();
                 Vec3d hitVec = new Vec3d((Vec3i)neighbour).add(0.5, 0.0, 0.5).add(new Vec3d(opposite.getDirectionVec()).scale(0.5));
@@ -129,7 +153,7 @@ public class Elevator extends WurstplusHack {
     }
 
     @Override
-    public void enable() {
+    protected void enable() {
         this.initValues();
         if (this.getAimTarget()) {
             return;
@@ -138,9 +162,9 @@ public class Elevator extends WurstplusHack {
     }
 
     @Override
-    public void disable() {
+    protected void disable() {
         if (this.isSneaking) {
-            Elevator.mc.player.connection.sendPacket((Packet)new CPacketEntityAction((Entity) Elevator.mc.player, CPacketEntityAction.Action.STOP_SNEAKING));
+            Elevator.mc.player.connection.sendPacket((Packet)new CPacketEntityAction((Entity)Elevator.mc.player, CPacketEntityAction.Action.STOP_SNEAKING));
             this.isSneaking = false;
         }
         String output = "";
@@ -155,9 +179,9 @@ public class Elevator extends WurstplusHack {
             output = "No materials detected...";
             materialsNeeded = this.getMissingMaterials();
         }
-        WurstplusMessageUtil.send_client_error_message(output + "Elevator turned OFF!");
+        WurstplusMessageUtil.send_client_message(output + "Elevator turned OFF!");
         if (!materialsNeeded.equals("")) {
-            WurstplusMessageUtil.send_client_error_message("Materials missing:" + materialsNeeded);
+            WurstplusMessageUtil.send_client_message("Materials missing:" + materialsNeeded);
         }
     }
 
@@ -175,7 +199,7 @@ public class Elevator extends WurstplusHack {
         if (this.slot_mat[3] == -1 && this.redstoneBlockMode) {
             output.append(" Pick");
         }
-        if (this.slot_mat[4] == -1 && forceBurrow.get_value(true)) {
+        if (this.slot_mat[4] == -1 && this.forceBurrow.get_value(false)) {
             output.append(" Skull");
         }
         return output.toString();
@@ -183,26 +207,26 @@ public class Elevator extends WurstplusHack {
 
     @Override
     public void update() {
-        int toWait;
         if (Elevator.mc.player == null) {
             this.disable();
             return;
         }
+        int toWait = 0;
         switch (this.lastStage) {
             case 0: {
-                toWait = (Integer)this.supportDelay.get_value(1);
+                toWait = this.supportDelay.get_value(0);
                 break;
             }
             case 1: {
-                toWait = (Integer)this.pistonDelay.get_value(1);
+                toWait = this.pistonDelay.get_value(0);
                 break;
             }
             case 2: {
-                toWait = (Integer)this.redstoneDelay.get_value(1);
+                toWait = this.redstoneDelay.get_value(0);
                 break;
             }
             case 3: {
-                toWait = (Integer)this.tickBreakRedstone.get_value(1);
+                toWait = this.tickBreakRedstone.get_value(2);
                 break;
             }
             default: {
@@ -216,8 +240,11 @@ public class Elevator extends WurstplusHack {
         SpoofRotationUtil.ROTATION_UTIL.shouldSpoofAngles(true);
         if (this.enemyCoordsDouble == null || this.aimTarget == null) {
             if (this.aimTarget == null) {
-                this.aimTarget = PlayerUtil.findLookingPlayer(this.enemyRange.get_value(1));
+                this.aimTarget = WurstplusPlayerUtil.findLookingPlayer(this.enemyRange.get_value(4.9));
                 if (this.aimTarget != null) {
+                    if (AnasheClient.get_hack_manager().get_module_with_tag("AutoEz").is_active()) {
+                        WurstplusAutoEz.add_target(this.aimTarget.getName());
+                    }
                     this.playerChecks();
                 }
             }
@@ -243,18 +270,17 @@ public class Elevator extends WurstplusHack {
             if (this.lastStage == 3) {
                 this.breakBlock(this.compactBlockPos(2));
                 this.lastStage = 2;
-                return;
             }
         }
     }
 
     boolean continueBlock() {
-        return ++this.blockPlaced == blocksPerTick.get_value(1);
+        return ++this.blockPlaced == this.blocksPerTick.get_value(4);
     }
 
     boolean placeSupport() {
         if (this.toPlace.supportBlock > 0) {
-            if ((forceBurrow.get_value(true) && BlockUtil.getBlock(this.aimTarget.getPosition()) instanceof BlockAir)) {
+            if (this.forceBurrow.get_value(false) && BlockUtil.getBlock(this.aimTarget.getPosition()) instanceof BlockAir) {
                 boolean temp = this.redstoneAbovePiston;
                 this.redstoneAbovePiston = true;
                 this.placeBlock(this.aimTarget.getPosition(), 0.0, 0.0, 0.0, true, false, this.slot_mat[4], -1);
@@ -301,10 +327,10 @@ public class Elevator extends WurstplusHack {
             Elevator.mc.player.inventory.currentItem = slot;
         }
         if (!this.isSneaking && BlockUtil.blackList.contains((Object)neighbourBlock) || BlockUtil.shulkerList.contains((Object)neighbourBlock)) {
-            Elevator.mc.player.connection.sendPacket((Packet)new CPacketEntityAction((Entity) Elevator.mc.player, CPacketEntityAction.Action.START_SNEAKING));
+            Elevator.mc.player.connection.sendPacket((Packet)new CPacketEntityAction((Entity)Elevator.mc.player, CPacketEntityAction.Action.START_SNEAKING));
             this.isSneaking = true;
         }
-        if (rotate.get_value(true)) {
+        if (this.rotate.get_value(false)) {
             BlockUtil.faceVectorPacketInstant(hitVec, true);
         } else if (piston) {
             switch (position) {
@@ -353,6 +379,7 @@ public class Elevator extends WurstplusHack {
         this.slot_mat = new int[]{-1, -1, -1, -1, -1};
         this.enemyCoordsDouble = new double[3];
         this.toPlace = new structureTemp(0.0, 0, null, -1);
+        boolean redstoneBlockMode = false;
         this.redstonePlaced = false;
         this.noMaterials = false;
         this.redstoneBlockMode = false;
@@ -371,7 +398,7 @@ public class Elevator extends WurstplusHack {
             if (stack == ItemStack.EMPTY) continue;
             if (stack.getItem() instanceof ItemPickaxe) {
                 this.slot_mat[3] = i;
-            } else if (this.forceBurrow.get_value(true) && stack.getItem() instanceof ItemSkull) {
+            } else if (this.forceBurrow.get_value(false) && stack.getItem() instanceof ItemSkull) {
                 this.slot_mat[4] = i;
             }
             if (!(stack.getItem() instanceof ItemBlock)) continue;
@@ -398,11 +425,14 @@ public class Elevator extends WurstplusHack {
             if (val == -1) continue;
             ++count;
         }
-        return count >= 3 + (this.redstoneBlockMode ? 1 : 0) + (forceBurrow.get_value(true) ? 1 : 0);
+        if (this.debugMode.get_value(false)) {
+            WurstplusMessageUtil.send_client_error_message(String.format("%d %d %d %d", this.slot_mat[0], this.slot_mat[1], this.slot_mat[2], this.slot_mat[3]));
+        }
+        return count >= 3 + (this.redstoneBlockMode ? 1 : 0) + (this.forceBurrow.get_value(false) ? 1 : 0);
     }
 
     boolean getAimTarget() {
-        this.aimTarget = (this.target.in("Nearest") ? PlayerUtil.findClosestTarget(this.enemyRange.get_value(1.0), this.aimTarget) : PlayerUtil.findLookingPlayer(this.enemyRange.get_value(1.0)));
+        this.aimTarget = this.target.in("Nearest") ? WurstplusPlayerUtil.findClosestTarget(this.enemyRange.get_value(4.9), this.aimTarget) : WurstplusPlayerUtil.findLookingPlayer(this.enemyRange.get_value(4.9));
         if (this.aimTarget == null || !this.target.in("Looking")) {
             if (!this.target.in("Looking") && this.aimTarget == null) {
                 this.disable();
@@ -417,7 +447,7 @@ public class Elevator extends WurstplusHack {
             if (this.is_in_hole()) {
                 this.enemyCoordsDouble = new double[]{this.aimTarget.posX, this.aimTarget.posY, this.aimTarget.posZ};
                 this.enemyCoordsInt = new int[]{(int)this.enemyCoordsDouble[0], (int)this.enemyCoordsDouble[1], (int)this.enemyCoordsDouble[2]};
-                this.meCoordsInt = new int[]{(int) Elevator.mc.player.posX, (int) Elevator.mc.player.posY, (int) Elevator.mc.player.posZ};
+                this.meCoordsInt = new int[]{(int)Elevator.mc.player.posX, (int)Elevator.mc.player.posY, (int)Elevator.mc.player.posZ};
                 this.enoughSpace = this.createStructure();
             } else {
                 this.isHole = false;
@@ -437,20 +467,21 @@ public class Elevator extends WurstplusHack {
         for (int i = 0; i < 4; ++i) {
             float offsetZ;
             float offsetX;
+            double d = 0;
             double[] pistonCoordsAbs = new double[]{this.sur_block[i][0], this.sur_block[i][1] + 1.0, this.sur_block[i][2]};
             int[] pistonCoordsRel = new int[]{this.disp_surblock[i][0], this.disp_surblock[i][1] + 1, this.disp_surblock[i][2]};
             double distanceNowCrystal = Elevator.mc.player.getDistance(pistonCoordsAbs[0], pistonCoordsAbs[1], pistonCoordsAbs[2]);
-            if (!(distanceNowCrystal < addedStructure.distance) || !(BlockUtil.getBlock(pistonCoordsAbs[0], pistonCoordsAbs[1], pistonCoordsAbs[2]) instanceof BlockAir) && !(BlockUtil.getBlock(pistonCoordsAbs[0], pistonCoordsAbs[1], pistonCoordsAbs[2]) instanceof BlockPistonBase)) continue;
+            if (!(d < addedStructure.distance) || !(BlockUtil.getBlock(pistonCoordsAbs[0], pistonCoordsAbs[1], pistonCoordsAbs[2]) instanceof BlockAir) && !(BlockUtil.getBlock(pistonCoordsAbs[0], pistonCoordsAbs[1], pistonCoordsAbs[2]) instanceof BlockPistonBase)) continue;
             double[] redstoneCoordsAbs = new double[3];
             int[] redstoneCoordsRel = new int[3];
             double minFound = 1000.0;
             double minNow = -1.0;
             boolean foundOne = false;
             for (int[] pos : this.disp_surblock) {
-                double d = 0;
+                double d2 = 0;
                 double[] torchCoords = new double[]{pistonCoordsAbs[0] + (double)pos[0], pistonCoordsAbs[1], pistonCoordsAbs[2] + (double)pos[2]};
                 minNow = Elevator.mc.player.getDistance(torchCoords[0], torchCoords[1], torchCoords[2]);
-                if (d > minFound || PistonCrystal.someoneInCoords(torchCoords[0], torchCoords[2]) || !(BlockUtil.getBlock(torchCoords[0], torchCoords[1], torchCoords[2]) instanceof BlockRedstoneTorch) && !(BlockUtil.getBlock(torchCoords[0], torchCoords[1], torchCoords[2]) instanceof BlockAir)) continue;
+                if (!(d2 <= minFound) || PistonCrystal.someoneInCoords(torchCoords[0], torchCoords[2]) || !(BlockUtil.getBlock(torchCoords[0], torchCoords[1], torchCoords[2]) instanceof BlockRedstoneTorch) && !(BlockUtil.getBlock(torchCoords[0], torchCoords[1], torchCoords[2]) instanceof BlockAir)) continue;
                 redstoneCoordsAbs = new double[]{torchCoords[0], torchCoords[1], torchCoords[2]};
                 redstoneCoordsRel = new int[]{pistonCoordsRel[0] + pos[0], pistonCoordsRel[1], pistonCoordsRel[2] + pos[2]};
                 foundOne = true;
@@ -480,7 +511,7 @@ public class Elevator extends WurstplusHack {
                     ++supportBlock;
                 }
             }
-            if (this.trapMode.get_value(true)) {
+            if (this.trapMode.get_value(false)) {
                 toPlaceTemp.addAll(Arrays.asList(new Vec3d[]{new Vec3d(-1.0, -1.0, -1.0), new Vec3d(-1.0, 0.0, -1.0), new Vec3d(-1.0, 1.0, -1.0), new Vec3d(-1.0, 2.0, -1.0), new Vec3d(-1.0, 2.0, 0.0), new Vec3d(0.0, 2.0, -1.0), new Vec3d(1.0, 2.0, -1.0), new Vec3d(1.0, 2.0, 0.0), new Vec3d(1.0, 2.0, 1.0), new Vec3d(0.0, 2.0, 1.0)}));
                 supportBlock += 10;
             }
@@ -498,12 +529,12 @@ public class Elevator extends WurstplusHack {
             addedStructure.replaceValues(distanceNowCrystal, supportBlock, toPlaceTemp, -1, offsetX, offsetZ, offsetY, position);
             this.toPlace = addedStructure;
         }
-        if (this.debugMode.get_value(true) && addedStructure.to_place != null) {
-            PistonCrystal.printDebug("Skeleton structure:", false);
+        if (this.debugMode.get_value(false) && addedStructure.to_place != null) {
+            WurstplusMessageUtil.send_client_error_message("Skeleton structure:");
             for (Vec3d parte : addedStructure.to_place) {
-                PistonCrystal.printDebug(String.format("%f %f %f", parte.x, parte.y, parte.z), false);
+                WurstplusMessageUtil.send_client_error_message(String.format("%f %f %f", parte.x, parte.y, parte.z));
             }
-            PistonCrystal.printDebug(String.format("X: %f Y: %f Z: %f", Float.valueOf(this.toPlace.offsetX), Float.valueOf(this.toPlace.offsetY), Float.valueOf(this.toPlace.offsetZ)), false);
+            WurstplusMessageUtil.send_client_error_message(String.format("X: %f Y: %f Z: %f", Float.valueOf(this.toPlace.offsetX), Float.valueOf(this.toPlace.offsetY), Float.valueOf(this.toPlace.offsetZ)));
         }
         return addedStructure.to_place != null;
     }
@@ -538,4 +569,3 @@ public class Elevator extends WurstplusHack {
         }
     }
 }
-

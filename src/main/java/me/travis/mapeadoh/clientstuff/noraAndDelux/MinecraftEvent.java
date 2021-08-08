@@ -1,4 +1,4 @@
-package me.travis.mapeadoh.clientstuff.noradotcc;
+package me.travis.mapeadoh.clientstuff.noraAndDelux;
 
 import me.zero.alpine.fork.event.type.Cancellable;
 

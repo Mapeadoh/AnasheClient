@@ -26,6 +26,7 @@ public class WurstplusHack implements Listenable {
 	public boolean state_module;
 	public boolean toggle_message;
 	public boolean widget_usage;
+	protected int tickDelay;
 
 	public static final Minecraft mc = Minecraft.getMinecraft();
 
@@ -37,6 +38,10 @@ public class WurstplusHack implements Listenable {
 		this.toggle_message = true;
 		this.widget_usage   = false;
 		this.category 		= category;
+	}
+
+	public static boolean nullCheck() {
+		return mc.player == null;
 	}
 
 	public void set_bind(int key) {

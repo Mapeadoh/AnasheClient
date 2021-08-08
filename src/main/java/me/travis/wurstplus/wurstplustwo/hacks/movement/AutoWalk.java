@@ -4,15 +4,18 @@ import me.travis.wurstplus.wurstplustwo.hacks.WurstplusCategory;
 import me.travis.wurstplus.wurstplustwo.hacks.WurstplusHack;
 import net.minecraft.client.settings.KeyBinding;
 
-public class AutoWalk extends WurstplusHack {
-    public AutoWalk(){
+public class AutoWalk
+        extends WurstplusHack {
+    public AutoWalk() {
         super(WurstplusCategory.WURSTPLUS_MOVEMENT);
-        this.name = "AutoWalk";
+        this.name = "Auto Walk";
         this.tag = "AutoWalk";
-        this.description = "baritone Zzz modulo de 25 lineas GOOOOOOD";
+        this.description = "automatically walks";
     }
+
+    @Override
     public void update() {
-        if (!(mc.world == null)) {
+        if (!nullCheck()) {
             KeyBinding.setKeyBindState(mc.gameSettings.keyBindForward.getKeyCode(), true);
         }
     }

@@ -1,6 +1,6 @@
 package me.travis.mapeadoh.clientstuff.salhack;
 
-import me.travis.mapeadoh.clientstuff.noradotcc.Wrapper;
+import me.travis.mapeadoh.clientstuff.noraAndDelux.Wrapper;
 
 public class MinecraftEvent extends Cancellable
 {

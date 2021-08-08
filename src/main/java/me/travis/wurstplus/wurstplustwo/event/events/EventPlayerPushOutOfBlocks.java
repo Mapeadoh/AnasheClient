@@ -1,6 +1,6 @@
 package me.travis.wurstplus.wurstplustwo.event.events;
 
-import me.travis.mapeadoh.clientstuff.noradotcc.MinecraftEvent;
+import me.travis.mapeadoh.clientstuff.noraAndDelux.MinecraftEvent;
 
 public class EventPlayerPushOutOfBlocks extends MinecraftEvent
 {

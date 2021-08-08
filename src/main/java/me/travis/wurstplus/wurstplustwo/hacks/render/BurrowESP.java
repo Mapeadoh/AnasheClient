@@ -46,7 +46,7 @@ public class BurrowESP extends WurstplusHack {
         posList.clear();
         for (EntityPlayer player : mc.world.playerEntities){
             BlockPos blockPos = new BlockPos(Math.floor(player.posX), Math.floor(player.posY+0.2), Math.floor(player.posZ));
-            if((mc.world.getBlockState(blockPos).getBlock() == Blocks.ENDER_CHEST ||mc.world.getBlockState(blockPos).getBlock() == Blocks.PISTON || mc.world.getBlockState(blockPos).getBlock() == Blocks.CHEST || mc.world.getBlockState(blockPos).getBlock() == Blocks.SAND|| mc.world.getBlockState(blockPos).getBlock() == Blocks.OBSIDIAN) && blockPos.distanceSq(mc.player.posX, mc.player.posY, mc.player.posZ) <= this.range.get_value(1)){
+            if((mc.world.getBlockState(blockPos).getBlock() == Blocks.ENDER_CHEST  ||mc.world.getBlockState(blockPos).getBlock() == Blocks.PISTON || mc.world.getBlockState(blockPos).getBlock() == Blocks.CHEST || mc.world.getBlockState(blockPos).getBlock() == Blocks.SAND|| mc.world.getBlockState(blockPos).getBlock() == Blocks.OBSIDIAN) && blockPos.distanceSq(mc.player.posX, mc.player.posY, mc.player.posZ) <= this.range.get_value(1)){
 
                 if (!(blockPos.distanceSq(mc.player.posX, mc.player.posY, mc.player.posZ) <= 1.5) || this.self.get_value(true)) {
                     posList.add(blockPos);
@@ -60,7 +60,7 @@ public class BurrowESP extends WurstplusHack {
     @Override
     public void render(WurstplusEventRender event){
         for (BlockPos blockPos : posList){
-            String s = "Burrowed";
+            String s = mc.player.getName() + " burrowed";
             if (this.text.get_value(true)) {
                 WurstplusRenderUtil.drawText(blockPos, s);
             }

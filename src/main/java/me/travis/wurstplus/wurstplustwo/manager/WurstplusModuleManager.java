@@ -53,7 +53,11 @@ public class WurstplusModuleManager {
 		add_hack(new WurstplusAnnouncer());
 
 		// Combat.
-		//add_hack(new Elevator());
+		add_hack(new AutoMinecart());
+		add_hack(new Blocker());
+		add_hack(new PacketAutoCity());
+		add_hack(new LegCrystal());
+		add_hack(new Elevator());
 		//add_hack(new NewPistonAura());
 		add_hack(new AntiCrystal());
 		add_hack(new Elevator());
@@ -100,6 +104,9 @@ public class WurstplusModuleManager {
 		add_hack(new CrashExploit());
 
 		// Movement.
+		add_hack(new Phase());
+		add_hack(new MoonWalk());
+		add_hack(new FastSwim());
 		add_hack(new PhobosSpeed());
 		add_hack(new VClip());
 		add_hack(new Jesus());
@@ -124,6 +131,7 @@ public class WurstplusModuleManager {
 		add_hack(new PacketFly());
 		
 		// Render.
+		add_hack(new Trails());
 		add_hack(new BurrowESP());
 		add_hack(new PlayerGlow());
 		add_hack(new Skeleton());

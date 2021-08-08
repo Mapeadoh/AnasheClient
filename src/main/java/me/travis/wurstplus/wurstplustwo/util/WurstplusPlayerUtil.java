@@ -1,10 +1,14 @@
 package me.travis.wurstplus.wurstplustwo.util;
 
 import java.util.ArrayList;
+
+import me.travis.mapeadoh.clientstuff.wp3.EntityUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.client.entity.EntityPlayerSP;
 import java.util.Iterator;
+import java.util.List;
+
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.Vec3i;
@@ -21,7 +25,22 @@ import net.minecraft.client.Minecraft;
 
 public class WurstplusPlayerUtil
 {
-    private static final Minecraft mc;
+
+    public static EntityPlayer findClosestTarget(double rangeMax, EntityPlayer aimTarget) {
+        rangeMax *= rangeMax;
+        List<EntityPlayer> playerList = WurstplusPlayerUtil.mc.world.playerEntities;
+        EntityPlayer closestTarget = null;
+        for (EntityPlayer entityPlayer : playerList) {
+            if (EntityUtil.basicChecksEntity((Entity)entityPlayer)) continue;
+            if (aimTarget == null && WurstplusPlayerUtil.mc.player.getDistanceSq((Entity)entityPlayer) <= rangeMax) {
+                closestTarget = entityPlayer;
+                continue;
+            }
+            if (aimTarget == null || WurstplusPlayerUtil.mc.player.getDistanceSq((Entity)entityPlayer) > rangeMax || WurstplusPlayerUtil.mc.player.getDistanceSq((Entity)entityPlayer) >= WurstplusPlayerUtil.mc.player.getDistanceSq((Entity)aimTarget)) continue;
+            closestTarget = entityPlayer;
+        }
+        return closestTarget;
+    }    private static final Minecraft mc;
 
     public static BlockPos GetLocalPlayerPosFloored() {
         return new BlockPos(Math.floor(WurstplusPlayerUtil.mc.player.posX), Math.floor(WurstplusPlayerUtil.mc.player.posY), Math.floor(WurstplusPlayerUtil.mc.player.posZ));
