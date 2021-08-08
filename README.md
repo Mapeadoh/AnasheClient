@@ -1,6 +1,6 @@
 # AnasheClient+ (ft beat)
 
-![Beat moment](fuck u beat.png)
+![Beat moment](https://github.com/Mapeadoh/AnasheClient/blob/main/fuck%20u%20beat.png)
 #### (i have an incredible english)
 ###now in beta 0.9
 another w+2 skid sheeeesh
