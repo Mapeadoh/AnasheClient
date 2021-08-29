@@ -2,10 +2,10 @@
 
 ![Beat moment](https://github.com/Mapeadoh/AnasheClient/blob/main/fuck%20u%20beat.png)
 #### (i have an incredible english)
-###now in beta 0.9
+### Now in beta 0.11
 another w+2 skid sheeeesh
 
-2nd repository 
+2nd repository
 
 ### how to use
 
